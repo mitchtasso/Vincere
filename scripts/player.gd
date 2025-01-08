@@ -373,6 +373,13 @@ func _on_player_hitbox_area_entered(area):
 			ARMOR -= 15
 		else:
 			HEALTH -= 15
+	if area.is_in_group("enemy4"):
+		healthVin.show()
+		vin_timer.start()
+		if ARMOR > 0:
+			ARMOR -= 15
+		else:
+			HEALTH -= 15
 
 #blood splatter
 func _on_hitbox_area_entered(area: Area3D) -> void:

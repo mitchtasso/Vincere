@@ -74,6 +74,7 @@ func _physics_process(delta):
 	if player.playerDeath == true:
 		navReset = 0
 		self.queue_free()
+	
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("magic"):

@@ -6,17 +6,20 @@ extends Node3D
 @onready var respawnTimerDemon = $allEnemies/spawnTimerDemon1
 @onready var respawnTimerDemon2 = $allEnemies/spawnTimerDemon2
 @onready var respawnTimerDemon3 = $allEnemies/spawnTimerDemon3
+@onready var respawnTimerDemon4 = $allEnemies/spawnTimerDemon4
 @onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
 
 var demon = load("res://scenes/enemy1.tscn")
 var demon2 = load("res://scenes/enemy2.tscn")
 var demon3 = load("res://scenes/enemy3.tscn")
+var demon4 = load("res://scenes/enemy4.tscn")
 var instance
 var wave = 1
 var spawnDecrease = 0.1
 var demon1SpawnTime = 4.0
 var demon2SpawnTime = 6.0
 var demon3SpawnTime = 12.0
+var demon4SpawnTime = 12.0
 var dec200 = 0.95
 var dec400 = 0.90
 var dec600 = 0.85
@@ -32,6 +35,7 @@ func _process(_delta: float) -> void:
 	demon_spawn_dec()
 	demon2_spawn_dec()
 	demon3_spawn_dec()
+	demon4_spawn_dec()
 	
 	if player.playerDeath == true:
 		if wave > 6:
@@ -85,6 +89,14 @@ func _on_spawn_timer_demon_3_timeout() -> void:
 		instance.position = spawn_point
 		navigation_region.add_child(instance)
 
+func _on_spawn_timer_demon_4_timeout() -> void:
+	if wave > 6 and navigation_region.get_child_count() < maxSpawn:
+		var spawn_point = _get_random_child(spawns).global_position
+		instance = demon4.instantiate()
+		instance.position = spawn_point
+		navigation_region.add_child(instance)
+
+
 func demon_spawn_dec():
 	if wave > 6:
 		respawnTimerDemon.wait_time = demon1SpawnTime * dec600
@@ -108,3 +120,9 @@ func demon3_spawn_dec():
 		respawnTimerDemon3.wait_time = demon3SpawnTime * dec200
 	else:
 		respawnTimerDemon3.wait_time = demon3SpawnTime
+
+func demon4_spawn_dec():
+	if wave > 8:
+		respawnTimerDemon4.wait_time = demon4SpawnTime * dec200
+	else:
+		respawnTimerDemon4.wait_time = demon4SpawnTime

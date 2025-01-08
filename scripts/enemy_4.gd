@@ -11,6 +11,10 @@ extends CharacterBody3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var world: Node3D = $"../.."
 
+var magic = load("res://scenes/demon_magic.tscn")
+var instance
+@onready var arm_cast = $MeshInstance3D/RayCast3D
+
 var HEALTH = 50
 var maxHealth = 50
 var SPEED = 8.0
@@ -21,6 +25,10 @@ var stunLock = false
 var stunVel = -1.10
 var death = false
 var next_nav_point
+var lockedOn = false
+
+var magicReset = 1
+var magicResetMax = 0
 
 func _physics_process(delta):
 	
@@ -46,7 +54,7 @@ func _physics_process(delta):
 		enemy_health_bar.show()
 	
 	navReset += 1
-	if stunLock == false and world.wave > 2:
+	if stunLock == false and world.wave > 6:
 		if navReset >= navTime:
 			velocity = Vector3.ZERO
 			nav_agent.set_target_position(player.global_transform.origin)
@@ -74,6 +82,19 @@ func _physics_process(delta):
 	if player.playerDeath == true:
 		navReset = 0
 		self.queue_free()
+	
+	if magicResetMax >= 200:
+		magicResetMax = 200
+	magicResetMax += magicReset
+	if arm_cast.is_colliding():
+		print(magicResetMax)
+		velocity *= 0.001
+		if magicResetMax >= 200:
+			magicResetMax -= 200
+			instance = magic.instantiate()
+			instance.position = arm_cast.global_position
+			instance.transform.basis = arm_cast.global_transform.basis
+			get_parent().add_child(instance)
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("magic"):
