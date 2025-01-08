@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv5yh37vpvyt4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xj52w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8kf4"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="enemyHealthBar" type="ProgressBar"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -20.5
+offset_right = 273.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xj52w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y8kf4")
+max_value = 3.0
+value = 3.0
+show_percentage = false

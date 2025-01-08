@@ -1,0 +1,110 @@
+extends Node3D
+
+@onready var spawns = $spawns
+@onready var navigation_region = $NavigationRegion3D
+@onready var player = $player
+@onready var respawnTimerDemon = $allEnemies/spawnTimerDemon1
+@onready var respawnTimerDemon2 = $allEnemies/spawnTimerDemon2
+@onready var respawnTimerDemon3 = $allEnemies/spawnTimerDemon3
+@onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
+
+var demon = load("res://scenes/enemy1.tscn")
+var demon2 = load("res://scenes/enemy2.tscn")
+var demon3 = load("res://scenes/enemy3.tscn")
+var instance
+var wave = 1
+var spawnDecrease = 0.1
+var demon1SpawnTime = 4.0
+var demon2SpawnTime = 6.0
+var demon3SpawnTime = 12.0
+var dec200 = 0.95
+var dec400 = 0.90
+var dec600 = 0.85
+var inc777 = 1.5
+var maxSpawn = 4
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	randomize()
+
+func _process(_delta: float) -> void:
+	wave_label.text = "Wave: " + str(wave)
+	demon_spawn_dec()
+	demon2_spawn_dec()
+	demon3_spawn_dec()
+	
+	if player.playerDeath == true:
+		if wave > 6:
+			player.gameTimeSec = 0
+			player.gameTimeMin = 3
+			player.gameTimeSecDef = 0
+			player.gameTimeMinDef = 3
+			maxSpawn = 10
+		elif wave > 4:
+			player.gameTimeSec = 30
+			player.gameTimeMin = 2
+			player.gameTimeSecDef = 30
+			player.gameTimeMinDef = 2
+			maxSpawn = 8
+		elif wave > 2:
+			player.gameTimeSec = 0
+			player.gameTimeMin = 2
+			player.gameTimeSecDef = 0
+			player.gameTimeMinDef = 2
+			maxSpawn = 6
+		else:
+			player.gameTimeSec = 30
+			player.gameTimeMin = 1
+			player.gameTimeSecDef = 30
+			player.gameTimeMinDef = 1
+			maxSpawn = 4
+	
+#Enemy 1 Spawning
+func _get_random_child(parent_node):
+	var random_id = randi() % parent_node.get_child_count()
+	return parent_node.get_child(random_id)
+
+func _on_spawn_timer_timeout() -> void:
+	if navigation_region.get_child_count() < maxSpawn:
+		var spawn_point = _get_random_child(spawns).global_position
+		instance = demon.instantiate()
+		instance.position = spawn_point
+		navigation_region.add_child(instance)
+
+func _on_spawn_timer_demon_2_timeout() -> void:
+	if wave > 2 and navigation_region.get_child_count() < maxSpawn:
+		var spawn_point = _get_random_child(spawns).global_position
+		instance = demon2.instantiate()
+		instance.position = spawn_point
+		navigation_region.add_child(instance)
+
+func _on_spawn_timer_demon_3_timeout() -> void:
+	if wave > 4 and navigation_region.get_child_count() < maxSpawn:
+		var spawn_point = _get_random_child(spawns).global_position
+		instance = demon3.instantiate()
+		instance.position = spawn_point
+		navigation_region.add_child(instance)
+
+func demon_spawn_dec():
+	if wave > 6:
+		respawnTimerDemon.wait_time = demon1SpawnTime * dec600
+	elif wave > 4:
+		respawnTimerDemon.wait_time = demon1SpawnTime * dec400
+	elif wave > 2:
+		respawnTimerDemon.wait_time = demon1SpawnTime * dec200
+	else:
+		respawnTimerDemon.wait_time = demon1SpawnTime
+
+func demon2_spawn_dec():
+	if wave > 6:
+		respawnTimerDemon2.wait_time = demon2SpawnTime * dec400
+	elif wave > 4:
+		respawnTimerDemon2.wait_time = demon2SpawnTime * dec200
+	else:
+		respawnTimerDemon2.wait_time = demon2SpawnTime
+
+func demon3_spawn_dec():
+	if wave > 6:
+		respawnTimerDemon3.wait_time = demon3SpawnTime * dec200
+	else:
+		respawnTimerDemon3.wait_time = demon3SpawnTime

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bu3u4j6nyc3ap"
+path="res://.godot/imported/holybladewhand.obj-56f53ba2c7b5d26f10df2d2fdb9d8205.mesh"
+
+[deps]
+
+files=["res://.godot/imported/holybladewhand.obj-56f53ba2c7b5d26f10df2d2fdb9d8205.mesh"]
+
+source_file="res://assets/player/holybladewhand.obj"
+dest_files=["res://.godot/imported/holybladewhand.obj-56f53ba2c7b5d26f10df2d2fdb9d8205.mesh", "res://.godot/imported/holybladewhand.obj-56f53ba2c7b5d26f10df2d2fdb9d8205.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

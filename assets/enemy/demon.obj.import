@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c846vps6rkcio"
+path="res://.godot/imported/demon.obj-51dd34e1cec87efbf1c1e9f70d354a77.mesh"
+
+[deps]
+
+files=["res://.godot/imported/demon.obj-51dd34e1cec87efbf1c1e9f70d354a77.mesh"]
+
+source_file="res://assets/enemy/demon.obj"
+dest_files=["res://.godot/imported/demon.obj-51dd34e1cec87efbf1c1e9f70d354a77.mesh", "res://.godot/imported/demon.obj-51dd34e1cec87efbf1c1e9f70d354a77.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

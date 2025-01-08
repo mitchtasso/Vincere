@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxoo1u0uatgnh"
+path="res://.godot/imported/heavyDemon.obj-569041e10b373ee68f0724674883b296.mesh"
+
+[deps]
+
+files=["res://.godot/imported/heavyDemon.obj-569041e10b373ee68f0724674883b296.mesh"]
+
+source_file="res://assets/enemy/heavyDemon.obj"
+dest_files=["res://.godot/imported/heavyDemon.obj-569041e10b373ee68f0724674883b296.mesh", "res://.godot/imported/heavyDemon.obj-569041e10b373ee68f0724674883b296.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccshtji45cys7"
+path="res://.godot/imported/holyblade.obj-ac04a6d9d12f9239496e98b698de9a5a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/holyblade.obj-ac04a6d9d12f9239496e98b698de9a5a.mesh"]
+
+source_file="res://assets/player/holyblade.obj"
+dest_files=["res://.godot/imported/holyblade.obj-ac04a6d9d12f9239496e98b698de9a5a.mesh", "res://.godot/imported/holyblade.obj-ac04a6d9d12f9239496e98b698de9a5a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

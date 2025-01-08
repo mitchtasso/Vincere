@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cefy22c1ccnqa"
+path="res://.godot/imported/church.obj-d6d996cf8ee659cebb24d504cc704ef2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/church.obj-d6d996cf8ee659cebb24d504cc704ef2.mesh"]
+
+source_file="res://assets/world/church.obj"
+dest_files=["res://.godot/imported/church.obj-d6d996cf8ee659cebb24d504cc704ef2.mesh", "res://.godot/imported/church.obj-d6d996cf8ee659cebb24d504cc704ef2.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

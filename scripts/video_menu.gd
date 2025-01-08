@@ -1,0 +1,142 @@
+extends Control
+
+var resolution = 3
+var window = 0
+var vsync = 0
+var fpsCount = 1
+var fpsValue
+var FPS
+
+
+@onready var VideoMenu = $"."
+@onready var buttonSound = $"../../sounds/menuButton"
+@onready var resolutionBox = $MarginContainer/VBoxContainer/resolution
+@onready var windowBox = $MarginContainer/VBoxContainer/window
+@onready var vsyncBox = $MarginContainer/VBoxContainer/vsync
+@onready var fpsBox = $MarginContainer/VBoxContainer/fps
+@onready var fpsUI = $"../playerUI/VBoxContainer/fps"
+@onready var savedText = $savedText
+@onready var tempTextTimer = $tempText
+
+@onready var OptionsMenu = $"../OptionsMenu"
+@onready var OptionsMenuSelect = $"../OptionsMenu/buttons/VBoxContainer/controls"
+
+var settingsData = SettingsData.new()
+var save_file_path = "user://VincereSaves/Settings/"
+var save_file_name = "SettingData.tres"
+var direct_file_path = "user://VincereSaves/Settings/"
+
+func _on_back_pressed():
+	buttonSound.play()
+	load_data()
+	VideoMenu.hide()
+	OptionsMenu.show()
+	OptionsMenuSelect.grab_focus()
+
+func _on_window_item_selected(index: int) -> void:
+	match index:
+		0:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			window = 0
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			window = 1
+
+func _on_resolution_item_selected(index):
+	match index:
+		0:
+			DisplayServer.window_set_size(Vector2i(2560,1440))
+			resolution = 0
+		1:
+			DisplayServer.window_set_size(Vector2i(1920,1080))
+			resolution = 1
+		2:
+			DisplayServer.window_set_size(Vector2i(1600,900))
+			resolution = 2
+		3:
+			DisplayServer.window_set_size(DisplayServer.screen_get_size())
+			resolution = 3
+
+func _on_vsync_item_selected(index: int) -> void:
+	match index:
+		0:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+			vsync = 0
+		1:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+			vsync = 1
+
+func _on_fps_item_selected(index: int) -> void:
+	match index:
+		0:
+			fpsCount = 0
+		1:
+			fpsCount = 1
+
+func _ready():
+	if DirAccess.dir_exists_absolute(direct_file_path):
+		load_data()
+	else:
+		verify_save_directory(save_file_path)
+		save()
+
+func verify_save_directory(path: String):
+	DirAccess.make_dir_absolute(path)
+
+func load_data():
+	settingsData = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
+	resolution = settingsData.resolution
+	window = settingsData.window
+	vsync = settingsData.vsync
+	fpsCount = settingsData.fpsCount
+	
+	windowBox.selected = window
+	if windowBox.selected == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	elif windowBox.selected == 1:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	resolutionBox.selected = resolution
+	if resolutionBox.selected == 0:
+		DisplayServer.window_set_size(Vector2i(2560,1440))
+	elif resolutionBox.selected == 1:
+		DisplayServer.window_set_size(Vector2i(1920,1080))
+	elif resolutionBox.selected == 2:
+		DisplayServer.window_set_size(Vector2i(1600,900))
+	elif resolutionBox.selected == 3:
+		DisplayServer.window_set_size(DisplayServer.screen_get_size())
+	
+	vsyncBox.selected = vsync
+	if vsyncBox.selected == 0:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	elif vsyncBox.selected == 1:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	
+	fpsBox.selected = fpsCount
+	if fpsBox.selected == 0:
+		FPS = "FPS: " + str(Engine.get_frames_per_second())
+	elif fpsBox.selected == 1:
+		FPS = ""
+
+func save():
+	savedText.show()
+	tempTextTimer.start()
+	settingsData.fpsCount = fpsCount
+	settingsData.resolution = resolution
+	settingsData.window = window
+	settingsData.vsync = vsync
+	ResourceSaver.save(settingsData, save_file_path + save_file_name)
+	
+func _on_save_pressed() -> void:
+	buttonSound.play()
+	save()
+
+func _process(_delta):
+	if settingsData.fpsCount == 0:
+		FPS = "FPS: " + str(Engine.get_frames_per_second())
+	elif settingsData.fpsCount == 1:
+		FPS = ""
+	fpsUI.text = FPS
+
+func _on_temp_text_timeout() -> void:
+	savedText.hide()
