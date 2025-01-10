@@ -4,7 +4,7 @@ var speed
 var walking = false
 const WALK_SPEED = 5.75
 const SPRINT_SPEED = 8.5
-const JUMP_VELOCITY = 5.5
+const JUMP_VELOCITY = 10.0
 const SENSITIVITY = 0.001
 var points = 0
 var souls = 0

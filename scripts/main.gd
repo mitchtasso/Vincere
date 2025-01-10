@@ -16,15 +16,15 @@ var demon4 = load("res://scenes/enemy4.tscn")
 var instance
 var wave = 1
 var spawnDecrease = 0.1
-var demon1SpawnTime = 4.0
-var demon2SpawnTime = 6.0
-var demon3SpawnTime = 12.0
-var demon4SpawnTime = 12.0
+var demon1SpawnTime = 3.0
+var demon2SpawnTime = 5.0
+var demon3SpawnTime = 10.0
+var demon4SpawnTime = 8.0
 var dec200 = 0.95
 var dec400 = 0.90
 var dec600 = 0.85
 var inc777 = 1.5
-var maxSpawn = 4
+var maxSpawn = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,32 +37,41 @@ func _process(_delta: float) -> void:
 	demon3_spawn_dec()
 	demon4_spawn_dec()
 	
+	match wave:
+		10: maxSpawn = 14
+		9: maxSpawn = 14
+		8: maxSpawn = 12
+		7: maxSpawn = 12
+		6: maxSpawn = 10
+		5: maxSpawn = 10
+		4: maxSpawn = 8
+		3: maxSpawn = 8
+		2: maxSpawn = 6
+		_: maxSpawn = 6
+	print(maxSpawn)
+	
 	if player.playerDeath == true:
 		if wave > 6:
 			player.gameTimeSec = 0
 			player.gameTimeMin = 3
 			player.gameTimeSecDef = 0
 			player.gameTimeMinDef = 3
-			maxSpawn = 10
 		elif wave > 4:
 			player.gameTimeSec = 30
 			player.gameTimeMin = 2
 			player.gameTimeSecDef = 30
 			player.gameTimeMinDef = 2
-			maxSpawn = 8
 		elif wave > 2:
 			player.gameTimeSec = 0
 			player.gameTimeMin = 2
 			player.gameTimeSecDef = 0
 			player.gameTimeMinDef = 2
-			maxSpawn = 6
 		else:
 			player.gameTimeSec = 30
 			player.gameTimeMin = 1
 			player.gameTimeSecDef = 30
 			player.gameTimeMinDef = 1
-			maxSpawn = 4
-	
+
 #Enemy 1 Spawning
 func _get_random_child(parent_node):
 	var random_id = randi() % parent_node.get_child_count()

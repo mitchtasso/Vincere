@@ -1,6 +1,6 @@
 extends Area3D
 
-var SPEED = 30.0
+var SPEED = 40.0
 
 @onready var mesh = $MeshInstance3D
 @onready var ray = $ShapeCast3D
