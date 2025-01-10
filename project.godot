@@ -33,6 +33,7 @@ enemy3=""
 enemy4=""
 weapon=""
 magic=""
+player=""
 
 [input]
 

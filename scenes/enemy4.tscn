@@ -34,8 +34,8 @@ transform = Transform3D(-3.64116e-08, 0, 1.25, 0, 1, 0, -0.833, 0, -5.46392e-08,
 mesh = ExtResource("2_dvvm6")
 
 [node name="RayCast3D" type="RayCast3D" parent="MeshInstance3D"]
-transform = Transform3D(40, 0, -3.55271e-15, 0, 1, 0, 1.42109e-13, 0, 1, 0.824393, 1.14081, 2.4014e-08)
-target_position = Vector3(1, 0, 0)
+transform = Transform3D(1, 0, -5.68434e-15, 0, 1, 0, 5.68434e-15, 0, 1, 1.38041, 1.13831, 4.02103e-08)
+target_position = Vector3(40, 0, 0)
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

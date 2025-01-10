@@ -1,11 +1,11 @@
 extends Area3D
 
-var SPEED = 40.0
+var SPEED = 30.0
 
 @onready var mesh = $MeshInstance3D
 @onready var ray = $ShapeCast3D
-@onready var particle: GPUParticles3D = $explosion
-@onready var trail: GPUParticles3D = $trail
+@onready var particle: GPUParticles3D = $MeshInstance3D/explosion
+@onready var trail: GPUParticles3D = $MeshInstance3D/trail
 @onready var sizzle: AudioStreamPlayer3D = $sizzle
 @onready var boom: AudioStreamPlayer3D = $boom
 
@@ -14,10 +14,11 @@ var time = 600
 var explosion = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float):
-	position += transform.basis * Vector3(0,0,-SPEED) * delta
+func _physics_process(delta: float):
+	position += transform.basis * Vector3(SPEED,0,0) * delta
 	
 	if ray.is_colliding() and explosion == 0:
+		
 		sizzle.stop()
 		boom.play()
 		mesh.visible = false

@@ -20,7 +20,7 @@ var maxHealth = 50
 var SPEED = 8.0
 var knockbackSpeed = 5.50
 var navReset = 0
-var navTime = 60
+var navTime = 30
 var stunLock = false
 var stunVel = -1.10
 var death = false
@@ -83,14 +83,13 @@ func _physics_process(delta):
 		navReset = 0
 		self.queue_free()
 	
-	if magicResetMax >= 200:
-		magicResetMax = 200
+	if magicResetMax >= 500:
+		magicResetMax = 500
 	magicResetMax += magicReset
 	if arm_cast.is_colliding():
-		print(magicResetMax)
 		velocity *= 0.001
-		if magicResetMax >= 200:
-			magicResetMax -= 200
+		if magicResetMax >= 500:
+			magicResetMax = 0
 			instance = magic.instantiate()
 			instance.position = arm_cast.global_position
 			instance.transform.basis = arm_cast.global_transform.basis

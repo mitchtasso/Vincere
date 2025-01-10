@@ -8,13 +8,10 @@
 size = Vector3(0.35, 0.3, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i5ci"]
-albedo_color = Color(1, 0.447059, 0, 1)
+albedo_color = Color(0.403922, 0, 0.388235, 1)
 emission_enabled = true
-emission = Color(1, 0.447059, 0, 1)
+emission = Color(0.403922, 0, 0.388235, 1)
 emission_energy_multiplier = 5.0
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hbh3j"]
-points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_he3a5"]
 lifetime_randomness = 1.0
@@ -24,9 +21,9 @@ initial_velocity_min = 15.0
 initial_velocity_max = 15.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gxr3"]
-albedo_color = Color(0.589985, 0.251939, 3.85046e-07, 1)
+albedo_color = Color(0.405747, 7.94398e-05, 0.386744, 1)
 emission_enabled = true
-emission = Color(0.639458, 0.0701404, 0, 1)
+emission = Color(0.639216, 0.0705882, 1, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_r6xt0"]
@@ -40,40 +37,39 @@ initial_velocity_min = 8.0
 initial_velocity_max = 8.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4oaw"]
-albedo_color = Color(0.588235, 0.25098, 0, 1)
+albedo_color = Color(0.403922, 0, 0.388235, 1)
 emission_enabled = true
-emission = Color(0.639216, 0.0705882, 0, 1)
+emission = Color(0.325689, 5.36177e-05, 0.312676, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ltqnt"]
 material = SubResource("StandardMaterial3D_e4oaw")
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i5xm5"]
-size = Vector3(0.35, 0.35, 1)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yjwqw"]
+points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuugi"]
+size = Vector3(1, 0.3, 0.3)
 
 [node name="demonMagic" type="Area3D" groups=["enemy4"]]
-collision_mask = 0
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_cnhgn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
 mesh = SubResource("BoxMesh_70uqi")
 surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
-shape = SubResource("ConvexPolygonShape3D_hbh3j")
-
-[node name="trail" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.150434)
+[node name="trail" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.176847, 0, -7.73023e-09)
 amount = 12
 speed_scale = 1.1
 process_material = SubResource("ParticleProcessMaterial_he3a5")
 draw_pass_1 = SubResource("BoxMesh_r6xt0")
 
-[node name="explosion" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.671647)
+[node name="explosion" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.344366, 0, 1.50527e-08)
 emitting = false
 amount = 16
 lifetime = 0.5
@@ -83,8 +79,11 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kdddq")
 draw_pass_1 = SubResource("BoxMesh_ltqnt")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_yjwqw")
+
 [node name="sizzle" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0394019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40565, 0, 0.0394019)
 stream = ExtResource("2_11yir")
 volume_db = -15.0
 max_db = -15.0
@@ -92,13 +91,13 @@ pitch_scale = 0.9
 autoplay = true
 
 [node name="boom" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295371, 0, -0.000926316)
 stream = ExtResource("3_ji21q")
 volume_db = -10.0
 max_db = -10.0
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, 0)
-shape = SubResource("BoxShape3D_i5xm5")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238097, 0, 0)
+shape = SubResource("BoxShape3D_iuugi")
+target_position = Vector3(-0.5, 0, 0)
+collision_mask = 4
