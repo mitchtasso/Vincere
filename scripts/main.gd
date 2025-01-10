@@ -48,7 +48,6 @@ func _process(_delta: float) -> void:
 		3: maxSpawn = 8
 		2: maxSpawn = 6
 		_: maxSpawn = 6
-	print(maxSpawn)
 	
 	if player.playerDeath == true:
 		if wave > 6:
