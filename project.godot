@@ -34,6 +34,7 @@ enemy4=""
 weapon=""
 magic=""
 player=""
+enemySet=""
 
 [input]
 

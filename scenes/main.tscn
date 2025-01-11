@@ -4018,14 +4018,15 @@ wait_time = 3.0
 autostart = true
 
 [node name="spawnTimerDemon2" type="Timer" parent="allEnemies"]
-wait_time = 6.0
+wait_time = 5.0
 autostart = true
 
 [node name="spawnTimerDemon3" type="Timer" parent="allEnemies"]
-wait_time = 6.0
+wait_time = 10.0
 autostart = true
 
 [node name="spawnTimerDemon4" type="Timer" parent="allEnemies"]
+wait_time = 8.0
 autostart = true
 
 [node name="spawns" type="Node3D" parent="."]
@@ -4724,8 +4725,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -179.0
-offset_top = -212.0
+offset_top = -190.0
 offset_right = 179.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 100
@@ -4744,9 +4746,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -184.5
-offset_right = 210.0
-offset_bottom = 184.5
+offset_top = -443.5
+offset_right = 650.0
+offset_bottom = 443.5
 grow_vertical = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 25
@@ -4776,6 +4778,17 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 
+[node name="upgrade" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Upgrade Weapon:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
 [node name="spell" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
@@ -4783,15 +4796,16 @@ theme_override_font_sizes/font_size = 90
 text = "Spell Scroll:"
 horizontal_alignment = 2
 
-[node name="Label3" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
+[node name="Label4" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="upgrade" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
+[node name="spellUpgrade" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Upgrade Weapon:"
+text = "Spell Upgrade:
+"
 horizontal_alignment = 2
 
 [node name="itemButtons" type="MarginContainer" parent="UI/ShopMenu"]
@@ -4801,10 +4815,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -480.0
-offset_top = -270.0
-offset_right = -194.0
-offset_bottom = 270.0
+offset_left = -487.5
+offset_top = -428.0
+offset_right = -186.5
+offset_bottom = 461.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -4831,7 +4845,7 @@ text = "Upgrade"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spell" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
+[node name="upgrade" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -4841,7 +4855,17 @@ text = "Purchase"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="upgrade" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
+[node name="spell" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Purchase"
+
+[node name="Label4" type="Label" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spellUpgrade" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -4855,9 +4879,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -325.0
-offset_top = -349.0
+offset_top = -440.0
 offset_right = 325.0
-offset_bottom = 350.0
+offset_bottom = 447.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -4888,7 +4912,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 
-[node name="spell" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+[node name="upgrade" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -4899,7 +4923,18 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="upgrade" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+[node name="spell" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spellUpgrade" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5931,8 +5966,9 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/ShopMenu/buttons/VBoxContainer/Yes" to="UI/ShopMenu" method="_on_yes_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/armor" to="UI/ShopMenu" method="_on_armor_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/sharpen" to="UI/ShopMenu" method="_on_sharpen_pressed"]
-[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spell" to="UI/ShopMenu" method="_on_spell_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/upgrade" to="UI/ShopMenu" method="_on_upgrade_pressed"]
+[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spell" to="UI/ShopMenu" method="_on_spell_pressed"]
+[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/ShopMenu" method="_on_spell_upgrade_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Replay" to="UI/DeathMenu" method="_on_replay_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Menu" to="UI/DeathMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/WaveMenu/buttons/VBoxContainer/Continue" to="UI/WaveMenu" method="_on_continue_pressed"]

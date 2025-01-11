@@ -13,17 +13,20 @@ extends Control
 @onready var sharpenButton: Button = $itemButtons/VBoxContainer/sharpen
 @onready var upgradeButton: Button = $itemButtons/VBoxContainer/upgrade
 
+
 #Item price labels
 @onready var armorLabel: Label = $priceLabels/VBoxContainer/armor
 @onready var spellLabel: Label = $priceLabels/VBoxContainer/spell
 @onready var sharpLabel: Label = $priceLabels/VBoxContainer/sharp
 @onready var upgradeLabel: Label = $priceLabels/VBoxContainer/upgrade
 @onready var soul_label: Label = $souls/soulLabel
+@onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
 var armorPrice = 1000
 var spellPrice = 5000
 var sharpenPrice = 4000
 var upgradePrice = 10000
+var spellUpgradePrice = 4000
 
 func _process(_delta: float) -> void:
 	
@@ -54,6 +57,13 @@ func _process(_delta: float) -> void:
 	elif player.UPGRADE == 1:
 		upgradeLabel.text = "Purchased"
 		upgradeLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
+	
+	if player.playerMagicAtk < 75:
+		spell_upgrade_label.text = "-" + str(spellUpgradePrice)
+		spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
+	else:
+		spell_upgrade_label.text = "Purchased"
+		spell_upgrade_label.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	soul_label.text = "Souls: " + str(player.souls)
 
@@ -86,3 +96,9 @@ func _on_upgrade_pressed() -> void:
 	if player.souls >= upgradePrice and player.UPGRADE == 0:
 		player.souls -= upgradePrice
 		player.UPGRADE = 1
+
+func _on_spell_upgrade_pressed() -> void:
+	menuButtonSound.play()
+	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75:
+		player.souls -= spellUpgradePrice
+		player.playerMagicAtk += 5

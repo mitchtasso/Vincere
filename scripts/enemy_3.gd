@@ -60,11 +60,16 @@ func _physics_process(delta):
 		SPEED = 2.5
 		hurtbox.disabled = true
 	
-	if self.position.y >= 8:
+	if self.position.y >= 4:
+		self.get_parent().remove_child(self)
+		self.queue_free()
+	elif self.position.y <= -1:
+		self.get_parent().remove_child(self)
 		self.queue_free()
 	
 	if player.playerDeath == true:
 		navReset = 0
+		self.get_parent().remove_child(self)
 		self.queue_free()
 
 func _on_hitbox_area_entered(area):
@@ -85,4 +90,5 @@ func _on_stun_timer_timeout():
 	hurtbox.disabled = false
 
 func _on_demon_death_finished() -> void:
+	self.get_parent().remove_child(self)
 	self.queue_free()

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ca42vc4ftrjg7"
+path="res://.godot/imported/rangedDemon.obj-347fbbb3fc7f2718f63011a6012db45f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rangedDemon.obj-347fbbb3fc7f2718f63011a6012db45f.mesh"]
+
+source_file="res://assets/enemy/rangedDemon.obj"
+dest_files=["res://.godot/imported/rangedDemon.obj-347fbbb3fc7f2718f63011a6012db45f.mesh", "res://.godot/imported/rangedDemon.obj-347fbbb3fc7f2718f63011a6012db45f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

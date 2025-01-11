@@ -25,6 +25,7 @@ var dec400 = 0.90
 var dec600 = 0.85
 var inc777 = 1.5
 var maxSpawn = 6
+var spawnValid = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +49,12 @@ func _process(_delta: float) -> void:
 		3: maxSpawn = 8
 		2: maxSpawn = 6
 		_: maxSpawn = 6
+	
+	var spawnCount = get_tree().get_nodes_in_group("enemySet").size()
+	if spawnCount >= maxSpawn:
+		spawnValid = false
+	else:
+		spawnValid = true
 	
 	if player.playerDeath == true:
 		if wave > 6:
@@ -77,32 +84,40 @@ func _get_random_child(parent_node):
 	return parent_node.get_child(random_id)
 
 func _on_spawn_timer_timeout() -> void:
-	if navigation_region.get_child_count() < maxSpawn:
+	if spawnValid == true:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon.instantiate()
 		instance.position = spawn_point
 		navigation_region.add_child(instance)
+		instance.add_to_group("enemySet")
+		respawnTimerDemon.start()
 
 func _on_spawn_timer_demon_2_timeout() -> void:
-	if wave > 2 and navigation_region.get_child_count() < maxSpawn:
+	if wave > 2 and spawnValid == true:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon2.instantiate()
 		instance.position = spawn_point
 		navigation_region.add_child(instance)
+		instance.add_to_group("enemySet")
+		respawnTimerDemon2.start()
 
 func _on_spawn_timer_demon_3_timeout() -> void:
-	if wave > 4 and navigation_region.get_child_count() < maxSpawn:
+	if wave > 4 and spawnValid == true:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon3.instantiate()
 		instance.position = spawn_point
 		navigation_region.add_child(instance)
+		instance.add_to_group("enemySet")
+		respawnTimerDemon3.start()
 
 func _on_spawn_timer_demon_4_timeout() -> void:
-	if wave > 6 and navigation_region.get_child_count() < maxSpawn:
+	if wave > 6 and spawnValid == true:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon4.instantiate()
 		instance.position = spawn_point
 		navigation_region.add_child(instance)
+		instance.add_to_group("enemySet")
+		respawnTimerDemon4.start()
 
 
 func demon_spawn_dec():
