@@ -59,13 +59,10 @@ func _physics_process(delta):
 	
 	if stunLock == true:
 		hurtbox.disabled = true
-		if death == false:
-			nav_agent.set_target_position(player.global_transform.origin)
-			next_nav_point = nav_agent.get_next_path_position()
-			velocity = (next_nav_point - global_transform.origin).normalized() * knockbackSpeed * stunVel
-			velocity.y = 0.01
-		else:
-			velocity = Vector3.ZERO
+		nav_agent.set_target_position(player.global_transform.origin)
+		next_nav_point = nav_agent.get_next_path_position()
+		velocity = (next_nav_point - global_transform.origin).normalized() * knockbackSpeed * stunVel
+		velocity.y = 0.01
 	
 	if self.position.y >= 4:
 		self.get_parent().remove_child(self)

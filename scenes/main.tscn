@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=104 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="PackedScene" uid="uid://c8rvyc3urgxhc" path="res://scenes/enemy1.tscn" id="2_0ae7s"]
@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="24_omrhx"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
+[ext_resource type="PackedScene" uid="uid://q7na58p4oo3r" path="res://scenes/enemy2.tscn" id="26_asb4i"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
@@ -4013,7 +4014,8 @@ script = ExtResource("24_omrhx")
 [node name="enemy1" parent="allEnemies" instance=ExtResource("2_0ae7s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 28)
 
-[node name="enemy2" parent="allEnemies" instance=ExtResource("4_8s56n")]
+[node name="enemy2" parent="allEnemies" instance=ExtResource("26_asb4i")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -28)
 
 [node name="enemy3" parent="allEnemies" instance=ExtResource("15_3pa0q")]
@@ -4195,6 +4197,44 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.65263, 0, -2.74113)
 mesh = ExtResource("8_alnbp")
 skeleton = NodePath("../..")
 
+[node name="trees3" type="Node3D" parent="MenuArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361883, 0, -5.40826)
+
+[node name="tree" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.54428, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree5" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.16528, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree7" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.71635, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree2" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.011579, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree3" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.4721, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree4" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.03973, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree6" type="MeshInstance3D" parent="MenuArea/trees3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.65263, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
 [node name="templar" type="MeshInstance3D" parent="MenuArea"]
 transform = Transform3D(-2.62369e-09, -0.0022499, -0.0599578, 2.68298e-11, 0.0599578, -0.0022499, 0.06, -1.25195e-10, -2.62084e-09, 0.998716, -0.572882, 0)
 mesh = ExtResource("36_26ncv")
@@ -4216,7 +4256,7 @@ transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.17677
 mesh = ExtResource("39_wr4ne")
 
 [node name="wall3" type="MeshInstance3D" parent="MenuArea"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.107208, 2, -8.62237)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.107208, 2, -10.28)
 mesh = SubResource("BoxMesh_1usc5")
 surface_material_override/0 = SubResource("StandardMaterial3D_aal1r")
 
