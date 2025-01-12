@@ -4117,7 +4117,7 @@ process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86.5467)
 
 [node name="StartCamera" type="Camera3D" parent="MenuArea"]
-transform = Transform3D(1, 0, 0, 0, 0.957953, 0.286926, 0, -0.286926, 0.957953, 0.4, 1.50028, 2.423)
+transform = Transform3D(1, 0, 0, 0, 0.957953, 0.286926, 0, -0.286926, 0.957953, 0.4, 1.5, 2.423)
 fov = 50.0
 
 [node name="trees" type="Node3D" parent="MenuArea"]
@@ -5948,10 +5948,11 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -640.0
-offset_right = 640.0
+offset_left = -768.0
+offset_right = 512.0
 offset_bottom = 959.0
 grow_horizontal = 2
+scale = Vector2(1.2, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/StartMenu/titleArt"]
 layout_mode = 2
@@ -5961,7 +5962,6 @@ layout_mode = 2
 texture = ExtResource("56_aoefj")
 
 [node name="buttons" type="MarginContainer" parent="UI/StartMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -6012,7 +6012,6 @@ flat = true
 alignment = 0
 
 [node name="version" type="MarginContainer" parent="UI/StartMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
