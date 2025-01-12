@@ -30,7 +30,7 @@ func sun_rise():
 	sun.light_energy = 1.0
 
 func day_time():
-	proSky.sky_top_color = Color(0.064, 0.329, 0.499)
+	proSky.sky_top_color = Color(0.076, 0.364, 0.55)
 	proSky.sky_horizon_color = Color(0.168, 0.173, 0.181)
 	proSky.sky_curve = 0.0174
 	proSky.ground_bottom_color = Color.hex(000000)

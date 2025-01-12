@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu5fgdljqnseh"]
+
+[ext_resource type="PackedScene" uid="uid://v1nqr5rmdnwm" path="res://scenes/flame_h.tscn" id="1_dmo2d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0p03"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.231652, 0.0992878, 6.01634e-08, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g0her"]
+material = SubResource("StandardMaterial3D_s0p03")
+radius = 0.1
+height = 0.2
+
+[node name="bonfire" type="MeshInstance3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.191285, 0)
+mesh = SubResource("SphereMesh_g0her")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.804112, 0.41462, 0.189056, 1)
+light_energy = 4.0
+
+[node name="flameH" parent="." instance=ExtResource("1_dmo2d")]

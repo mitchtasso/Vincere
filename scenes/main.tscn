@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=103 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="PackedScene" uid="uid://c8rvyc3urgxhc" path="res://scenes/enemy1.tscn" id="2_0ae7s"]
@@ -51,18 +51,22 @@
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="24_omrhx"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
-[ext_resource type="Texture2D" uid="uid://c8c45xlhclqhh" path="res://assets/menu/titleArt.png" id="28_sweyv"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
+[ext_resource type="PackedScene" uid="uid://cu5fgdljqnseh" path="res://scenes/bonfire.tscn" id="36_2sgga"]
+[ext_resource type="ArrayMesh" uid="uid://4o2pqqbvc6f4" path="res://assets/menu/models/templarefire1.obj" id="36_26ncv"]
+[ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
 [ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
+[ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
+[ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
-sky_top_color = Color(0.290107, 0.658418, 0.923493, 1)
-sky_horizon_color = Color(0.290983, 0.354315, 0.362944, 1)
-sky_curve = 0.0168983
-ground_bottom_color = Color(7.21961e-08, 0.109726, 0.0375012, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.168627, 0.172549, 0.180392, 1)
+sky_curve = 0.0174
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.168627, 0.172549, 0.180392, 1)
 
 [sub_resource type="Sky" id="Sky_0c6o5"]
 sky_material = SubResource("ProceduralSkyMaterial_fgj40")
@@ -70,10 +74,11 @@ sky_material = SubResource("ProceduralSkyMaterial_fgj40")
 [sub_resource type="Environment" id="Environment_l304n"]
 background_mode = 2
 sky = SubResource("Sky_0c6o5")
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.720467, 0.720468, 0.720467, 1)
 fog_light_energy = 0.1
-fog_density = 1.0
+fog_density = 0.05
 fog_depth_curve = 0.5
 fog_depth_begin = 1.0
 volumetric_fog_density = 0.06
@@ -101,6 +106,8 @@ emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_g0her"]
 material = SubResource("StandardMaterial3D_s0p03")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vpsjh"]
 size = Vector3(1, 1.5, 1)
@@ -121,12 +128,12 @@ points = PackedVector3Array(0, 0, 3, 0, 0, -3, 3, 0, -3, 3, 0, 3, 0, 3, 3, 0, 3,
 size = Vector3(5, 5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1usc5"]
-size = Vector3(1, 4, 96)
+size = Vector3(1, 4, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aal1r"]
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
-emission = Color(0, 0.0272617, 0, 1)
+emission = Color(1.22207e-08, 0.0219466, 3.00817e-09, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q5g68"]
@@ -182,6 +189,12 @@ size = Vector3(1, 9, 5)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_77lch"]
 data = PackedVector3Array(-0.5, 5, 2.5, 0.5, 5, 2.5, -0.5, -5, 2.5, 0.5, 5, 2.5, 0.5, -5, 2.5, -0.5, -5, 2.5, 0.5, 5, -2.5, -0.5, 5, -2.5, 0.5, -5, -2.5, -0.5, 5, -2.5, -0.5, -5, -2.5, 0.5, -5, -2.5, 0.5, 5, 2.5, 0.5, 5, -2.5, 0.5, -5, 2.5, 0.5, 5, -2.5, 0.5, -5, -2.5, 0.5, -5, 2.5, -0.5, 5, -2.5, -0.5, 5, 2.5, -0.5, -5, -2.5, -0.5, 5, 2.5, -0.5, -5, 2.5, -0.5, -5, -2.5, 0.5, 5, 2.5, -0.5, 5, 2.5, 0.5, 5, -2.5, -0.5, 5, 2.5, -0.5, 5, -2.5, 0.5, 5, -2.5, -0.5, -5, 2.5, 0.5, -5, 2.5, -0.5, -5, -2.5, 0.5, -5, 2.5, 0.5, -5, -2.5, -0.5, -5, -2.5)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_mbh5x"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h0gu"]
+albedo_color = Color(0.0627451, 0.352941, 0, 1)
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_cv535"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_whbp1"]
@@ -196,16 +209,12 @@ data = PackedVector3Array(-0.5, 5, 2.5, 0.5, 5, 2.5, -0.5, -5, 2.5, 0.5, 5, 2.5,
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_knwu8"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_qt2h1"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_0crpe"]
-
 [node name="world" type="Node3D"]
 script = ExtResource("1_thyhm")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.25, 0.220605, 0.117794, 0.968224, -0.448705, 0.893656, -0.00648695, 0, 56.5274, 0)
-light_energy = 0.175
+light_energy = 0.1
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
@@ -4103,6 +4112,114 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.312306, 0)
 collision_layer = 7
 collision_mask = 7
 
+[node name="MenuArea" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86.5467)
+
+[node name="StartCamera" type="Camera3D" parent="MenuArea"]
+transform = Transform3D(1, 0, 0, 0, 0.957953, 0.286926, 0, -0.286926, 0.957953, 0.4, 1.50028, 2.423)
+fov = 50.0
+
+[node name="trees" type="Node3D" parent="MenuArea"]
+
+[node name="tree" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.54428, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree5" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.16528, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree7" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.71635, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree2" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.011579, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree3" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.4721, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree4" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.03973, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree6" type="MeshInstance3D" parent="MenuArea/trees"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.65263, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="trees2" type="Node3D" parent="MenuArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04833, 0, -2.77156)
+
+[node name="tree" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.54428, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree5" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.16528, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree7" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.71635, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree2" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.011579, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree3" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.4721, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree4" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.03973, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="tree6" type="MeshInstance3D" parent="MenuArea/trees2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.65263, 0, -2.74113)
+mesh = ExtResource("8_alnbp")
+skeleton = NodePath("../..")
+
+[node name="templar" type="MeshInstance3D" parent="MenuArea"]
+transform = Transform3D(-2.62369e-09, -0.0022499, -0.0599578, 2.68298e-11, 0.0599578, -0.0022499, 0.06, -1.25195e-10, -2.62084e-09, 0.998716, -0.572882, 0)
+mesh = ExtResource("36_26ncv")
+
+[node name="sword" type="MeshInstance3D" parent="MenuArea/templar"]
+transform = Transform3D(-1, 8.69756e-08, 1.19226e-07, -8.24437e-08, -0.999297, 0.0374984, 1.22404e-07, 0.0374984, 0.999297, 3.62109, 20.0094, 7.2205)
+mesh = ExtResource("37_7f0h5")
+skeleton = NodePath("../..")
+
+[node name="grass" type="MeshInstance3D" parent="MenuArea"]
+mesh = SubResource("PlaneMesh_mbh5x")
+surface_material_override/0 = SubResource("StandardMaterial3D_8h0gu")
+
+[node name="bonfire" parent="MenuArea" instance=ExtResource("36_2sgga")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.10004, 0)
+
+[node name="wood" type="MeshInstance3D" parent="MenuArea"]
+transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.176777, -0.00207981, 0.037825, 0)
+mesh = ExtResource("39_wr4ne")
+
+[node name="wall3" type="MeshInstance3D" parent="MenuArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.107208, 2, -8.62237)
+mesh = SubResource("BoxMesh_1usc5")
+surface_material_override/0 = SubResource("StandardMaterial3D_aal1r")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="bossHealthbar" type="Control" parent="UI"]
@@ -5769,16 +5886,6 @@ grow_vertical = 2
 script = ExtResource("22_xu08e")
 metadata/_edit_use_anchors_ = true
 
-[node name="bg" type="TextureRect" parent="UI/OptionsMenu"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_qt2h1")
-
 [node name="buttons" type="MarginContainer" parent="UI/OptionsMenu"]
 layout_mode = 1
 anchors_preset = 8
@@ -5801,21 +5908,18 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Controls"
-flat = true
 
 [node name="video" type="Button" parent="UI/OptionsMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Video"
-flat = true
 
 [node name="audio" type="Button" parent="UI/OptionsMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Audio"
-flat = true
 
 [node name="space" type="Label" parent="UI/OptionsMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -5826,7 +5930,6 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Back
 "
-flat = true
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -5840,43 +5943,25 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("5_h53e0")
 
-[node name="bg" type="TextureRect" parent="UI/StartMenu"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -518.0
-offset_top = -855.0
-offset_right = 590.0
-offset_bottom = 855.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00034542
-texture = SubResource("CanvasTexture_0crpe")
-expand_mode = 1
-
 [node name="titleArt" type="MarginContainer" parent="UI/StartMenu"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 1009.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 959.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/StartMenu/titleArt"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/StartMenu/titleArt/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = " "
-
 [node name="TextureRect" type="TextureRect" parent="UI/StartMenu/titleArt/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("28_sweyv")
+texture = ExtResource("56_aoefj")
 
 [node name="buttons" type="MarginContainer" parent="UI/StartMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -5927,6 +6012,7 @@ flat = true
 alignment = 0
 
 [node name="version" type="MarginContainer" parent="UI/StartMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

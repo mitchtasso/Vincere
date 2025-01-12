@@ -13,23 +13,49 @@ extends Control
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
 
+@onready var startCamera: Camera3D = $"../../MenuArea/StartCamera"
+@onready var stats_ui: Control = $"../statsUI"
+@onready var player_ui: MarginContainer = $"../playerUI"
+@onready var wave_ui: MarginContainer = $"../waveUI"
+@onready var crosshair: MarginContainer = $"../crosshair"
+@onready var sun: DirectionalLight3D = $"../../sun"
+@onready var menu_area: Node3D = $"../../MenuArea"
+
 var menuActive = true
+var startMenuActive = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if startMenuActive == true:
+		sun.light_energy = 0.05
 
 func _input(event):
 	if event is InputEventMouseMotion and menuActive == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _ready():
+	startCamera.make_current()
+	stats_ui.hide()
+	player_ui.hide()
+	wave_ui.hide()
+	crosshair.hide()
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	menuMusic.play()
 	get_tree().paused = true
 	uiOptions.grab_focus()
 
 func _on_start_pressed() -> void:
+	startCamera.clear_current()
+	menu_area.hide()
+	stats_ui.show()
+	player_ui.show()
+	wave_ui.show()
+	crosshair.show()
+	startMenuActive = false
+	
 	startMenu.hide()
 	menuMusic.stop()
 	menuButtonSound.play()
@@ -38,6 +64,14 @@ func _on_start_pressed() -> void:
 	storyMenuSelect.grab_focus()
 
 func _on_load_game_pressed() -> void:
+	startCamera.clear_current()
+	menu_area.hide()
+	stats_ui.show()
+	player_ui.show()
+	wave_ui.show()
+	crosshair.show()
+	startMenuActive = false
+	
 	startMenu.hide()
 	menuMusic.stop()
 	menuButtonSound.play()
