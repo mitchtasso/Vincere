@@ -19,7 +19,7 @@ var instance
 var HEALTH = 50
 var maxHealth = 50
 var SPEED = 4.0
-var knockbackSpeed = 5.50
+var knockbackSpeed = 5.60
 var navReset = 0
 var navTime = 30
 var stunLock = false
