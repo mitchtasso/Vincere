@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7458bypj6c24"]
+[gd_scene load_steps=18 format=3 uid="uid://c7458bypj6c24"]
 
 [ext_resource type="Script" path="res://scripts/enemy_3.gd" id="1_a88g7"]
 [ext_resource type="ArrayMesh" uid="uid://cxoo1u0uatgnh" path="res://assets/enemy/heavyDemon.obj" id="2_drkjj"]
@@ -43,6 +43,67 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_0bjcj"]
 material = SubResource("StandardMaterial3D_i1ccr")
 size = Vector2(0.6, 0.6)
+
+[sub_resource type="Animation" id="Animation_wa8hu"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_v10kd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mucg"]
+_data = {
+"RESET": SubResource("Animation_v10kd"),
+"death": SubResource("Animation_wa8hu")
+}
 
 [node name="enemy" type="CharacterBody3D"]
 script = ExtResource("1_a88g7")
@@ -118,6 +179,11 @@ volume_db = -5.0
 unit_size = 1.0
 max_db = -5.0
 pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6mucg")
+}
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]

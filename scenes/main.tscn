@@ -1,7 +1,6 @@
-[gd_scene load_steps=104 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=100 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
-[ext_resource type="PackedScene" uid="uid://c8rvyc3urgxhc" path="res://scenes/enemy1.tscn" id="2_0ae7s"]
 [ext_resource type="Script" path="res://scripts/shop_gate.gd" id="2_0sg1b"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
 [ext_resource type="ArrayMesh" uid="uid://bwl67882css75" path="res://assets/world/arenaWalls.obj" id="2_x03lh"]
@@ -9,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://djoyaqwsiflk6" path="res://scenes/shopGate.tscn" id="3_kax4a"]
 [ext_resource type="ArrayMesh" uid="uid://dc4xuo4dljq8d" path="res://assets/world/brazier.obj" id="3_yfm6t"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="4_3hirp"]
-[ext_resource type="PackedScene" uid="uid://q7na58p4oo3r" path="res://scenes/enemy4.tscn" id="4_8s56n"]
 [ext_resource type="PackedScene" uid="uid://eyxjv8jlhq61" path="res://scenes/apothecary_stall.tscn" id="5_4cy14"]
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="5_h53e0"]
 [ext_resource type="PackedScene" uid="uid://ddjeiwcjgkud6" path="res://scenes/shop_stall.tscn" id="5_svlue"]
@@ -34,7 +32,6 @@
 [ext_resource type="AudioStream" uid="uid://dtphoysy3l7my" path="res://sounds/swing2.wav" id="13_a753h"]
 [ext_resource type="ArrayMesh" uid="uid://bksk27m0fp5d0" path="res://assets/world/target.obj" id="14_p4ig1"]
 [ext_resource type="ArrayMesh" uid="uid://cm22cv628yuer" path="res://assets/world/dummy.obj" id="15_1phnk"]
-[ext_resource type="PackedScene" uid="uid://c7458bypj6c24" path="res://scenes/enemy3.tscn" id="15_3pa0q"]
 [ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="16_j1wiw"]
 [ext_resource type="Script" path="res://scripts/continue_menu.gd" id="18_bubx0"]
 [ext_resource type="Script" path="res://scripts/wave_menu.gd" id="19_uspfe"]
@@ -50,7 +47,6 @@
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="24_omrhx"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
-[ext_resource type="PackedScene" uid="uid://q7na58p4oo3r" path="res://scenes/enemy2.tscn" id="26_asb4i"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
@@ -4010,19 +4006,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3404, 0, 20.2868)
 script = ExtResource("24_omrhx")
 
 [node name="allEnemies" type="Node3D" parent="."]
-
-[node name="enemy1" parent="allEnemies" instance=ExtResource("2_0ae7s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 28)
-
-[node name="enemy2" parent="allEnemies" instance=ExtResource("26_asb4i")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -28)
-
-[node name="enemy3" parent="allEnemies" instance=ExtResource("15_3pa0q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 28)
-
-[node name="enemy4" parent="allEnemies" instance=ExtResource("4_8s56n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2222, 0, -26.3365)
 
 [node name="spawnTimerDemon1" type="Timer" parent="allEnemies"]
 wait_time = 3.0

@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
 @onready var death_sound: AudioStreamPlayer3D = $deathSound
 @onready var world: Node3D = $"../.."
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var HEALTH = 150
 var maxHealth = 150
@@ -37,6 +38,7 @@ func _physics_process(delta):
 		player.add_point()
 		SPEED = 0.1
 		demon_death.emitting = true
+		animation_player.play("death")
 	if HEALTH >= maxHealth:
 		enemy_health_bar.hide()
 	elif death == true:

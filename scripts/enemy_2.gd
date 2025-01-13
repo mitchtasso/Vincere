@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var hitbox: CollisionShape3D = $hitbox/CollisionShape3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var world: Node3D = $"../.."
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var HEALTH = 50
 var maxHealth = 50
@@ -38,6 +39,7 @@ func _physics_process(delta):
 		player.add_point()
 		stunLock = true
 		demon_death.emitting = true
+		animation_player.play("death")
 	if HEALTH >= maxHealth:
 		enemy_health_bar.hide()
 	elif death == true:
