@@ -563,8 +563,8 @@ func _on_game_time_timeout() -> void:
 		#Handle wave end
 		if gameTimeMin == 0 and gameTimeSec == 0:
 			gameTimeChange = 0
+			timerLabel.hide()
 			world_environment.sun_rise()
-			wave_end()
 		else:
 			gameTimeChange = 1
 		#Handle wave countdown

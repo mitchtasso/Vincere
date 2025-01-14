@@ -27,6 +27,7 @@ var stunVel = -1.10
 var death = false
 var next_nav_point
 var lockedOn = false
+var souls = 200
 
 var magicReset = 1
 var magicResetMax = 0
@@ -44,7 +45,7 @@ func _physics_process(delta):
 		HEALTH = 1
 		hitbox.disabled = true
 		navReset = 0
-		player.souls += 200
+		player.souls += souls
 		player.add_point()
 		stunLock = true
 		demon_death.emitting = true
@@ -83,10 +84,11 @@ func _physics_process(delta):
 		self.get_parent().remove_child(self)
 		self.queue_free()
 	
-	if player.playerDeath == true:
+	if player.playerDeath == true and death == false:
+		souls = 0
+		knockbackSpeed = 0.1
 		navReset = 0
-		self.get_parent().remove_child(self)
-		self.queue_free()
+		HEALTH = 0
 	
 	if magicResetMax >= magicLimit:
 		magicResetMax = magicLimit

@@ -21,6 +21,7 @@ var navReset = 0
 var navTime = 60
 var stunLock = false
 var death = false
+var souls = 300
 
 func _physics_process(delta):
 	
@@ -34,7 +35,7 @@ func _physics_process(delta):
 		HEALTH = 1
 		hitbox.disabled = true
 		navReset = 0
-		player.souls += 300
+		player.souls += souls
 		player.add_point()
 		SPEED = 0.1
 		demon_death.emitting = true
@@ -69,10 +70,11 @@ func _physics_process(delta):
 		self.get_parent().remove_child(self)
 		self.queue_free()
 	
-	if player.playerDeath == true:
+	if player.playerDeath == true and death == false:
+		souls = 0
+		SPEED = 0.1
 		navReset = 0
-		self.get_parent().remove_child(self)
-		self.queue_free()
+		HEALTH = 0
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("magic"):

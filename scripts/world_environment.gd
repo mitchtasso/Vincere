@@ -6,19 +6,25 @@ var proSky = ProceduralSkyMaterial.new()
 @onready var worldEnvironment = $"."
 @onready var sun: DirectionalLight3D = $"../sun"
 @onready var player: CharacterBody3D = $"../player"
+@onready var day_change_timer: Timer = $"../dayChangeTimer"
+
+var dayChange = false
 
 func _process(_delta: float) -> void:
 	
-	if player.modeType == 0:
-		night_time()
-	elif player.modeType == 1:
-		day_time()
-	elif player.modeType == 2:
-		night_time()
+	if dayChange == false:
+		if player.modeType == 0:
+			night_time()
+		elif player.modeType == 1:
+			day_time()
+		elif player.modeType == 2:
+			night_time()
 	
 
 func sun_rise():
-	proSky.sky_top_color = Color(0.064, 0.329, 0.499)
+	dayChange = true
+	player.playerDeath = true
+	proSky.sky_top_color = Color(0.03, 0.218, 0.339)
 	proSky.sky_horizon_color = Color(0.581, 0.371, 0.104)
 	proSky.sky_curve = 0.144
 	proSky.ground_bottom_color = Color.hex(000000)
@@ -27,7 +33,8 @@ func sun_rise():
 	enviro.sky = sky
 	enviro.background_mode = Environment.BG_SKY
 	worldEnvironment.environment = enviro
-	sun.light_energy = 1.0
+	sun.light_energy = 0.5
+	day_change_timer.start()
 
 func day_time():
 	proSky.sky_top_color = Color(0.076, 0.364, 0.55)
@@ -57,3 +64,8 @@ func night_time():
 	enviro.background_mode = Environment.BG_SKY
 	worldEnvironment.environment = enviro
 	sun.light_energy = 0.175
+
+func _on_day_change_timer_timeout() -> void:
+	player.playerDeath = false
+	dayChange = false
+	player.wave_end()

@@ -8,6 +8,7 @@ extends Node3D
 @onready var respawnTimerDemon3 = $allEnemies/spawnTimerDemon3
 @onready var respawnTimerDemon4 = $allEnemies/spawnTimerDemon4
 @onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 var demon = load("res://scenes/enemy1.tscn")
 var demon2 = load("res://scenes/enemy2.tscn")
@@ -84,7 +85,7 @@ func _get_random_child(parent_node):
 	return parent_node.get_child(random_id)
 
 func _on_spawn_timer_timeout() -> void:
-	if spawnValid == true:
+	if spawnValid == true and player.modeType == 0:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon.instantiate()
 		instance.position = spawn_point
@@ -93,7 +94,7 @@ func _on_spawn_timer_timeout() -> void:
 		respawnTimerDemon.start()
 
 func _on_spawn_timer_demon_2_timeout() -> void:
-	if wave > 2 and spawnValid == true:
+	if wave > 2 and spawnValid == true and player.modeType == 0:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon2.instantiate()
 		instance.position = spawn_point
@@ -102,7 +103,7 @@ func _on_spawn_timer_demon_2_timeout() -> void:
 		respawnTimerDemon2.start()
 
 func _on_spawn_timer_demon_3_timeout() -> void:
-	if wave > 4 and spawnValid == true:
+	if wave > 4 and spawnValid == true and player.modeType == 0:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon3.instantiate()
 		instance.position = spawn_point
@@ -111,7 +112,7 @@ func _on_spawn_timer_demon_3_timeout() -> void:
 		respawnTimerDemon3.start()
 
 func _on_spawn_timer_demon_4_timeout() -> void:
-	if wave > 6 and spawnValid == true:
+	if wave > 6 and spawnValid == true and player.modeType == 0:
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = demon4.instantiate()
 		instance.position = spawn_point
