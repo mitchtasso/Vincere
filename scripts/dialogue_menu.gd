@@ -59,6 +59,7 @@ func _on_text_1_pressed() -> void:
 		dialogLabel.text = "I am Mercator, a merchant and knight of the Church."
 	if activeNPC == NPC[1]:
 		dialogLabel.text = "I am Medicus, a healer and knight of the Church."
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_2_pressed() -> void:
 	dialogue.play()
@@ -70,12 +71,15 @@ func _on_text_2_pressed() -> void:
 		if player.souls >= 500:
 			if player.HEALTH < 100:
 				dialogLabel.text = "You are healed. This has consumed 500 tainted souls."
+				dialogLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 				player.HEALTH += 100
 				player.souls -= 500
 			else:
 				dialogLabel.text = "You seem to be in perfect health."
+				dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 		else:
 			dialogLabel.text = "Unfortunately, you do not have enought tainted souls."
+			dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 			
 
 func _on_text_3_pressed() -> void:
@@ -84,8 +88,10 @@ func _on_text_3_pressed() -> void:
 		dialogLabel.text = "This is the Church of Redemption, closed due to demon presence."
 	if activeNPC == NPC[1]:
 		dialogLabel.text = "The same power the Church uses to cleanse tainted souls is used to heal you."
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_4_pressed() -> void:
+	dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	dialogueCounter = 0
 	dialogue_menu.hide()
 	menu_button.play()

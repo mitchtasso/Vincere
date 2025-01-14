@@ -409,6 +409,7 @@ func add_point():
 #Player death
 func death():
 	if HEALTH <= 0:
+		kill_all_enemies()
 		#Reset player velocity
 		velocity.x = 0
 		velocity.z = 0
@@ -696,3 +697,9 @@ func stat_reset():
 
 func _on_timer_timeout() -> void:
 	autosaveLabel.hide()
+
+func kill_all_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemySet"):
+		enemy.queue_free()
+	for enemy in get_tree().get_nodes_in_group("enemy4"):
+		enemy.queue_free()
