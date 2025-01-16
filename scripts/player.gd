@@ -591,6 +591,7 @@ func verify_save_directory(path: String):
 	DirAccess.make_dir_absolute(path)
 
 func load_data():
+	kill_all_enemies()
 	camera.rotation.x = 0.0
 	head.rotation.y = 0.0
 	
