@@ -439,10 +439,12 @@ func death():
 			points = playerData.points
 			souls = playerData.souls
 			HEALTH = playerData.health
+			ARMOR = playerData.armor
 		else:
 			points = 0
 			souls = 0
 			HEALTH = 100
+			ARMOR = 0
 		gameTimeSec = gameTimeSecDef
 		gameTimeMin = gameTimeMinDef
 		#Pause game
