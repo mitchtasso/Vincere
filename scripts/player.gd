@@ -385,6 +385,8 @@ func _on_player_hitbox_area_entered(area):
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.is_in_group("enemies") and attackActive == true:
 		blood.show()
+	else:
+		blood.hide()
 
 func _on_blood_reset_timeout() -> void:
 	blood.hide()
@@ -435,6 +437,7 @@ func death():
 		startMenu.menuActive = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		#Reset player stats
+		magicAttack = false
 		if world.wave > 1:
 			points = playerData.points
 			souls = playerData.souls

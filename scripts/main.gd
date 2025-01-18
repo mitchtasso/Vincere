@@ -40,16 +40,16 @@ func _process(_delta: float) -> void:
 	demon4_spawn_dec()
 	
 	match wave:
-		10: maxSpawn = 14
-		9: maxSpawn = 14
-		8: maxSpawn = 12
-		7: maxSpawn = 12
-		6: maxSpawn = 10
-		5: maxSpawn = 10
-		4: maxSpawn = 8
-		3: maxSpawn = 8
-		2: maxSpawn = 6
-		_: maxSpawn = 6
+		10: maxSpawn = 12
+		9: maxSpawn = 12
+		8: maxSpawn = 10
+		7: maxSpawn = 10
+		6: maxSpawn = 8
+		5: maxSpawn = 8
+		4: maxSpawn = 6
+		3: maxSpawn = 6
+		2: maxSpawn = 4
+		_: maxSpawn = 4
 	
 	var spawnCount = get_tree().get_nodes_in_group("enemySet").size()
 	if spawnCount >= maxSpawn:
