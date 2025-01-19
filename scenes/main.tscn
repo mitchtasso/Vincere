@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=99 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/shop_gate.gd" id="2_0sg1b"]
@@ -45,7 +45,6 @@
 [ext_resource type="Texture2D" uid="uid://mnbq5hkntdci" path="res://assets/menu/shieldIcon.png" id="23_sry2p"]
 [ext_resource type="Script" path="res://scripts/shop_menu.gd" id="24_5m5e5"]
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
-[ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="24_omrhx"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
@@ -4043,7 +4042,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7853, 0, 0)
 
 [node name="bossEnemy" parent="bossEnemy" instance=ExtResource("23_2isxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3404, 0, 20.2868)
-script = ExtResource("24_omrhx")
 
 [node name="allEnemies" type="Node3D" parent="."]
 

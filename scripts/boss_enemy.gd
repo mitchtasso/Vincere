@@ -12,6 +12,8 @@ extends CharacterBody3D
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
 @onready var death_sound: AudioStreamPlayer3D = $deathSound
 @onready var world: Node3D = $"../.."
+@onready var boss_animation: AnimationPlayer = $bossAnimation
+
 
 var HEALTH = 1000
 var maxHealth = 1000
@@ -88,3 +90,11 @@ func _on_stun_timer_timeout():
 
 func _on_demon_death_finished() -> void:
 	self.queue_free()
+
+func _on_melee_detection_area_entered(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		boss_animation.play("attack")
+
+func _on_boss_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "attack":
+		boss_animation.play("idle")
