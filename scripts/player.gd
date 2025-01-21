@@ -53,6 +53,7 @@ var controllerSensV = 1.9
 @onready var dash_active_timer: Timer = $dashActiveTimer
 @onready var vin_timer: Timer = $vinTimer
 @onready var attack_change_timer: Timer = $attackChange
+@onready var i_frame_timer: Timer = $iFrameTimer
 @onready var blood: GPUParticles3D = $Head/Camera3D/WeaponPivot/WeaponMesh/blood
 @onready var blood_reset: Timer = $Head/Camera3D/WeaponPivot/WeaponMesh/bloodReset
 
@@ -120,6 +121,7 @@ var direct_file_path = "user://VincereSaves/"
 @onready var sun: DirectionalLight3D = $"../sun"
 @onready var boss_room: NavigationRegion3D = $"../BossRoom"
 @onready var boss_enemy: Node3D = $"../bossEnemy"
+@onready var boss_enemy_character: CharacterBody3D = $"../bossEnemy/bossEnemy"
 
 #World variables
 var gameTimeSec = 59
@@ -352,34 +354,55 @@ func _on_attack_change_timeout() -> void:
 
 #Enemy Collision with player and death
 func _on_player_hitbox_area_entered(area):
-	if area.is_in_group("enemy1"):
+	if area.is_in_group("enemy1") and iFrame == false:
+		iFrame = true
+		i_frame_timer.start()
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
 			ARMOR -= 10
 		else:
 			HEALTH -= 15
-	if area.is_in_group("enemy2"):
+	if area.is_in_group("enemy2") and iFrame == false:
+		iFrame = true
+		i_frame_timer.start()
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
 			ARMOR -= 10
 		else:
 			HEALTH -= 10
-	if area.is_in_group("enemy3"):
+	if area.is_in_group("enemy3") and iFrame == false:
+		iFrame = true
+		i_frame_timer.start()
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
 			ARMOR -= 15
 		else:
 			HEALTH -= 15
-	if area.is_in_group("enemy4"):
+	if area.is_in_group("enemy4") and iFrame == false:
+		iFrame = true
+		i_frame_timer.start()
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
-			ARMOR -= 15
+			ARMOR -= 10
 		else:
-			HEALTH -= 15
+			HEALTH -= 10
+	if area.is_in_group("boss") and iFrame == false and boss_enemy_character.attackActive == true:
+		print("hit")
+		iFrame = true
+		i_frame_timer.start()
+		healthVin.show()
+		vin_timer.start()
+		if ARMOR > 0:
+			ARMOR -= 20
+		else:
+			HEALTH -= 20
+
+func _on_i_frame_timer_timeout() -> void:
+	iFrame = false
 
 #blood splatter
 func _on_hitbox_area_entered(area: Area3D) -> void:
@@ -614,6 +637,7 @@ func load_data():
 	player.position = playerData.POS
 	
 	if modeType == 0:
+		player.position = graveyardPOS
 		graveyard.show()
 		graveyard_other_textures.show()
 		all_enemies.show()
@@ -622,6 +646,7 @@ func load_data():
 		boss_room.hide()
 		boss_enemy.hide()
 	elif modeType == 1:
+		player.position = shopPOS
 		graveyard.hide()
 		graveyard_other_textures.hide()
 		all_enemies.hide()
@@ -632,6 +657,7 @@ func load_data():
 		boss_enemy.hide()
 		shop.show()
 	elif modeType == 2:
+		player.position = bossRoomPOS
 		graveyard.hide()
 		graveyard_other_textures.hide()
 		all_enemies.hide()

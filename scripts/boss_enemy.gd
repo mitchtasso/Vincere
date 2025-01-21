@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var enemy_health_bar: ProgressBar = $"../../UI/bossHealthbar/ProgressBar"
 @onready var boss_healthbar: Control = $"../../UI/bossHealthbar"
 @onready var stun_timer: Timer = $stunTimer
-@onready var hurtbox: CollisionShape3D = $hurtbox/CollisionShape3D
+@onready var hurtbox: CollisionShape3D = $Head/WeaponPivot/WeaponMesh/Hitbox/CollisionShape3D
 @onready var hitbox: CollisionShape3D = $hitbox/CollisionShape3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
@@ -25,6 +25,7 @@ var navTime = 30
 var stunLock = false
 var death = false
 var POS = Vector3(-16.3404, 0, 20.2868)
+var attackActive = false
 
 func _physics_process(delta):
 	
@@ -95,6 +96,13 @@ func _on_melee_detection_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player"):
 		boss_animation.play("attack")
 
+func _on_boss_animation_animation_started(anim_name: StringName) -> void:
+	if anim_name == "attack":
+		attackActive = true
+		SPEED = 0.5
+
 func _on_boss_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
+		attackActive = false
 		boss_animation.play("idle")
+		SPEED = 6.0

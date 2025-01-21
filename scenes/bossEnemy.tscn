@@ -373,16 +373,10 @@ material = SubResource("StandardMaterial3D_w30t5")
 size = Vector3(0.08, 0.08, 0.08)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlfgf"]
-size = Vector3(2, 2, 2)
+size = Vector3(3, 3, 3)
 
 [node name="bossEnemy" type="CharacterBody3D"]
 script = ExtResource("1_dded1")
-
-[node name="hurtbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.6, 0)
-shape = SubResource("CapsuleShape3D_ulfji")
 
 [node name="hitbox" type="Area3D" parent="."]
 
@@ -454,7 +448,7 @@ transform = Transform3D(1, 0, 0, 0, -0.097389, 0.995246, 0, -0.995246, -0.097389
 transform = Transform3D(0.13, 0, 0, 0, 0.12789, 0.0233292, 0, -0.0233292, 0.12789, 0.395156, 0.174779, -1.0285)
 mesh = ExtResource("5_4c4w1")
 
-[node name="Hitbox" type="Area3D" parent="Head/WeaponPivot/WeaponMesh"]
+[node name="Hitbox" type="Area3D" parent="Head/WeaponPivot/WeaponMesh" groups=["boss"]]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 monitoring = false
 
@@ -476,7 +470,7 @@ wait_time = 0.04
 one_shot = true
 
 [node name="ArmMesh" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(0.13, 0, 0, 0, 0.0512735, 0.119462, 0, -0.119462, 0.0512735, -0.672143, -1.11753, -0.286347)
+transform = Transform3D(0.13, 0, 0, 0, 0.0512736, 0.119462, 0, -0.119462, 0.0512736, -0.672143, -1.11753, -0.286347)
 mesh = ExtResource("6_oqarq")
 skeleton = NodePath("../..")
 
@@ -494,11 +488,12 @@ pitch_scale = 0.9
 [node name="meleeDetection" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="meleeDetection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75207, -1.72367)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75207, -2.31976)
 shape = SubResource("BoxShape3D_tlfgf")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
 [connection signal="animation_finished" from="bossAnimation" to="." method="_on_boss_animation_animation_finished"]
+[connection signal="animation_started" from="bossAnimation" to="." method="_on_boss_animation_animation_started"]
 [connection signal="area_entered" from="meleeDetection" to="." method="_on_melee_detection_area_entered"]
