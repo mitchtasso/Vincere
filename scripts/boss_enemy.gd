@@ -37,11 +37,14 @@ var POS = Vector3(-107.785, 0, 21)
 var attackActive = false
 var attackAvailable = true
 var magicAvailable = true
+var randomAttack
 
 func _physics_process(delta):
 	
 	enemy_health_bar.value = HEALTH
 	enemy_health_bar.max_value = maxHealth
+	randomAttack = randi_range(0,2)
+	print(randomAttack)
 	
 	if player.modeType == 2:
 		boss_healthbar.show()
@@ -52,6 +55,10 @@ func _physics_process(delta):
 		boss_healthbar.hide()
 	
 	if HEALTH <= 0:
+		demon_death.emitting = true
+		boss_animation.play("death")
+		magicAvailable = false
+		attackAvailable = false
 		demon_hit.stop()
 		death_sound.play()
 		death = true
@@ -60,8 +67,7 @@ func _physics_process(delta):
 		navReset = 0
 		player.souls += 50000
 		player.add_point()
-		SPEED = 0.1
-		demon_death.emitting = true
+		velocity = Vector3.ZERO
 	
 	if HEALTH <= maxHealth/2:
 		eyes.show()
@@ -75,7 +81,7 @@ func _physics_process(delta):
 		maxSpeed = 10.0
 	
 	navReset += 1
-	if navReset >= navTime and player.modeType == 2:
+	if navReset >= navTime and player.modeType == 2 and death == false:
 		velocity = Vector3.ZERO
 		nav_agent.set_target_position(player.global_transform.origin)
 		var next_nav_point = nav_agent.get_next_path_position()
@@ -115,24 +121,50 @@ func _on_demon_death_finished() -> void:
 	self.queue_free()
 
 func _on_melee_detection_area_entered(area: Area3D) -> void:
-	if area.is_in_group("player") and attackAvailable == true:
+	if area.is_in_group("player") and attackAvailable == true and randomAttack == 0 and attackActive == false:
 		boss_animation.play("attack")
+	if area.is_in_group("player") and attackAvailable == true and randomAttack == 1 and attackActive == false:
+		boss_animation.play("attack2")
+	if area.is_in_group("player") and attackAvailable == true and randomAttack == 2 and attackActive == false:
+		boss_animation.play("attack3")
 
 func _on_ranged_detection_area_entered(area: Area3D) -> void:
-	if area.is_in_group("player") and magicAvailable == true:
+	if area.is_in_group("player") and magicAvailable == true and attackActive == false:
 		boss_animation.play("cast")
 
 func _on_boss_animation_animation_started(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		magicAvailable = false
 		attackActive = true
-		SPEED *= 0.1
+		SPEED *= 0.01
+	if anim_name == "attack2":
+		magicAvailable = false
+		attackActive = true
+		SPEED *= 0.01
+	if anim_name == "attack3":
+		magicAvailable = false
+		attackActive = true
+		SPEED *= 0.01
 	if anim_name == "cast":
 		attackAvailable = false
-		SPEED *= 0.1
+		SPEED *= 0.01
 
 func _on_boss_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
+		magicAvailable = true
+		attackActive = false
+		boss_animation.play("idle")
+		SPEED = maxSpeed
+		attackAvailable = false
+		attack_reset.start()
+	if anim_name == "attack2":
+		magicAvailable = true
+		attackActive = false
+		boss_animation.play("idle")
+		SPEED = maxSpeed
+		attackAvailable = false
+		attack_reset.start()
+	if anim_name == "attack3":
 		magicAvailable = true
 		attackActive = false
 		boss_animation.play("idle")

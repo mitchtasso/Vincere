@@ -33,6 +33,7 @@ func _ready() -> void:
 	randomize()
 
 func _process(_delta: float) -> void:
+	
 	wave_label.text = "Wave: " + str(wave)
 	demon_spawn_dec()
 	demon2_spawn_dec()

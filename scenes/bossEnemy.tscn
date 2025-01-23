@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=30 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -41,7 +41,7 @@ billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_0bjcj"]
 material = SubResource("StandardMaterial3D_i1ccr")
-size = Vector2(0.6, 0.6)
+size = Vector2(1.2, 1.2)
 
 [sub_resource type="Animation" id="Animation_smwo2"]
 length = 0.001
@@ -120,7 +120,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_w8xla"]
 resource_name = "attack"
-length = 0.75
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -128,7 +128,7 @@ tracks/0/path = NodePath("Head/WeaponPivot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.733333),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-1.66834, 0, 0), Vector3(-0.278044, 0.10908, -1.36852), Vector3(-0.278044, 1.07395, -1.36852), Vector3(-0.278044, 1.5102, -1.36852)]
@@ -140,7 +140,7 @@ tracks/1/path = NodePath("Head/WeaponPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.733333),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.285302, -0.865991, -0.119251), Vector3(0.954549, -0.0629308, -0.41567), Vector3(0.410214, -0.0629308, -0.41567), Vector3(0.14434, -0.0629308, -0.290147)]
@@ -346,11 +346,242 @@ tracks/5/keys = {
 "values": [Vector3(-0.180432, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_f7icw"]
+resource_name = "attack2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.233333, 0.3, 0.4, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.285302, -0.865991, -0.119251), Vector3(0.285302, -0.145281, -0.432547), Vector3(0.285302, 0.221459, -0.0801913), Vector3(0.223112, 0.0175178, -0.0801913), Vector3(0.223112, -0.134315, -0.351317), Vector3(0.223112, -0.434014, -0.440661), Vector3(0.223112, -0.72225, -0.360962), Vector3(0.223112, -0.931277, -0.10344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.233333, 0.3, 0.4, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.66834, 0, 0), Vector3(-0.429662, 0, 0), Vector3(0.364672, 0, 0), Vector3(0.0646662, 0.0369874, 0.0992741), Vector3(-0.395353, 0.0399969, 0.0814717), Vector3(-0.899825, 0.0593865, 0.0503492), Vector3(-1.21206, 0.1053, -0.00175914), Vector3(-1.3344, 2.98337, -2.89082)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/WeaponPivot/WeaponMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.395156, 0.174779, -1.0285)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/WeaponPivot/WeaponMesh:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.180432, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/ArmMesh:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.672143, -1.11753, -0.286347)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/ArmMesh:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.16537, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jvbr6"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.3, 0.366667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.285302, -0.865991, -0.119251), Vector3(0.783, -0.8, -0.325), Vector3(0.783, -0.8, -0.325), Vector3(0.81782, -0.8, -0.325), Vector3(0.834899, -0.8, -0.325), Vector3(0.840618, -0.8, -0.325), Vector3(0.945401, -0.823317, -0.325), Vector3(1.004, -0.823317, -0.325)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.3, 0.366667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.66834, 0, 0), Vector3(-1.47325, 2.14241, -3.14159), Vector3(-1.50989, -2.61706, 1.61491), Vector3(-1.43758, -1.97866, 0.974084), Vector3(-1.40428, -1.89427, 0.88875), Vector3(-1.3599, -1.82521, 0.81846), Vector3(-1.28495, -1.75875, 0.749943), Vector3(-1.08381, -1.68362, 0.669248)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/WeaponPivot/WeaponMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.395156, 0.174779, -1.0285)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/WeaponPivot/WeaponMesh:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.180432, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/ArmMesh:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.672143, -1.11753, -0.286347), Vector3(-0.996509, -1.21071, -0.215302), Vector3(-1.27213, -1.01592, -0.215302)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/ArmMesh:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.16537, 0, 0), Vector3(-1.16537, 0.680835, 1.35197e-08), Vector3(-0.816827, 1.10659, -0.498323)]
+}
+
+[sub_resource type="Animation" id="Animation_trlcp"]
+resource_name = "attack3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.285302, -0.865991, -0.119251), Vector3(0.209612, -0.865991, -0.119251), Vector3(0.15623, -0.865991, -0.119251), Vector3(0.0578004, -0.865991, -0.0877554), Vector3(0.2329, -0.856463, 0.0865257), Vector3(0.2329, -0.856463, -0.355086), Vector3(0.510671, -0.856463, -0.355086), Vector3(0.832127, -0.856463, -0.355086)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.66834, 0, 0), Vector3(-1.47325, -2.89196, 3.14159), Vector3(-1.45723, -0.348521, 0.753385), Vector3(-0.850864, 0.0409494, 0.961593), Vector3(-0.245913, 0.174195, 1.47096), Vector3(-0.245913, -0.405028, 1.47096), Vector3(-0.245913, -0.873142, 1.47096), Vector3(-0.245913, -1.37053, 1.47096)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/ArmMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.672143, -1.11753, -0.286347)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/ArmMesh:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.16537, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/WeaponPivot/WeaponMesh:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.395156, 0.174779, -1.0285)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/WeaponPivot/WeaponMesh:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.180432, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mr7up"]
 _data = {
 "RESET": SubResource("Animation_smwo2"),
 "attack": SubResource("Animation_w8xla"),
+"attack2": SubResource("Animation_f7icw"),
+"attack3": SubResource("Animation_trlcp"),
 "cast": SubResource("Animation_3eryr"),
+"death": SubResource("Animation_jvbr6"),
 "idle": SubResource("Animation_t7vjp")
 }
 
@@ -379,6 +610,7 @@ size = Vector3(3, 3, 3)
 size = Vector3(3, 3, 20)
 
 [node name="bossEnemy" type="CharacterBody3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 script = ExtResource("1_dded1")
 
 [node name="hitbox" type="Area3D" parent="."]
@@ -412,7 +644,8 @@ autoplay = true
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
 emitting = false
 amount = 32
-lifetime = 0.4
+amount_ratio = 0.4
+lifetime = 0.5
 one_shot = true
 speed_scale = 1.2
 randomness = 1.0
@@ -456,6 +689,7 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/WeaponPivot/WeaponMesh/Hitbox"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m6r6w")
 
 [node name="blood" type="GPUParticles3D" parent="Head/WeaponPivot/WeaponMesh"]
