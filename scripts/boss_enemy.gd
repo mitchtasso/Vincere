@@ -94,7 +94,6 @@ func _physics_process(delta):
 	
 	if stunLock == true:
 		SPEED = 2.5
-		hurtbox.disabled = true
 	
 	if player.playerDeath == true:
 		HEALTH = maxHealth
@@ -114,7 +113,7 @@ func _on_hitbox_area_entered(area):
 
 func _on_stun_timer_timeout():
 	stunLock = false
-	SPEED = 5.0
+	SPEED = maxSpeed
 	hurtbox.disabled = false
 
 func _on_demon_death_finished() -> void:
