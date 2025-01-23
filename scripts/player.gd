@@ -120,8 +120,7 @@ var direct_file_path = "user://VincereSaves/"
 @onready var world_environment: WorldEnvironment = $"../WorldEnvironment"
 @onready var sun: DirectionalLight3D = $"../sun"
 @onready var boss_room: NavigationRegion3D = $"../BossRoom"
-@onready var boss_enemy: Node3D = $"../bossEnemy"
-@onready var boss_enemy_character: CharacterBody3D = $"../bossEnemy/bossEnemy"
+@onready var boss_enemy_character: CharacterBody3D = $"../bossEnemy"
 
 #World variables
 var gameTimeSec = 59
@@ -391,7 +390,6 @@ func _on_player_hitbox_area_entered(area):
 		else:
 			HEALTH -= 10
 	if area.is_in_group("boss") and iFrame == false and boss_enemy_character.attackActive == true:
-		print("hit")
 		iFrame = true
 		i_frame_timer.start()
 		healthVin.show()
@@ -644,7 +642,7 @@ func load_data():
 		playerDeath = false
 		shop.hide()
 		boss_room.hide()
-		boss_enemy.hide()
+		boss_enemy_character.hide()
 	elif modeType == 1:
 		player.position = shopPOS
 		graveyard.hide()
@@ -654,7 +652,7 @@ func load_data():
 		timerLabel.hide()
 		playerDeath = true
 		boss_room.hide()
-		boss_enemy.hide()
+		boss_enemy_character.hide()
 		shop.show()
 	elif modeType == 2:
 		player.position = bossRoomPOS
@@ -666,7 +664,7 @@ func load_data():
 		shop.hide()
 		playerDeath = true
 		boss_room.show()
-		boss_enemy.show()
+		boss_enemy_character.show()
 
 func save():
 	playerData.points = points

@@ -2,30 +2,41 @@ extends CharacterBody3D
 
 @onready var boss_enemy: CharacterBody3D = $"."
 @onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../../player"
-@onready var enemy_health_bar: ProgressBar = $"../../UI/bossHealthbar/ProgressBar"
-@onready var boss_healthbar: Control = $"../../UI/bossHealthbar"
+@onready var player = $"../player"
+@onready var enemy_health_bar: ProgressBar = $"../UI/bossHealthbar/ProgressBar"
+@onready var boss_healthbar: Control = $"../UI/bossHealthbar"
 @onready var stun_timer: Timer = $stunTimer
 @onready var hurtbox: CollisionShape3D = $Head/WeaponPivot/WeaponMesh/Hitbox/CollisionShape3D
 @onready var hitbox: CollisionShape3D = $hitbox/CollisionShape3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
 @onready var death_sound: AudioStreamPlayer3D = $deathSound
-@onready var world: Node3D = $"../.."
+@onready var world: Node3D = $".."
 @onready var boss_animation: AnimationPlayer = $bossAnimation
+@onready var attack_reset: Timer = $attackReset
+@onready var magic_reset: Timer = $magicReset
+@onready var eyes: Node3D = $eyes
 
+# Magic 
+var magic = load("res://scenes/boss_magic.tscn")
+var instance
+@onready var arm_cast = $Head/ArmMesh/RayCast3D
+@onready var arm_mesh: MeshInstance3D = $Head/ArmMesh
 
-var HEALTH = 1000
-var maxHealth = 1000
-var SPEED = 6.0
+var HEALTH = 2000
+var maxHealth = 2000
+var SPEED = 10.0
+var maxSpeed = 10.0
 var stunSpeed = 0.9
 var deathSpeed = 0.01
 var navReset = 0
 var navTime = 30
 var stunLock = false
 var death = false
-var POS = Vector3(-16.3404, 0, 20.2868)
+var POS = Vector3(-107.785, 0, 21)
 var attackActive = false
+var attackAvailable = true
+var magicAvailable = true
 
 func _physics_process(delta):
 	
@@ -51,6 +62,17 @@ func _physics_process(delta):
 		player.add_point()
 		SPEED = 0.1
 		demon_death.emitting = true
+	
+	if HEALTH <= maxHealth/2:
+		eyes.show()
+		magic_reset.wait_time = 1.0
+		attack_reset.wait_time = 0.5
+		maxSpeed = 15.0
+	else:
+		eyes.hide()
+		magic_reset.wait_time = 2.0
+		attack_reset.wait_time = 1.0
+		maxSpeed = 10.0
 	
 	navReset += 1
 	if navReset >= navTime and player.modeType == 2:
@@ -93,16 +115,43 @@ func _on_demon_death_finished() -> void:
 	self.queue_free()
 
 func _on_melee_detection_area_entered(area: Area3D) -> void:
-	if area.is_in_group("player"):
+	if area.is_in_group("player") and attackAvailable == true:
 		boss_animation.play("attack")
+
+func _on_ranged_detection_area_entered(area: Area3D) -> void:
+	if area.is_in_group("player") and magicAvailable == true:
+		boss_animation.play("cast")
 
 func _on_boss_animation_animation_started(anim_name: StringName) -> void:
 	if anim_name == "attack":
+		magicAvailable = false
 		attackActive = true
-		SPEED = 0.5
+		SPEED *= 0.1
+	if anim_name == "cast":
+		attackAvailable = false
+		SPEED *= 0.1
 
 func _on_boss_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
+		magicAvailable = true
 		attackActive = false
 		boss_animation.play("idle")
-		SPEED = 6.0
+		SPEED = maxSpeed
+		attackAvailable = false
+		attack_reset.start()
+	if anim_name == "cast":
+		instance = magic.instantiate()
+		instance.position = arm_cast.global_position
+		instance.transform.basis = arm_cast.global_transform.basis
+		get_parent().add_child(instance)
+		boss_animation.play("idle")
+		SPEED = maxSpeed
+		attackAvailable = true
+		magicAvailable = false
+		magic_reset.start()
+
+func _on_attack_reset_timeout() -> void:
+	attackAvailable = true
+
+func _on_magic_reset_timeout() -> void:
+	magicAvailable = true

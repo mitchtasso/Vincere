@@ -4037,11 +4037,8 @@ mesh = ExtResource("7_xxkpr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OtherTextures/gates"]
 shape = SubResource("ConcavePolygonShape3D_isyqj")
 
-[node name="bossEnemy" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7853, 0, 0)
-
-[node name="bossEnemy" parent="bossEnemy" instance=ExtResource("23_2isxy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3404, 0, 20.2868)
+[node name="bossEnemy" parent="." instance=ExtResource("23_2isxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.785, 0, 21)
 
 [node name="allEnemies" type="Node3D" parent="."]
 

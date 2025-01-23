@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=27 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -354,8 +354,8 @@ _data = {
 "idle": SubResource("Animation_t7vjp")
 }
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jkmp"]
-points = PackedVector3Array(0.530948, -7.03206, 8.49947, 0.530948, -6.25651, 10.673, -0.554891, -6.25651, 10.673, 0.0654519, 15.9276, 0.279253, -0.865268, 0.880435, -0.496575, 0.530948, 1.34669, -0.65174, -0.244515, 15.9276, 0.279253, -0.554891, -4.54844, 4.15839, 0.0566472, -1.23488, -0.004217, -0.399771, 2.12224, -1.42757, -0.554891, -7.65297, 9.89714, -0.865268, 1.19204, 0.745934, 0.530948, -4.54844, 4.15839, 0.220572, 2.12224, -1.42757, 0.530948, 1.34669, 1.05508, -0.244515, 15.4613, -0.0310783, 0.530948, -7.49601, 10.3615, 0.0654519, 15.4613, -0.0310783, -0.554891, -6.56581, 7.56966, 0.475, -0.000839153, -0.229032, 0.0562919, -0.929236, -0.294984, -0.554891, -7.49601, 10.3615, 0.530948, -7.65297, 9.89714, -0.865268, 1.19204, -0.496575, -0.399771, 1.81064, -1.42757, -0.554891, -6.72046, 10.673, -0.865268, 0.725785, 0.745934, -0.554891, -7.49601, 9.43165, -0.554891, -5.324, 5.39734, 0.530948, -6.72046, 10.673, 0.530948, -7.49601, 9.43165, -0.554891, -4.86005, 4.6227)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m6r6w"]
+points = PackedVector3Array(0.636839, -6.3862, 10.6597, -0.663056, -6.3862, 10.6597, 0.44829, -7.57698, 10.1032, 0.636839, -7.68501, 9.90952, 0.636839, 0.419345, 1.80348, 0.00983232, 17.9796, 0.898859, -0.663056, -7.68501, 9.90952, -0.451637, -7.57698, 10.1032, -0.110102, 17.9796, 0.898859, -0.787732, 1.18305, 0.647575, -0.787732, 0.81376, 0.647575, 0.44829, -6.758, 8.27802, 0.636839, -4.18551, 3.84684, 0.00983232, 17.9796, 0.843699, 0.636839, -0.414705, 0.806926, -0.663056, -4.18551, 3.84684, -0.451637, -6.758, 8.27802, -0.110102, 17.9796, 0.843699, -0.768766, 1.09764, -0.350204, 0.449964, -4.29354, 4.02213, -0.050135, -1.2588, -0.156532, -0.0283794, -1.2588, -0.150403, -0.0225221, -1.19097, -0.23253, 0.00411451, -1.19097, -0.210466, 0.474927, -0.251412, -0.600262, 0.00983232, 13.3999, -0.600262, -6.92606e-05, 15.8493, 0.149911, 0.474927, 1.24837, -0.600262, -0.142457, -1.10807, -0.231304, -0.12865, -1.19097, -0.173693, -0.104245, -1.19097, -0.210466, -0.0776083, -1.19097, -0.23253, -0.0717511, -1.2588, -0.150403, -0.450102, -4.29354, 4.02213, -0.475066, -0.0504365, -0.575747, -0.100061, 15.8493, 0.149911, -0.110102, 13.3999, -0.600262, -0.417051, 1.77091, -1.86281, -0.417051, 1.72569, -1.86281, -0.050135, -1.19097, -0.239885, -0.050135, -1.10807, -0.308528, -0.0176411, -1.10807, -0.298722, 0.0135977, -1.10807, -0.272981, 0.294746, 1.72569, -1.86281, 0.294746, 1.77091, -1.86281, -0.113728, -1.10807, -0.272981, -0.0824894, -1.10807, -0.298722)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_knbad"]
 direction = Vector3(0, 1, 0)
@@ -374,6 +374,9 @@ size = Vector3(0.08, 0.08, 0.08)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlfgf"]
 size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vu4id"]
+size = Vector3(3, 3, 20)
 
 [node name="bossEnemy" type="CharacterBody3D"]
 script = ExtResource("1_dded1")
@@ -453,8 +456,7 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/WeaponPivot/WeaponMesh/Hitbox"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, -7.45058e-09, 0, 5.21541e-08, 0.909091, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_7jkmp")
+shape = SubResource("ConvexPolygonShape3D_m6r6w")
 
 [node name="blood" type="GPUParticles3D" parent="Head/WeaponPivot/WeaponMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.46703, -1.19769)
@@ -491,9 +493,40 @@ pitch_scale = 0.9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75207, -2.31976)
 shape = SubResource("BoxShape3D_tlfgf")
 
+[node name="rangedDetection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rangedDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72904, -14.1106)
+shape = SubResource("BoxShape3D_vu4id")
+
+[node name="attackReset" type="Timer" parent="."]
+one_shot = true
+
+[node name="magicReset" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="eyes" type="Node3D" parent="."]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129944, 2.96624, -0.480162)
+light_color = Color(0.898039, 0, 0, 1)
+light_energy = 2.0
+omni_range = 0.25
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126629, 2.96624, -0.480162)
+light_color = Color(0.898039, 0, 0, 1)
+light_energy = 2.0
+omni_range = 0.25
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
 [connection signal="animation_finished" from="bossAnimation" to="." method="_on_boss_animation_animation_finished"]
 [connection signal="animation_started" from="bossAnimation" to="." method="_on_boss_animation_animation_started"]
 [connection signal="area_entered" from="meleeDetection" to="." method="_on_melee_detection_area_entered"]
+[connection signal="area_entered" from="rangedDetection" to="." method="_on_ranged_detection_area_entered"]
+[connection signal="timeout" from="attackReset" to="." method="_on_attack_reset_timeout"]
+[connection signal="timeout" from="magicReset" to="." method="_on_magic_reset_timeout"]
