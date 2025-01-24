@@ -20,5 +20,5 @@ func _process(_delta: float) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().paused = true
 		
-func _on_area_3d_area_exited(area: Area3D) -> void:
+func _on_area_3d_area_exited(_area: Area3D) -> void:
 	detect_text.hide()
