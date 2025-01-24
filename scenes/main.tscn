@@ -1,7 +1,6 @@
-[gd_scene load_steps=102 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=99 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
-[ext_resource type="Script" path="res://scripts/shop_gate.gd" id="2_0sg1b"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
 [ext_resource type="ArrayMesh" uid="uid://bwl67882css75" path="res://assets/world/arenaWalls.obj" id="2_x03lh"]
 [ext_resource type="PackedScene" uid="uid://ba41bgwv53u61" path="res://scenes/player.tscn" id="3_e7w81"]
@@ -14,10 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://ddjeiwcjgkud6" path="res://scenes/shop_stall.tscn" id="5_svlue"]
 [ext_resource type="AudioStream" uid="uid://cfbvxhtud5a6k" path="res://sounds/eerieGameMusic.wav" id="6_06xc8"]
 [ext_resource type="ArrayMesh" uid="uid://bih85ea5m8bo8" path="res://assets/world/grave.obj" id="6_23st1"]
-[ext_resource type="Script" path="res://scripts/shop_stall.gd" id="6_oeael"]
 [ext_resource type="ArrayMesh" uid="uid://ntreeufyav0x" path="res://assets/world/paths.obj" id="6_t72xk"]
 [ext_resource type="ArrayMesh" uid="uid://d10022eu5oh84" path="res://assets/world/shopFence.obj" id="7_hwtjq"]
-[ext_resource type="Script" path="res://scripts/apothecary_stall.gd" id="7_qqhct"]
 [ext_resource type="ArrayMesh" uid="uid://cvsnx33s3q1eu" path="res://assets/world/crypt.obj" id="7_qr3yu"]
 [ext_resource type="Script" path="res://scripts/death_menu.gd" id="7_uy4yo"]
 [ext_resource type="ArrayMesh" uid="uid://vmtektgl0u3k" path="res://assets/world/gates.obj" id="7_xxkpr"]
@@ -249,7 +246,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81548, 1.13511, -0.327541)
 
 [node name="shopGate" parent="Shop/gateShop" instance=ExtResource("3_kax4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6756, 1.81633, 0)
-script = ExtResource("2_0sg1b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/gateShop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5826, 2.5, 0)
@@ -261,7 +257,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94176, 0, -3.83363)
 [node name="apothecaryStall" parent="Shop/stallApothecary" instance=ExtResource("5_4cy14")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 10.3842, 0.251372, -22.1624)
 skeleton = NodePath("../..")
-script = ExtResource("7_qqhct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/stallApothecary"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 10.3279, 2.49889, -22.1986)
@@ -319,7 +314,6 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -18.0261)
 [node name="shopStall" parent="Shop/stallShop" instance=ExtResource("5_svlue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4861, 0.5, -20)
 skeleton = NodePath("../..")
-script = ExtResource("6_oeael")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/stallShop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6432, 6.31468, -20.1859)
@@ -4511,6 +4505,40 @@ theme_override_font_sizes/font_size = 60
 text = "+
 "
 horizontal_alignment = 1
+
+[node name="crosshairText" type="MarginContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/crosshairText"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/crosshairText/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/crosshairText/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+
+[node name="Label3" type="Label" parent="UI/crosshairText/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
 
 [node name="healthVin" type="TextureRect" parent="UI"]
 visible = false

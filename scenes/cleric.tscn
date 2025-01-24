@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://uqwnsr2ul3a3"]
+[gd_scene load_steps=5 format=3 uid="uid://uqwnsr2ul3a3"]
 
 [ext_resource type="Script" path="res://scripts/cleric.gd" id="1_ycp2u"]
-[ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="2_qj1q7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_woerd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dt7f0"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8hdx6"]
-viewport_path = NodePath("SubViewport")
+[sub_resource type="BoxShape3D" id="BoxShape3D_7b7ha"]
+size = Vector3(2, 2, 2)
 
 [node name="cleric" type="StaticBody3D"]
 script = ExtResource("1_ycp2u")
@@ -22,19 +21,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47155, 2.66297)
 shape = SubResource("BoxShape3D_dt7f0")
 target_position = Vector3(0, 0, -1)
 
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(1300, 512)
+[node name="playerField" type="Area3D" parent="."]
 
-[node name="Label" type="Label" parent="SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_qj1q7")
-theme_override_font_sizes/font_size = 120
-text = "(E) Return to Graveyard"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerField"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.472, 1.65906)
+shape = SubResource("BoxShape3D_7b7ha")
 
-[node name="detectText" type="Sprite3D" parent="."]
-transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -1.08377, -0.0356399, 0)
-texture = SubResource("ViewportTexture_8hdx6")
+[connection signal="area_exited" from="playerField" to="." method="_on_player_field_area_exited"]

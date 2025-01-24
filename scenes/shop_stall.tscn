@@ -1,38 +1,28 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddjeiwcjgkud6"]
 
 [ext_resource type="ArrayMesh" uid="uid://b8rlh3elvyh4c" path="res://assets/world/storeStall.obj" id="1_msh4a"]
-[ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="1_si378"]
+[ext_resource type="Script" path="res://scripts/shop_stall.gd" id="2_dlhxk"]
 [ext_resource type="ArrayMesh" uid="uid://pdgc6s88pwaa" path="res://assets/world/templar.obj" id="3_bvbjq"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_qtccc"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2rtm"]
 size = Vector3(5, 2.5, 5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5xujp"]
+size = Vector3(5, 2.5, 5)
+
 [node name="shopStall" type="MeshInstance3D"]
 mesh = ExtResource("1_msh4a")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(1300, 512)
-
-[node name="Label" type="Label" parent="SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_si378")
-theme_override_font_sizes/font_size = 120
-text = "(E) Talk to Mercator"
-
-[node name="detectText" type="Sprite3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 3.18354, 7)
-texture = SubResource("ViewportTexture_qtccc")
+script = ExtResource("2_dlhxk")
 
 [node name="playerDetect" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.862, 8.95775)
 shape = SubResource("BoxShape3D_r2rtm")
+
+[node name="playerField" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerField"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86602, 8.96375)
+shape = SubResource("BoxShape3D_5xujp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.60674, 2.24046)
@@ -41,3 +31,5 @@ mesh = ExtResource("3_bvbjq")
 [node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 22.4583, 0)
 light_color = Color(0.614854, 0.57348, 0.114585, 1)
+
+[connection signal="area_exited" from="playerField" to="." method="_on_player_field_area_exited"]
