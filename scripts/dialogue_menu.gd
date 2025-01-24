@@ -16,7 +16,7 @@ extends Control
 @onready var dialogue: AudioStreamPlayer = $"../../sounds/dialogue"
 @onready var player: CharacterBody3D = $"../../player"
 
-var NPC = ["Mercator", "Medicus"]
+var NPC = ["Mercator", "Medicus", "Cleric"]
 var activeNPC
 
 var dialogueCounter = 0
@@ -33,6 +33,8 @@ func _process(_delta: float) -> void:
 		title.text = "Mercator, the Merchant"
 	elif activeNPC == NPC[1]:
 		title.text = "Medicus, the Healer"
+	elif activeNPC == NPC[2]:
+		title.text = "Unknown Cleric"
 	
 	if activeNPC == NPC[0]:
 		if dialogueCounter == 0:
@@ -50,6 +52,15 @@ func _process(_delta: float) -> void:
 			text_1.text = "Who are you?"
 			text_2.text = "Heal me please, I am injured."
 			text_3.text = "Where do you get your power from?"
+			text_4.text = "Farewell."
+			dialogueCounter = 1
+	if activeNPC == NPC[2]:
+		if dialogueCounter == 0:
+			dialogue.play()
+			dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
+			text_1.text = "Who are you?"
+			text_2.text = "Fateful? What makes me fateful?"
+			text_3.text = "Do you have any information on the tainted graveyard?"
 			text_4.text = "Farewell."
 			dialogueCounter = 1
 
