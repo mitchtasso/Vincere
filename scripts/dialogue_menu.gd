@@ -60,7 +60,7 @@ func _process(_delta: float) -> void:
 			dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
 			text_1.text = "Who are you?"
 			text_2.text = "Fateful? What makes me fateful?"
-			text_3.text = "Do you have any information on the tainted graveyard?"
+			text_3.text = "What information do you possess?"
 			text_4.text = "Farewell."
 			dialogueCounter = 1
 
@@ -70,6 +70,9 @@ func _on_text_1_pressed() -> void:
 		dialogLabel.text = "I am Mercator, a merchant and knight of the Church."
 	if activeNPC == NPC[1]:
 		dialogLabel.text = "I am Medicus, a healer and knight of the Church."
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+	if activeNPC == NPC[2]:
+		dialogLabel.text = "I am a wandering cleric, my name is of no importance."
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_2_pressed() -> void:
@@ -91,7 +94,8 @@ func _on_text_2_pressed() -> void:
 		else:
 			dialogLabel.text = "Unfortunately, you do not have enought tainted souls."
 			dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-			
+	if activeNPC == NPC[2]:
+		dialogLabel.text = "You are fated to rid this land of the demonic presence."
 
 func _on_text_3_pressed() -> void:
 	dialogue.play()
@@ -100,6 +104,8 @@ func _on_text_3_pressed() -> void:
 	if activeNPC == NPC[1]:
 		dialogLabel.text = "The same power the Church uses to cleanse tainted souls is used to heal you."
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+	if activeNPC == NPC[2]:
+		dialogLabel.text = "On the 11th night of your struggle, the demon commander will show himself."
 
 func _on_text_4_pressed() -> void:
 	dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))

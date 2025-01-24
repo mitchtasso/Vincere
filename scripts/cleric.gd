@@ -14,11 +14,12 @@ func _process(_delta: float) -> void:
 		detect_text.text = "(E) Talk to Unknown Cleric"
 		
 		if Input.is_action_just_pressed("interact"):
+			dialogue_menu.activeNPC = dialogue_menu.NPC[2]
 			dialogue_menu.title.text = "Unknown Cleric"
 			dialogue_menu.dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
 			dialogue_menu.text_1.text = "Who are you?"
 			dialogue_menu.text_2.text = "Fateful? What makes me fateful?"
-			dialogue_menu.text_3.text = "Do you have any information on the tainted graveyard?"
+			dialogue_menu.text_3.text = "What information do you possess?"
 			dialogue_menu.text_4.text = "Farewell."
 			dialogue_menu.show()
 			uiOptionsContinue.grab_focus()
