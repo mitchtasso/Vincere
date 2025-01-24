@@ -17,6 +17,7 @@ var SPELL = 0
 var UPGRADE = 0
 var playerAttack = 25
 var playerMagicAtk = 50
+var playerMagicRegen = 0.2
 var iFrame = false
 var dashCool = true
 var dashActive = false
@@ -207,8 +208,16 @@ func _physics_process(_delta):
 	else:
 		mana_bar.show()
 	
+	match playerMagicAtk:
+		50: playerMagicRegen = 0.2
+		55: playerMagicRegen = 0.25
+		60: playerMagicRegen = 0.3
+		65: playerMagicRegen = 0.35
+		70: playerMagicRegen = 0.4
+		75: playerMagicRegen = 0.45
+	
 	if SPELL == 1:
-		MANA += 0.2
+		MANA += playerMagicRegen
 	
 	if HEALTH < 30:
 		low_health_vin.show()

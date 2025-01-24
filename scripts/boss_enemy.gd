@@ -93,7 +93,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if stunLock == true:
-		SPEED = 2.5
+		SPEED = maxSpeed/4
 	
 	if player.playerDeath == true:
 		HEALTH = maxHealth
