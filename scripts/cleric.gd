@@ -6,6 +6,7 @@ extends StaticBody3D
 @onready var start_menu: Control = $"../../UI/StartMenu"
 @onready var dialogue_menu: Control = $"../../UI/DialogueMenu"
 @onready var detect_text: Label = $"../../UI/crosshairText/VBoxContainer/Label"
+@onready var boss_enemy: CharacterBody3D = $"../../bossEnemy"
 
 func _process(_delta: float) -> void:
 	
@@ -26,6 +27,11 @@ func _process(_delta: float) -> void:
 			start_menu.menuActive = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().paused = true
-		
+	
+	if boss_enemy.death == true:
+		self.position = Vector3(-179.309,1.135,-3.15)
+	else:
+		self.position = Vector3(24.691,1.135,-3.15)
+	
 func _on_player_field_area_exited(_area: Area3D) -> void:
 	detect_text.hide()
