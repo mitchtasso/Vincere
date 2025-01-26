@@ -3,12 +3,12 @@ extends WorldEnvironment
 var enviro = Environment.new()
 var sky = Sky.new()
 var proSky = ProceduralSkyMaterial.new()
-@onready var worldEnvironment = $"."
+@onready var worldEnvironment: WorldEnvironment = $"."
 @onready var sun: DirectionalLight3D = $"../sun"
 @onready var player: CharacterBody3D = $"../player"
 @onready var day_change_timer: Timer = $"../dayChangeTimer"
 
-var dayChange = false
+var dayChange: bool = false
 
 func _process(_delta: float) -> void:
 	

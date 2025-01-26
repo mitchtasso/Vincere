@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../../player"
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var player: CharacterBody3D = $"../../player"
 @onready var enemy_health_bar: ProgressBar = $SubViewport/enemyHealthBar
 @onready var stun_timer: Timer = $stunTimer
 @onready var hurtbox: CollisionShape3D = $hurtbox/CollisionShape3D
@@ -12,16 +12,16 @@ extends CharacterBody3D
 @onready var world: Node3D = $"../.."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var HEALTH = 150
-var maxHealth = 150
-var SPEED = 5.5
-var stunSpeed = 0.9
-var deathSpeed = 0.01
-var navReset = 0
-var navTime = 60
-var stunLock = false
-var death = false
-var souls = 300
+var HEALTH: int = 150
+var maxHealth: int = 150
+var SPEED: float = 5.5
+var stunSpeed: float = 0.9
+var deathSpeed: float = 0.01
+var navReset: int = 0
+var navTime: int = 60
+var stunLock: bool = false
+var death: bool = false
+var souls: int = 300
 
 func _physics_process(delta):
 	

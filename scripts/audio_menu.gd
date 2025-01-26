@@ -1,20 +1,20 @@
 extends Control
 
-var volume = 0
+var volume: float = 0
 
-@onready var AudioMenu = $"."
-@onready var buttonSound = $"../../sounds/menuButton"
-@onready var volumeBar = $MarginContainer/VBoxContainer/volume
-@onready var savedText = $savedText
-@onready var tempTextTimer = $tempText
+@onready var AudioMenu: Control = $"."
+@onready var buttonSound: AudioStreamPlayer = $"../../sounds/menuButton"
+@onready var volumeBar: HSlider = $MarginContainer/VBoxContainer/volume
+@onready var savedText: MarginContainer = $savedText
+@onready var tempTextTimer: Timer = $tempText
 
-@onready var OptionsMenu = $"../OptionsMenu"
-@onready var OptionsMenuSelect = $"../OptionsMenu/buttons/VBoxContainer/back"
+@onready var OptionsMenu: Control = $"../OptionsMenu"
+@onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/back"
 
 var settingsData = SettingsData.new()
-var save_file_path = "user://VincereSaves/Settings/"
-var save_file_name = "SettingData.tres"
-var direct_file_path = "user://VincereSaves/Settings/"
+var save_file_path: String = "user://VincereSaves/Settings/"
+var save_file_name: String = "SettingData.tres"
+var direct_file_path: String = "user://VincereSaves/Settings/"
 
 func _on_back_pressed():
 	buttonSound.play()

@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-@onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../../player"
-@onready var deathSound = $deathSound
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var player: CharacterBody3D = $"../../player"
+@onready var deathSound: AudioStreamPlayer3D = $deathSound
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
 @onready var enemy_health_bar: ProgressBar = $SubViewport/enemyHealthBar
 @onready var stun_timer: Timer = $stunTimer
@@ -12,17 +12,17 @@ extends CharacterBody3D
 @onready var world: Node3D = $"../.."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var HEALTH = 50
-var maxHealth = 50
-var SPEED = 8.0
-var knockbackSpeed = 5.60
-var navReset = 0
-var navTime = 60
-var stunLock = false
-var stunVel = -1.10
-var death = false
+var HEALTH: int = 50
+var maxHealth: int = 50
+var SPEED: float = 8.0
+var knockbackSpeed: float = 5.60
+var navReset: int = 0
+var navTime: int = 60
+var stunLock: bool = false
+var stunVel: float = -1.10
+var death: bool = false
 var next_nav_point
-var souls = 200
+var souls: int = 200
 
 func _physics_process(delta):
 	

@@ -1,30 +1,29 @@
 extends Control
 
-var resolution = 3
-var window = 0
-var vsync = 0
-var fpsCount = 1
+var resolution: int = 3
+var window: int = 0
+var vsync: int = 0
+var fpsCount: int = 1
 var fpsValue
 var FPS
 
+@onready var VideoMenu: Control = $"."
+@onready var buttonSound: AudioStreamPlayer = $"../../sounds/menuButton"
+@onready var resolutionBox: OptionButton = $MarginContainer/VBoxContainer/resolution
+@onready var windowBox: OptionButton = $MarginContainer/VBoxContainer/window
+@onready var vsyncBox: OptionButton = $MarginContainer/VBoxContainer/vsync
+@onready var fpsBox: OptionButton = $MarginContainer/VBoxContainer/fps
+@onready var fpsUI: Label = $"../playerUI/VBoxContainer/fps"
+@onready var savedText: MarginContainer = $savedText
+@onready var tempTextTimer: Timer = $tempText
 
-@onready var VideoMenu = $"."
-@onready var buttonSound = $"../../sounds/menuButton"
-@onready var resolutionBox = $MarginContainer/VBoxContainer/resolution
-@onready var windowBox = $MarginContainer/VBoxContainer/window
-@onready var vsyncBox = $MarginContainer/VBoxContainer/vsync
-@onready var fpsBox = $MarginContainer/VBoxContainer/fps
-@onready var fpsUI = $"../playerUI/VBoxContainer/fps"
-@onready var savedText = $savedText
-@onready var tempTextTimer = $tempText
-
-@onready var OptionsMenu = $"../OptionsMenu"
-@onready var OptionsMenuSelect = $"../OptionsMenu/buttons/VBoxContainer/controls"
+@onready var OptionsMenu: Control = $"../OptionsMenu"
+@onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/controls"
 
 var settingsData = SettingsData.new()
-var save_file_path = "user://VincereSaves/Settings/"
-var save_file_name = "SettingData.tres"
-var direct_file_path = "user://VincereSaves/Settings/"
+var save_file_path: String = "user://VincereSaves/Settings/"
+var save_file_name: String = "SettingData.tres"
+var direct_file_path: String = "user://VincereSaves/Settings/"
 
 func _on_back_pressed():
 	buttonSound.play()

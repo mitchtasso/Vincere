@@ -1,17 +1,17 @@
 extends Area3D
 
-var SPEED = 40.0
+var SPEED: float = 40.0
 
-@onready var mesh = $MeshInstance3D
-@onready var ray = $ShapeCast3D
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var ray: ShapeCast3D = $ShapeCast3D
 @onready var particle: GPUParticles3D = $MeshInstance3D/explosion
 @onready var trail: GPUParticles3D = $MeshInstance3D/trail
 @onready var sizzle: AudioStreamPlayer3D = $sizzle
 @onready var boom: AudioStreamPlayer3D = $boom
 
-var reset = 0
-var time = 600
-var explosion = 0
+var reset: int = 0
+var time: int = 600
+var explosion: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):

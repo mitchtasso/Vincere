@@ -1,21 +1,21 @@
 extends Control
 
-@onready var uiOptions = $buttons/VBoxContainer/controls
-@onready var menuButtonSound = $"../../sounds/menuButton"
+@onready var uiOptions: Button = $buttons/VBoxContainer/controls
+@onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 
-@onready var StartMenu = $"../StartMenu"
-@onready var StartMenuSelect = $"../StartMenu/buttons/VBoxContainer/Start"
+@onready var StartMenu: Control = $"../StartMenu"
+@onready var StartMenuSelect: Button = $"../StartMenu/buttons/VBoxContainer/Start"
 
-@onready var OptionMenu = $"."
+@onready var OptionMenu: Control = $"."
 
-@onready var ControlsMenu = $"../ControlsMenu"
-@onready var ControlMenuSelect = $"../ControlsMenu/MarginContainer/VBoxContainer/back"
+@onready var ControlsMenu: Control = $"../ControlsMenu"
+@onready var ControlMenuSelect: Button = $"../ControlsMenu/MarginContainer/VBoxContainer/back"
 
-@onready var AudioMenu = $"../AudioMenu"
-@onready var AudioMenuSelect = $"../AudioMenu/MarginContainer/VBoxContainer/back"
+@onready var AudioMenu: Control = $"../AudioMenu"
+@onready var AudioMenuSelect: Button = $"../AudioMenu/MarginContainer/VBoxContainer/back"
 
-@onready var VideoMenu = $"../VideoMenu"
-@onready var VideoMenuSelect = $"../VideoMenu/MarginContainer/VBoxContainer/back"
+@onready var VideoMenu: Control = $"../VideoMenu"
+@onready var VideoMenuSelect: Button = $"../VideoMenu/MarginContainer/VBoxContainer/back"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

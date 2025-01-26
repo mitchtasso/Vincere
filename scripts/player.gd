@@ -1,55 +1,55 @@
 extends CharacterBody3D
 
 var speed
-var walking = false
-const WALK_SPEED = 5.75
-const SPRINT_SPEED = 8.5
-const JUMP_VELOCITY = 5.5
-const SENSITIVITY = 0.001
-var points = 0
-var souls = 0
-var attackActive = false
-var playerDeath = false
-var HEALTH = 100
-var ARMOR = 0
-var MANA = 0
-var SPELL = 0
-var UPGRADE = 0
-var playerAttack = 25
-var playerMagicAtk = 50
-var playerMagicRegen = 0.2
-var iFrame = false
-var dashCool = true
-var dashActive = false
-var attackType = 0
-var baseAttack = false
-var magicAttack = false
+var walking: bool = false
+const WALK_SPEED: float = 5.75
+const SPRINT_SPEED: float = 8.5
+const JUMP_VELOCITY: float = 5.5
+const SENSITIVITY: float = 0.001
+var points: int = 0
+var souls: int = 0
+var attackActive: bool = false
+var playerDeath: bool = false
+var HEALTH: int = 100
+var ARMOR: int = 0
+var MANA: float = 0
+var SPELL: int = 0
+var UPGRADE: int = 0
+var playerAttack: int = 25
+var playerMagicAtk: int = 50
+var playerMagicRegen: float = 0.2
+var iFrame: bool = false
+var dashCool: bool = true
+var dashActive: bool = false
+var attackType: int = 0
+var baseAttack: bool = false
+var magicAttack: bool = false
 
 #Bob varibales
-const BOB_FREQ = 2.0
-const BOB_AMP = 0.08
-var t_bob = 2.0
+const BOB_FREQ: float = 2.0
+const BOB_AMP: float = 0.08
+var t_bob: float = 2.0
 
 #fov variables
-const BASE_FOV = 75.0
-const FOV_CHANGE = 1.5
-var graveyardPOS = Vector3(0,-0.5,0)
-var shopPOS = Vector3(99,-0.5,0)
-var bossRoomPOS = Vector3(-99,-0.5,0)
-var controllerSensH = 2.5
-var controllerSensV = 1.9
+const BASE_FOV: float = 75.0
+const FOV_CHANGE: float = 1.5
+var graveyardPOS: Vector3 = Vector3(0,-0.5,0)
+var shopPOS: Vector3 = Vector3(99,-0.5,0)
+var bossRoomPOS: Vector3 = Vector3(-99,-0.5,0)
+var controllerSensH: float = 2.5
+var controllerSensV: float = 1.9
 
 #Player Elements
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
-@onready var animationPlayer = $playerAnimation
-@onready var weapon_hitbox = $Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox
-@onready var player = $"."
-@onready var swordSound = $"../sounds/swordSwipe"
-@onready var walkingSound = $walkingSound
-@onready var jumpSound = $jumpSound
+@onready var head: Node3D = $Head
+@onready var camera: Camera3D = $Head/Camera3D
+@onready var animationPlayer: AnimationPlayer = $playerAnimation
+@onready var weapon_hitbox: Area3D = $Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox
+@onready var player: CharacterBody3D = $"."
+@onready var swordSound: AudioStreamPlayer = $"../sounds/swordSwipe"
+@onready var walkingSound: AudioStreamPlayer3D = $walkingSound
+@onready var jumpSound: AudioStreamPlayer3D = $jumpSound
 @onready var dash_sound: AudioStreamPlayer3D = $dashSound
-@onready var playerDeathSound = $"../sounds/playerDeath"
+@onready var playerDeathSound: AudioStreamPlayer = $"../sounds/playerDeath"
 @onready var dash_cooldown: Timer = $dashCooldown
 @onready var dash_active_timer: Timer = $dashActiveTimer
 @onready var vin_timer: Timer = $vinTimer
@@ -70,35 +70,35 @@ var playerData = PlayerData.new()
 # Magic 
 var magic = load("res://scenes/beam_magic.tscn")
 var instance
-@onready var arm_cast = $Head/Camera3D/ArmMesh/RayCast3D
+@onready var arm_cast: RayCast3D = $Head/Camera3D/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/Camera3D/ArmMesh
 
 #Player data save path
-var save_file_path = "user://VincereSaves/"
-var save_file_name = "PlayerData.tres"
-var direct_file_path = "user://VincereSaves/"
+var save_file_path: String = "user://VincereSaves/"
+var save_file_name: String = "PlayerData.tres"
+var direct_file_path: String = "user://VincereSaves/"
 
 #Player UI Elements
-@onready var gametimer = $"../gameTime"
-@onready var timerLabel = $"../UI/waveUI/VBoxContainer/time"
-@onready var waveLabel = $"../UI/waveUI/VBoxContainer/waveLabel"
-@onready var pointsLabel = $"../UI/playerUI/VBoxContainer/points"
-@onready var fpsLabel = $"../UI/playerUI/VBoxContainer/fps"
-@onready var soulsLabel = $"../UI/playerUI/VBoxContainer/souls"
+@onready var gametimer: Timer = $"../gameTime"
+@onready var timerLabel: Label = $"../UI/waveUI/VBoxContainer/time"
+@onready var waveLabel: Label = $"../UI/waveUI/VBoxContainer/waveLabel"
+@onready var pointsLabel: Label = $"../UI/playerUI/VBoxContainer/points"
+@onready var fpsLabel: Label = $"../UI/playerUI/VBoxContainer/fps"
+@onready var soulsLabel: Label = $"../UI/playerUI/VBoxContainer/souls"
 @onready var health_bar: ProgressBar = $"../UI/statsUI/healthBar"
 @onready var armor_bar: ProgressBar = $"../UI/statsUI/armorBar"
 @onready var mana_bar: ProgressBar = $"../UI/statsUI/manaBar"
-@onready var healthVin = $"../UI/healthVin"
+@onready var healthVin: TextureRect = $"../UI/healthVin"
 @onready var low_health_vin: TextureRect = $"../UI/lowHealthVin"
 
 #Menu UI Elements
-@onready var pauseMenu = $"../UI/PauseMenu"
-@onready var deathMenu = $"../UI/DeathMenu"
-@onready var waveMenu = $"../UI/WaveMenu"
-@onready var startMenu = $"../UI/StartMenu"
-@onready var continueMenu = $"../UI/ContinueMenu"
+@onready var pauseMenu: Control = $"../UI/PauseMenu"
+@onready var deathMenu: Control = $"../UI/DeathMenu"
+@onready var waveMenu: Control = $"../UI/WaveMenu"
+@onready var startMenu: Control = $"../UI/StartMenu"
+@onready var continueMenu: Control = $"../UI/ContinueMenu"
 @onready var boss_menu: Control = $"../UI/BossMenu"
-@onready var autosaveLabel = $"../UI/autoSaveText"
+@onready var autosaveLabel: MarginContainer = $"../UI/autoSaveText"
 @onready var autosaveTextTimer: Timer = $"../UI/autoSaveText/Timer"
 
 #Wave Menu
@@ -106,11 +106,11 @@ var direct_file_path = "user://VincereSaves/"
 @onready var soulsWave: Label = $"../UI/WaveMenu/buttons/VBoxContainer/souls"
 
 #Menu focus
-@onready var uiOptionsPause = $"../UI/PauseMenu/buttons/VBoxContainer/Resume"
-@onready var uiOptionsDeath = $"../UI/DeathMenu/buttons/VBoxContainer/Replay"
-@onready var uiOptionsWave = $"../UI/WaveMenu/buttons/VBoxContainer/Continue"
-@onready var uiOptionsContinue = $"../UI/ContinueMenu/buttons/VBoxContainer/Yes"
-@onready var uiOptionsBoss = $"../UI/BossMenu/buttons/VBoxContainer/Continue"
+@onready var uiOptionsPause: Button = $"../UI/PauseMenu/buttons/VBoxContainer/Resume"
+@onready var uiOptionsDeath: Button = $"../UI/DeathMenu/buttons/VBoxContainer/Replay"
+@onready var uiOptionsWave: Button = $"../UI/WaveMenu/buttons/VBoxContainer/Continue"
+@onready var uiOptionsContinue: Button = $"../UI/ContinueMenu/buttons/VBoxContainer/Yes"
+@onready var uiOptionsBoss: Button = $"../UI/BossMenu/buttons/VBoxContainer/Continue"
 
 #World elements
 @onready var world: Node3D = $".."
@@ -124,12 +124,12 @@ var direct_file_path = "user://VincereSaves/"
 @onready var boss_enemy_character: CharacterBody3D = $"../bossEnemy"
 
 #World variables
-var gameTimeSec = 59
-var gameTimeMin = 1
-var gameTimeSecDef = 59
-var gameTimeMinDef = 1
-var gameTimeChange = 1
-var modeType = 0
+var gameTimeSec: int = 59
+var gameTimeMin: int = 1
+var gameTimeSecDef: int = 59
+var gameTimeMinDef: int = 1
+var gameTimeChange: int = 1
+var modeType: int = 0
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

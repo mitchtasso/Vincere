@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @onready var boss_enemy: CharacterBody3D = $"."
-@onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../player"
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var player: CharacterBody3D = $"../player"
 @onready var enemy_health_bar: ProgressBar = $"../UI/bossHealthbar/ProgressBar"
 @onready var boss_healthbar: Control = $"../UI/bossHealthbar"
 @onready var stun_timer: Timer = $stunTimer
@@ -20,23 +20,23 @@ extends CharacterBody3D
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
 var instance
-@onready var arm_cast = $Head/ArmMesh/RayCast3D
+@onready var arm_cast: RayCast3D = $Head/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/ArmMesh
 
-var HEALTH = 2000
-var maxHealth = 2000
-var SPEED = 10.0
-var maxSpeed = 10.0
-var stunSpeed = 0.9
-var deathSpeed = 0.01
-var navReset = 0
-var navTime = 30
-var stunLock = false
-var death = false
-var POS = Vector3(-107.785, 0, 21)
-var attackActive = false
-var attackAvailable = true
-var magicAvailable = true
+var HEALTH: float = 2000
+var maxHealth: float = 2000
+var SPEED: float = 10.0
+var maxSpeed: float = 10.0
+var stunSpeed: float = 0.9
+var deathSpeed: float = 0.01
+var navReset: int = 0
+var navTime: int = 30
+var stunLock: bool = false
+var death: bool = false
+var POS: Vector3 = Vector3(-107.785, 0, 21)
+var attackActive: bool = false
+var attackAvailable: bool = true
+var magicAvailable: bool = true
 var randomAttack
 
 func _physics_process(delta):
@@ -44,7 +44,6 @@ func _physics_process(delta):
 	enemy_health_bar.value = HEALTH
 	enemy_health_bar.max_value = maxHealth
 	randomAttack = randi_range(0,2)
-	print(randomAttack)
 	
 	if player.modeType == 2:
 		boss_healthbar.show()

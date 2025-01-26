@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-@onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../../player"
-@onready var deathSound = $deathSound
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var player: CharacterBody3D = $"../../player"
+@onready var deathSound: AudioStreamPlayer3D = $deathSound
 @onready var demon_hit: AudioStreamPlayer3D = $demonHit
 @onready var enemy_health_bar: ProgressBar = $SubViewport/enemyHealthBar
 @onready var stun_timer: Timer = $stunTimer
@@ -16,22 +16,22 @@ var magic = load("res://scenes/demon_magic.tscn")
 var instance
 @onready var arm_cast = $MeshInstance3D/RayCast3D
 
-var HEALTH = 50
-var maxHealth = 50
-var SPEED = 4.0
-var knockbackSpeed = 5.60
-var navReset = 0
-var navTime = 30
-var stunLock = false
-var stunVel = -1.10
-var death = false
+var HEALTH: int = 50
+var maxHealth: int = 50
+var SPEED: float = 4.0
+var knockbackSpeed: float = 5.60
+var navReset: int = 0
+var navTime: int = 30
+var stunLock: bool = false
+var stunVel: float = -1.10
+var death: bool = false
 var next_nav_point
-var lockedOn = false
-var souls = 200
+var lockedOn: bool = false
+var souls: int = 200
 
-var magicReset = 1
-var magicResetMax = 0
-var magicLimit = 200
+var magicReset: int = 1
+var magicResetMax: int = 0
+var magicLimit: int = 200 
 
 func _physics_process(delta):
 	

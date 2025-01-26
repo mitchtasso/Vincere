@@ -16,15 +16,10 @@ extends Control
 @onready var dialogue: AudioStreamPlayer = $"../../sounds/dialogue"
 @onready var player: CharacterBody3D = $"../../player"
 
-var NPC = ["Mercator", "Medicus", "Cleric"]
-var activeNPC
+var NPC: Array = ["Mercator", "Medicus", "Cleric"]
+var activeNPC: String
 
-var dialogueCounter = 0
-
-var text1Counter = 0
-var text2Counter = 0
-var text3Counter = 0
-var text4Counter = 0
+var dialogueCounter: int  = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

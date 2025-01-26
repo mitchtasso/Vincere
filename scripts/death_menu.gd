@@ -1,11 +1,11 @@
 extends Control
 
-@onready var startMenu = $"../StartMenu"
-@onready var deathMenu = $"."
-@onready var timer = $"../../gameTime"
-@onready var player = $"../../player"
-@onready var replayTimer = $"../../replayTimer"
-@onready var menuButtonSound = $"../../sounds/menuButton"
+@onready var startMenu: Control = $"../StartMenu"
+@onready var deathMenu: Control = $"."
+@onready var timer: Timer = $"../../gameTime"
+@onready var player: CharacterBody3D = $"../../player"
+@onready var replayTimer: Timer = $"../../replayTimer"
+@onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 
 func _on_replay_pressed() -> void:
 	deathMenu.hide()

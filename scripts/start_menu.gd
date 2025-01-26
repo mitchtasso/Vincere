@@ -1,12 +1,12 @@
 extends Control
 
-@onready var startMenu = $"."
-@onready var timer = $"../../gameTime"
-@onready var uiOptions = $buttons/VBoxContainer/Start
-@onready var OptionMenuSelect = $"../OptionsMenu/buttons/VBoxContainer/controls"
-@onready var menuMusic = $"../../sounds/menuMusic"
-@onready var menuButtonSound = $"../../sounds/menuButton"
-@onready var OptionMenu = $"../OptionsMenu"
+@onready var startMenu: Control = $"."
+@onready var timer: Timer = $"../../gameTime"
+@onready var uiOptions: Button = $buttons/VBoxContainer/Start
+@onready var OptionMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/controls"
+@onready var menuMusic: AudioStreamPlayer = $"../../sounds/menuMusic"
+@onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
+@onready var OptionMenu: Control = $"../OptionsMenu"
 @onready var player: CharacterBody3D = $"../../player"
 @onready var story_menu: Control = $"../storyMenu"
 @onready var storyMenuSelect: Button = $"../storyMenu/continuebutton/VBoxContainer/Continue"
@@ -21,8 +21,8 @@ extends Control
 @onready var sun: DirectionalLight3D = $"../../sun"
 @onready var menu_area: Node3D = $"../../MenuArea"
 
-var menuActive = true
-var startMenuActive = true
+var menuActive: bool = true
+var startMenuActive: bool = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):

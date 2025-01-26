@@ -1,12 +1,12 @@
 extends Node3D
 
-@onready var spawns = $spawns
-@onready var navigation_region = $NavigationRegion3D
-@onready var player = $player
-@onready var respawnTimerDemon = $allEnemies/spawnTimerDemon1
-@onready var respawnTimerDemon2 = $allEnemies/spawnTimerDemon2
-@onready var respawnTimerDemon3 = $allEnemies/spawnTimerDemon3
-@onready var respawnTimerDemon4 = $allEnemies/spawnTimerDemon4
+@onready var spawns: Node3D = $spawns
+@onready var navigation_region: NavigationRegion3D = $NavigationRegion3D
+@onready var player: CharacterBody3D = $player
+@onready var respawnTimerDemon: Timer = $allEnemies/spawnTimerDemon1
+@onready var respawnTimerDemon2: Timer = $allEnemies/spawnTimerDemon2
+@onready var respawnTimerDemon3: Timer = $allEnemies/spawnTimerDemon3
+@onready var respawnTimerDemon4: Timer = $allEnemies/spawnTimerDemon4
 @onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
@@ -15,18 +15,18 @@ var demon2 = load("res://scenes/enemy2.tscn")
 var demon3 = load("res://scenes/enemy3.tscn")
 var demon4 = load("res://scenes/enemy4.tscn")
 var instance
-var wave = 1
-var spawnDecrease = 0.1
-var demon1SpawnTime = 3.0
-var demon2SpawnTime = 5.0
-var demon3SpawnTime = 10.0
-var demon4SpawnTime = 8.0
-var dec200 = 0.95
-var dec400 = 0.90
-var dec600 = 0.85
-var inc777 = 1.5
-var maxSpawn = 6
-var spawnValid = true
+var wave: int = 1
+var spawnDecrease: float = 0.1
+var demon1SpawnTime: float = 3.0
+var demon2SpawnTime: float = 5.0
+var demon3SpawnTime: float = 10.0
+var demon4SpawnTime: float = 8.0
+var dec200: float = 0.95
+var dec400: float = 0.90
+var dec600: float = 0.85
+var inc777: float = 1.5
+var maxSpawn: int = 6
+var spawnValid: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

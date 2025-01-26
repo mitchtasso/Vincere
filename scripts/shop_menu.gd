@@ -1,9 +1,9 @@
 extends Control
 
-@onready var startMenu = $"../StartMenu"
-@onready var shopMenu = $"."
-@onready var player = $"../../player"
-@onready var menuButtonSound = $"../../sounds/menuButton"
+@onready var startMenu: Control = $"../StartMenu"
+@onready var shopMenu: Control = $"."
+@onready var player: CharacterBody3D = $"../../player"
+@onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 @onready var dialogue_menu: Control = $"../DialogueMenu"
 @onready var dialogueFocus: Button = $"../DialogueMenu/dialogueButtons/VBoxContainer/text1"
 
@@ -22,11 +22,11 @@ extends Control
 @onready var soul_label: Label = $souls/soulLabel
 @onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
-var armorPrice = 1000
-var spellPrice = 5000
-var sharpenPrice = 4000
-var upgradePrice = 10000
-var spellUpgradePrice = 4000
+var armorPrice: int = 1000
+var spellPrice: int = 5000
+var sharpenPrice: int = 4000
+var upgradePrice: int = 10000
+var spellUpgradePrice: int = 4000
 
 func _process(_delta: float) -> void:
 	

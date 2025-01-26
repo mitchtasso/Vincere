@@ -1,10 +1,10 @@
 extends Control
 
-@onready var ControlsMenu = $"."
-@onready var buttonSound = $"../../sounds/menuButton"
+@onready var ControlsMenu: Control = $"."
+@onready var buttonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 
-@onready var OptionsMenu = $"../OptionsMenu"
-@onready var OptionsMenuSelect = $"../OptionsMenu/buttons/VBoxContainer/controls"
+@onready var OptionsMenu: Control = $"../OptionsMenu"
+@onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/controls"
 
 func _on_back_pressed():
 	buttonSound.play()

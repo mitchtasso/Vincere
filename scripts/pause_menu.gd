@@ -1,19 +1,19 @@
 extends Control
 
-@onready var pauseMenu = $"."
-@onready var startMenu = $"../StartMenu"
-@onready var timer = $"../../gameTime"
-@onready var menuButtonSound = $"../../sounds/menuButton"
+@onready var pauseMenu: Control = $"."
+@onready var startMenu: Control = $"../StartMenu"
+@onready var timer: Timer = $"../../gameTime"
+@onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 @onready var player: CharacterBody3D = $"../../player"
 @onready var world: Node3D = $"../.."
 
 #Menu UI
 @onready var pauseButtons: MarginContainer = $buttons
 @onready var controlsBG: TextureRect = $bg2
-@onready var controlsDiagram = $diagram
+@onready var controlsDiagram: TextureRect = $diagram
 @onready var backButton: MarginContainer = $MarginContainer
-@onready var pauseFocus = $buttons/VBoxContainer/Resume
-@onready var backFocus = $MarginContainer/VBoxContainer/back
+@onready var pauseFocus: Button = $buttons/VBoxContainer/Resume
+@onready var backFocus: Button = $MarginContainer/VBoxContainer/back
 @onready var stats: Button = $buttons/VBoxContainer/Stats
 
 @onready var stat_labels: MarginContainer = $statLabels
@@ -30,7 +30,7 @@ extends Control
 
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
-@onready var replayTimer = $"../../replayTimer"
+@onready var replayTimer: Timer = $"../../replayTimer"
 
 func _on_resume_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
