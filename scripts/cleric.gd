@@ -16,6 +16,7 @@ func _process(_delta: float) -> void:
 		
 		if Input.is_action_just_pressed("interact"):
 			dialogue_menu.activeNPC = dialogue_menu.NPC[2]
+			dialogue_menu.dialoguePic.texture = dialogue_menu.clericPic
 			dialogue_menu.title.text = "Unknown Cleric"
 			dialogue_menu.dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
 			dialogue_menu.text_1.text = "Who are you?"

@@ -7,7 +7,7 @@
 size = Vector3(1, 2.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dt7f0"]
-size = Vector3(4, 2, 4)
+size = Vector3(2.5, 1.9, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7b7ha"]
 size = Vector3(4, 2, 4)
@@ -24,15 +24,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19014, 0)
 shape = SubResource("BoxShape3D_mc0ko")
 
 [node name="playerDetect" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06697, 0.795297)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14325, 2.54541)
 shape = SubResource("BoxShape3D_dt7f0")
 target_position = Vector3(0, 0, -1)
-collision_mask = 4
 
 [node name="playerField" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="playerField"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06304, -0.214847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14446, 1.545)
 shape = SubResource("BoxShape3D_7b7ha")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

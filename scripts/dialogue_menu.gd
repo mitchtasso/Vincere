@@ -15,6 +15,10 @@ extends Control
 
 @onready var dialogue: AudioStreamPlayer = $"../../sounds/dialogue"
 @onready var player: CharacterBody3D = $"../../player"
+@onready var dialoguePic: TextureRect = $templar
+
+var templarPic = load("res://assets/menu/templarPic.png")
+var clericPic = load("res://assets/menu/cleric.png")
 
 var NPC: Array = ["Mercator", "Medicus", "Cleric"]
 var activeNPC: String
@@ -26,10 +30,13 @@ func _process(_delta: float) -> void:
 	
 	if activeNPC == NPC[0]:
 		title.text = "Mercator, the Merchant"
+		dialoguePic.texture = templarPic
 	elif activeNPC == NPC[1]:
 		title.text = "Medicus, the Healer"
+		dialoguePic.texture = templarPic
 	elif activeNPC == NPC[2]:
 		title.text = "Unknown Cleric"
+		dialoguePic.texture = clericPic
 	
 	if activeNPC == NPC[0]:
 		if dialogueCounter == 0:
