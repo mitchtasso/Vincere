@@ -29,9 +29,9 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 	
 	if boss_enemy.death == true:
-		self.position = Vector3(-179.309,1.135,-3.15)
+		self.position = Vector3(-179.309,0.084,-3.15)
 	else:
-		self.position = Vector3(17.479,1.135,-3.15)
+		self.position = Vector3(17.479,0.084,-3.15)
 	
 func _on_player_field_area_exited(_area: Area3D) -> void:
 	detect_text.hide()

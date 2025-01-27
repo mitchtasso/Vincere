@@ -240,7 +240,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6n6pl")
 shape = SubResource("ConvexPolygonShape3D_c1tvs")
 
 [node name="cleric" parent="Shop" instance=ExtResource("4_o2v7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4787, 1.13511, -3.14966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4787, 0.084102, -3.14966)
 
 [node name="gateShop" type="StaticBody3D" parent="Shop"]
 
