@@ -7,6 +7,7 @@ extends StaticBody3D
 @onready var dialogue_menu: Control = $"../../UI/DialogueMenu"
 @onready var detect_text: Label = $"../../UI/crosshairText/VBoxContainer/Label"
 @onready var boss_enemy: CharacterBody3D = $"../../bossEnemy"
+@onready var world: Node3D = $"../.."
 
 func _process(_delta: float) -> void:
 	
@@ -15,24 +16,34 @@ func _process(_delta: float) -> void:
 		detect_text.text = "(E) Talk to Unknown Cleric"
 		
 		if Input.is_action_just_pressed("interact"):
-			dialogue_menu.activeNPC = dialogue_menu.NPC[2]
-			dialogue_menu.dialoguePic.texture = dialogue_menu.clericPic
-			dialogue_menu.title.text = "Unknown Cleric"
-			dialogue_menu.dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
-			dialogue_menu.text_1.text = "Who are you?"
-			dialogue_menu.text_2.text = "Fateful? What makes me fateful?"
-			dialogue_menu.text_3.text = "What information do you possess?"
-			dialogue_menu.text_4.text = "Farewell."
-			dialogue_menu.show()
-			uiOptionsContinue.grab_focus()
-			start_menu.menuActive = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			get_tree().paused = true
-	
-	if boss_enemy.death == true:
-		self.position = Vector3(-179.309,0.084,-3.15)
-	else:
-		self.position = Vector3(17.479,0.084,-3.15)
+			if world.gameEnd == false:
+				dialogue_menu.activeNPC = dialogue_menu.NPC[2]
+				dialogue_menu.dialoguePic.texture = dialogue_menu.clericPic
+				dialogue_menu.title.text = "Unknown Cleric"
+				dialogue_menu.dialogLabel.text = "Fateful knight, pleased to make your acquaintance."
+				dialogue_menu.text_1.text = "Who are you?"
+				dialogue_menu.text_2.text = "Fateful? What makes me fateful?"
+				dialogue_menu.text_3.text = "What information do you possess?"
+				dialogue_menu.text_4.text = "Farewell."
+				dialogue_menu.show()
+				uiOptionsContinue.grab_focus()
+				start_menu.menuActive = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				get_tree().paused = true
+			else:
+				dialogue_menu.activeNPC = dialogue_menu.NPC[3]
+				dialogue_menu.dialoguePic.texture = dialogue_menu.clericPic
+				dialogue_menu.title.text = "Cappellanus"
+				dialogue_menu.dialogLabel.text = "Fateful knight, you have vanquished the demons of this land."
+				dialogue_menu.text_1.text = "What happens now?"
+				dialogue_menu.text_2.text = "Who are you really?"
+				dialogue_menu.text_3.text = "Are there any more?"
+				dialogue_menu.text_4.text = "Let us depart from this place. (GAME END)"
+				dialogue_menu.show()
+				uiOptionsContinue.grab_focus()
+				start_menu.menuActive = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				get_tree().paused = true
 	
 func _on_player_field_area_exited(_area: Area3D) -> void:
 	detect_text.hide()

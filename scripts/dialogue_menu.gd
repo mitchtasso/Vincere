@@ -7,6 +7,7 @@ extends Control
 @onready var dialogue_menu: Control = $"."
 @onready var menu_button: AudioStreamPlayer = $"../../sounds/menuButton"
 @onready var shopFocus: Button = $"../ShopMenu/buttons/VBoxContainer/Yes"
+@onready var world: Node3D = $"../.."
 
 @onready var text_1: Button = $dialogueButtons/VBoxContainer/text1
 @onready var text_2: Button = $dialogueButtons/VBoxContainer/text2
@@ -20,7 +21,7 @@ extends Control
 var templarPic = load("res://assets/menu/templarPic.png")
 var clericPic = load("res://assets/menu/cleric.png")
 
-var NPC: Array = ["Mercator", "Medicus", "Cleric"]
+var NPC: Array = ["Mercator", "Medicus", "Cleric", "Cappellanus"]
 var activeNPC: String
 
 var dialogueCounter: int  = 0
@@ -36,6 +37,9 @@ func _process(_delta: float) -> void:
 		dialoguePic.texture = templarPic
 	elif activeNPC == NPC[2]:
 		title.text = "Unknown Cleric"
+		dialoguePic.texture = clericPic
+	elif activeNPC == NPC[3]:
+		title.text = "Cappellanus"
 		dialoguePic.texture = clericPic
 	
 	if activeNPC == NPC[0]:
@@ -65,6 +69,15 @@ func _process(_delta: float) -> void:
 			text_3.text = "What information do you possess?"
 			text_4.text = "Farewell."
 			dialogueCounter = 1
+	if activeNPC == NPC[3]:
+		if dialogueCounter == 0:
+			dialogue.play()
+			dialogLabel.text = "Fateful knight, you have vanquished the demons of this land."
+			text_1.text = "What happens now?"
+			text_2.text = "Who are you really?"
+			text_3.text = "Are there any more?"
+			text_4.text = "Let us depart from this place. (GAME END)"
+			dialogueCounter = 1
 
 func _on_text_1_pressed() -> void:
 	dialogue.play()
@@ -75,6 +88,9 @@ func _on_text_1_pressed() -> void:
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	if activeNPC == NPC[2]:
 		dialogLabel.text = "I am a wandering cleric, my name is of no importance."
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+	if activeNPC == NPC[3]:
+		dialogLabel.text = "Your quest has just begun, you must hunt these demonic sites."
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_2_pressed() -> void:
@@ -98,6 +114,8 @@ func _on_text_2_pressed() -> void:
 			dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	if activeNPC == NPC[2]:
 		dialogLabel.text = "You are fated to rid this land of the demonic presence."
+	if activeNPC == NPC[3]:
+		dialogLabel.text = "I am Cappellanus, a cleric and knight of the Holy See."
 
 func _on_text_3_pressed() -> void:
 	dialogue.play()
@@ -108,13 +126,18 @@ func _on_text_3_pressed() -> void:
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	if activeNPC == NPC[2]:
 		dialogLabel.text = "On the 11th night of your struggle, the demon commander will show himself."
+	if activeNPC == NPC[3]:
+		dialogLabel.text = "It appears that the death of the demon commander has halted them, for now."
 
 func _on_text_4_pressed() -> void:
-	dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-	dialogueCounter = 0
-	dialogue_menu.hide()
-	menu_button.play()
-	get_tree().paused = false
-	start_menu.menuActive = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if world.gameEnd == false:
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+		dialogueCounter = 0
+		dialogue_menu.hide()
+		menu_button.play()
+		get_tree().paused = false
+		start_menu.menuActive = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		pass
 	

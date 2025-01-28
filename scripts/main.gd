@@ -27,6 +27,7 @@ var dec600: float = 0.85
 var inc777: float = 1.5
 var maxSpawn: int = 6
 var spawnValid: bool = true
+var gameEnd = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

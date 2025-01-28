@@ -16,6 +16,7 @@ extends CharacterBody3D
 @onready var attack_reset: Timer = $attackReset
 @onready var magic_reset: Timer = $magicReset
 @onready var eyes: Node3D = $eyes
+@onready var cleric: StaticBody3D = $"../BossRoom/cleric"
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -116,6 +117,8 @@ func _on_stun_timer_timeout():
 	hurtbox.disabled = false
 
 func _on_demon_death_finished() -> void:
+	cleric.position = Vector3(0,0.068,0)
+	world.gameEnd = true
 	self.queue_free()
 
 func _on_melee_detection_area_entered(area: Area3D) -> void:

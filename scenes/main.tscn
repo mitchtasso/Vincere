@@ -2815,6 +2815,9 @@ shape = SubResource("BoxShape3D_a1556")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7853, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_okat3")
 
+[node name="cleric" parent="BossRoom" instance=ExtResource("4_o2v7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 0.0681154, 0)
+
 [node name="GameEnvironment" type="Node3D" parent="BossRoom"]
 
 [node name="walls" type="StaticBody3D" parent="BossRoom/GameEnvironment"]
