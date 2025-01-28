@@ -55,8 +55,7 @@ var controllerSensV: float = 1.9
 @onready var vin_timer: Timer = $vinTimer
 @onready var attack_change_timer: Timer = $attackChange
 @onready var i_frame_timer: Timer = $iFrameTimer
-@onready var blood: GPUParticles3D = $Head/Camera3D/WeaponPivot/WeaponMesh/blood
-@onready var blood_reset: Timer = $Head/Camera3D/WeaponPivot/WeaponMesh/bloodReset
+
 
 @onready var weapon_mesh: MeshInstance3D = $Head/Camera3D/WeaponPivot/WeaponMesh
 @onready var shortswordCol: CollisionShape3D = $Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox/CollisionShape3D
@@ -310,7 +309,6 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 		attackType = 1
 		attackActive = false
 		swordSound.stop()
-		blood_reset.start()
 		animationPlayer.play("idle")
 		weapon_hitbox.monitoring = false
 		attack_change_timer.start()
@@ -318,7 +316,6 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 		attackType = 2
 		attackActive = false
 		swordSound.stop()
-		blood_reset.start()
 		animationPlayer.play("idle")
 		attack_change_timer.start()
 		weapon_hitbox.monitoring = false
@@ -326,7 +323,6 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 		attackType = 0
 		attackActive = false
 		swordSound.stop()
-		blood_reset.start()
 		animationPlayer.play("idle")
 		weapon_hitbox.monitoring = false
 	if anim_name == "cast":
@@ -411,16 +407,6 @@ func _on_player_hitbox_area_entered(area):
 func _on_i_frame_timer_timeout() -> void:
 	iFrame = false
 
-#blood splatter
-func _on_hitbox_area_entered(area: Area3D) -> void:
-	if area.is_in_group("enemies") and attackActive == true:
-		blood.show()
-	else:
-		blood.hide()
-
-func _on_blood_reset_timeout() -> void:
-	blood.hide()
-
 #Dash cooldown
 func _on_dash_cooldown_timeout() -> void:
 	dashCool = true
@@ -447,7 +433,6 @@ func death():
 		velocity.z = 0
 		#Reset player animation
 		animationPlayer.play("idle")
-		blood.hide()
 		#Set player death
 		playerDeath = true
 		playerDeathSound.play()
@@ -491,7 +476,6 @@ func wave_end():
 		velocity.z = 0
 		#Reset Player animation
 		animationPlayer.play("idle")
-		blood.hide()
 		#Declare player status and play sound
 		playerDeath = true
 		modeType = 1
@@ -560,7 +544,6 @@ func boss_battle():
 		velocity.z = 0
 		#Reset Player animation
 		animationPlayer.play("idle")
-		blood.hide()
 		#Declare player status and play sound
 		playerDeath = true
 		modeType = 2

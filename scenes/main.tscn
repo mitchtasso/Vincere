@@ -5699,6 +5699,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_s5l6u")
 
+[node name="TextureRect" type="TextureRect" parent="UI/storyMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_jdv8w")
+
 [node name="continuebutton" type="MarginContainer" parent="UI/storyMenu"]
 layout_mode = 1
 anchors_preset = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ba41bgwv53u61"]
+[gd_scene load_steps=17 format=3 uid="uid://ba41bgwv53u61"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_oveq1"]
 [ext_resource type="ArrayMesh" uid="uid://c5up634ax7ufu" path="res://assets/player/templarArmWsword2.obj" id="2_7ym4j"]
@@ -14,21 +14,6 @@ points = PackedVector3Array(0.399973, -0.709571, 5.72756, -0.400112, -0.709571, 
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0qm58"]
 points = PackedVector3Array(0.449908, -6.70681, 9.71943, -0.450048, -6.70681, 9.71943, 0.449908, -7.78641, 9.09394, 0.475, -0.751922, 0.780699, 0.475, 0.747904, 0.780699, 0.0499279, 27.1127, -0.000607252, -0.450048, -7.78641, 9.09394, -0.0500672, 27.1127, -0.000607252, -0.787732, 0.682992, 0.52892, -0.787732, 0.314014, 0.52892, -7.80821e-06, -4.27771, -0.130449, 0.007532, -4.27771, -0.128191, 0.0148246, -4.27771, -0.120287, 0.0216228, -4.27771, -0.108997, 0.0425118, -4.21963, -0.21287, 0.0540069, -4.21963, -0.180127, 0.0635243, -4.21963, -0.141739, 0.0923239, -4.12738, -0.206095, 0.102583, -4.12738, -0.141739, 0.130641, -4.00439, -0.180127, 0.449908, -7.29444, 8.23247, 0.475, -0.751922, -0.719816, 0.475, 0.747904, -0.719816, 0.249918, 1.69085, -1.815, -0.450048, -7.29444, 8.23247, -0.130657, -4.00439, -0.180127, -0.102722, -4.12738, -0.141739, -0.0924631, -4.12738, -0.206095, -0.0636635, -4.21963, -0.141739, -0.0541461, -4.21963, -0.180127, -0.0425274, -4.21963, -0.21287, -0.021762, -4.27771, -0.108997, -0.0149638, -4.27771, -0.120287, -0.00767124, -4.27771, -0.128191, -0.768821, 0.597579, -0.470294, -0.250057, 1.69085, -1.815, -7.80821e-06, -4.21963, -0.255774, 0.0148246, -4.21963, -0.250129, 0.0292862, -4.21963, -0.235451, 0.0425118, -4.12738, -0.342711, 0.0616702, -4.12738, -0.307711, 0.0784803, -4.12738, -0.262548, 0.117539, -4.00439, -0.262548, 0.153631, -3.85407, -0.21287, 0.449908, -4.79359, 3.90254, 0.138181, -3.85407, -0.307711, 0.117539, -3.85407, -0.39239, 0.130641, -3.68324, -0.435294, 0.102583, -3.68324, -0.51207, 0.0706933, -3.68324, -0.568522, 0.0359608, -3.68324, -0.603523, -7.80821e-06, -3.68324, -0.615943, -0.450048, -4.79359, 3.90254, -0.153647, -3.85407, -0.21287, -0.117678, -4.00439, -0.262548, -0.0786195, -4.12738, -0.262548, -0.0618095, -4.12738, -0.307711, -0.0425274, -4.12738, -0.342711, -0.0293018, -4.21963, -0.235451, -0.0149638, -4.21963, -0.250129, -0.102722, -3.68324, -0.51207, -0.130657, -3.68324, -0.435294, -0.117678, -3.85407, -0.39239, -0.13832, -3.85407, -0.307711, -0.0361, -3.68324, -0.603523, -0.0708326, -3.68324, -0.568522, -0.021762, -4.12738, -0.363034, -7.80821e-06, -4.12738, -0.369809, 0.0216228, -4.12738, -0.363034, 0.0275558, -4.00439, -0.462391, 0.0540069, -4.00439, -0.435294, 0.0784803, -4.00439, -0.39239, 0.0999873, -4.00439, -0.333679, 0.0923239, -3.85407, -0.460133, 0.0635243, -3.85407, -0.51207, 0.0323763, -3.85407, -0.543683, -7.80821e-06, -3.85407, -0.553845, -0.0325155, -3.85407, -0.543683, -0.100003, -4.00439, -0.333679, -0.0786195, -4.00439, -0.39239, -0.0541461, -4.00439, -0.435294, -0.0276949, -4.00439, -0.462391, -0.0636635, -3.85407, -0.51207, -0.0924631, -3.85407, -0.460133, -7.80821e-06, -4.00439, -0.471424)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_33bua"]
-direction = Vector3(0, 1, 0)
-spread = 10.0
-initial_velocity_min = 60.0
-initial_velocity_max = 60.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoknm"]
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(0.468327, 1.12506e-06, 4.81308e-08, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_txmwa"]
-material = SubResource("StandardMaterial3D_qoknm")
-size = Vector3(0.08, 0.08, 0.08)
 
 [sub_resource type="Animation" id="Animation_smwo2"]
 length = 0.001
@@ -434,19 +419,6 @@ shape = SubResource("ConvexPolygonShape3D_1c5si")
 transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 2.98023e-08, 0, -2.98023e-08, 0.909091, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_0qm58")
 
-[node name="blood" type="GPUParticles3D" parent="Head/Camera3D/WeaponPivot/WeaponMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.46703, -1.19769)
-visible = false
-amount = 24
-speed_scale = 1.1
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_33bua")
-draw_pass_1 = SubResource("BoxMesh_txmwa")
-
-[node name="bloodReset" type="Timer" parent="Head/Camera3D/WeaponPivot/WeaponMesh"]
-wait_time = 0.04
-one_shot = true
-
 [node name="ArmMesh" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.099116, 0.0132673, 0, -0.0132673, 0.099116, -0.493915, -0.619657, -0.399181)
 mesh = ExtResource("3_yd0w5")
@@ -517,8 +489,6 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 
-[connection signal="area_entered" from="Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="timeout" from="Head/Camera3D/WeaponPivot/WeaponMesh/bloodReset" to="." method="_on_blood_reset_timeout"]
 [connection signal="animation_finished" from="playerAnimation" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="playerAnimation" to="." method="_on_animation_player_animation_started"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
