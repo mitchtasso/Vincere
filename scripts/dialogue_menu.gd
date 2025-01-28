@@ -8,6 +8,9 @@ extends Control
 @onready var menu_button: AudioStreamPlayer = $"../../sounds/menuButton"
 @onready var shopFocus: Button = $"../ShopMenu/buttons/VBoxContainer/Yes"
 @onready var world: Node3D = $"../.."
+@onready var credit_screen: Control = $"../CreditScreen"
+@onready var credit_focus: Button = $"../CreditScreen/MarginContainer2/VBoxContainer/Button"
+
 
 @onready var text_1: Button = $dialogueButtons/VBoxContainer/text1
 @onready var text_2: Button = $dialogueButtons/VBoxContainer/text2
@@ -76,7 +79,7 @@ func _process(_delta: float) -> void:
 			text_1.text = "What happens now?"
 			text_2.text = "Who are you really?"
 			text_3.text = "Are there any more?"
-			text_4.text = "Let us depart from this place. (GAME END)"
+			text_4.text = "Let us depart. (GAME END)"
 			dialogueCounter = 1
 
 func _on_text_1_pressed() -> void:
@@ -139,5 +142,8 @@ func _on_text_4_pressed() -> void:
 		start_menu.menuActive = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
-		pass
+		dialogue_menu.hide()
+		credit_screen.show()
+		credit_focus.grab_focus()
+		menu_button.play()
 	

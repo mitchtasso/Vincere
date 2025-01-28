@@ -30,3 +30,14 @@ func _process(delta: float):
 	time -= reset
 	if time <= 0:
 		self.queue_free()
+
+func _on_area_exited(area: Area3D) -> void:
+	if area.is_in_group("enemies") and explosion == 0:
+		sizzle.stop()
+		boom.play()
+		mesh.visible = false
+		SPEED = 0.0001
+		trail.emitting = false
+		particle.emitting = true
+		explosion = 1
+		reset = 1

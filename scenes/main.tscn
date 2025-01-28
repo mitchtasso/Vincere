@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=101 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://cu5fgdljqnseh" path="res://scenes/bonfire.tscn" id="36_2sgga"]
 [ext_resource type="ArrayMesh" uid="uid://4o2pqqbvc6f4" path="res://assets/menu/models/templarefire1.obj" id="36_26ncv"]
 [ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
+[ext_resource type="Script" path="res://scripts/credit_screen.gd" id="38_aexhr"]
 [ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
 [ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
@@ -196,6 +197,8 @@ size = Vector2(20, 20)
 albedo_color = Color(0.0627451, 0.352941, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cv535"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_aovn3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_whbp1"]
 
@@ -4587,6 +4590,72 @@ text = "Autosaving..."
 [node name="Timer" type="Timer" parent="UI/autoSaveText"]
 wait_time = 3.0
 
+[node name="CreditScreen" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("38_aexhr")
+
+[node name="TextureRect" type="TextureRect" parent="UI/CreditScreen"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_aovn3")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CreditScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CreditScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CreditScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Thank you for playing Vincere!"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/CreditScreen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CreditScreen/MarginContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/CreditScreen/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Main Menu"
+
 [node name="LoadingScreen" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -6170,6 +6239,7 @@ text = "Version: 1.0"
 [connection signal="timeout" from="replayTimer" to="player" method="_on_replay_timer_timeout"]
 [connection signal="timeout" from="gameTime" to="player" method="_on_game_time_timeout"]
 [connection signal="timeout" from="UI/autoSaveText/Timer" to="player" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="UI/LoadingScreen/loadTime" to="UI/LoadingScreen" method="_on_load_time_timeout"]
 [connection signal="pressed" from="UI/ContinueMenu/buttons/VBoxContainer/Yes" to="UI/ContinueMenu" method="_on_yes_pressed"]
 [connection signal="pressed" from="UI/ContinueMenu/buttons/VBoxContainer/No" to="UI/ContinueMenu" method="_on_no_pressed"]

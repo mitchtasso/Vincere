@@ -1,15 +1,21 @@
 extends StaticBody3D
 
 @onready var player_detect: ShapeCast3D = $playerDetect
-@onready var uiOptionsContinue: Button = $"../../UI/ContinueMenu/buttons/VBoxContainer/Yes"
+@onready var uiOptions: Button = $"../../UI/DialogueMenu/dialogueButtons/VBoxContainer/text1"
 @onready var player: CharacterBody3D = $"../../player"
 @onready var start_menu: Control = $"../../UI/StartMenu"
 @onready var dialogue_menu: Control = $"../../UI/DialogueMenu"
 @onready var detect_text: Label = $"../../UI/crosshairText/VBoxContainer/Label"
 @onready var boss_enemy: CharacterBody3D = $"../../bossEnemy"
 @onready var world: Node3D = $"../.."
+@onready var exclaim: Sprite3D = $Sprite3D
 
 func _process(_delta: float) -> void:
+	
+	if world.gameEnd == true:
+		exclaim.show()
+	else:
+		exclaim.hide()
 	
 	if player_detect.is_colliding():
 		detect_text.show()
@@ -26,7 +32,7 @@ func _process(_delta: float) -> void:
 				dialogue_menu.text_3.text = "What information do you possess?"
 				dialogue_menu.text_4.text = "Farewell."
 				dialogue_menu.show()
-				uiOptionsContinue.grab_focus()
+				uiOptions.grab_focus()
 				start_menu.menuActive = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true
@@ -38,9 +44,9 @@ func _process(_delta: float) -> void:
 				dialogue_menu.text_1.text = "What happens now?"
 				dialogue_menu.text_2.text = "Who are you really?"
 				dialogue_menu.text_3.text = "Are there any more?"
-				dialogue_menu.text_4.text = "Let us depart from this place. (GAME END)"
+				dialogue_menu.text_4.text = "Let us depart. (GAME END)"
 				dialogue_menu.show()
-				uiOptionsContinue.grab_focus()
+				uiOptions.grab_focus()
 				start_menu.menuActive = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true

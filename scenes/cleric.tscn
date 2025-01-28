@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://uqwnsr2ul3a3"]
+[gd_scene load_steps=8 format=3 uid="uid://uqwnsr2ul3a3"]
 
 [ext_resource type="Script" path="res://scripts/cleric.gd" id="1_ycp2u"]
 [ext_resource type="ArrayMesh" uid="uid://cqlyh2x053no8" path="res://assets/world/cleric.obj" id="2_onn6j"]
+[ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="3_bnera"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mc0ko"]
 size = Vector3(1, 2.5, 1)
@@ -11,6 +12,9 @@ size = Vector3(2.5, 1.9, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7b7ha"]
 size = Vector3(4, 2, 4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_errva"]
+viewport_path = NodePath("SubViewport")
 
 [node name="cleric" type="StaticBody3D"]
 script = ExtResource("1_ycp2u")
@@ -41,5 +45,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81353, 0)
 light_color = Color(0.892081, 0.741935, 1.15514e-06, 1)
 light_energy = 0.1
 light_indirect_energy = 0.5
+omni_range = 1.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Label" type="Label" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.992157, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bnera")
+theme_override_font_sizes/font_size = 125
+text = "!"
+horizontal_alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98289, 0)
+visible = false
+texture = SubResource("ViewportTexture_errva")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0917001, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.0
+omni_range = 1.0
 
 [connection signal="area_exited" from="playerField" to="." method="_on_player_field_area_exited"]
