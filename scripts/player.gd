@@ -258,7 +258,8 @@ func _process(delta):
 		dashActive = true
 		velocity *= 2
 		walkingSound.pitch_scale = 0.01
-		dash_sound.play()
+		if velocity != Vector3.ZERO:
+			dash_sound.play()
 		dash_cooldown.start()
 		dash_active_timer.start()
 	
