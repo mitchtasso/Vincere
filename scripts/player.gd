@@ -56,7 +56,6 @@ var controllerSensV: float = 1.9
 @onready var attack_change_timer: Timer = $attackChange
 @onready var i_frame_timer: Timer = $iFrameTimer
 
-
 @onready var weapon_mesh: MeshInstance3D = $Head/Camera3D/WeaponPivot/WeaponMesh
 @onready var shortswordCol: CollisionShape3D = $Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox/CollisionShape3D
 @onready var longswordCol: CollisionShape3D = $Head/Camera3D/WeaponPivot/WeaponMesh/Hitbox/CollisionShape3D2

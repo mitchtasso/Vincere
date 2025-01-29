@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=31 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8oxua4rnl1xb" path="res://assets/world/white.png" id="5_yjki5"]
 [ext_resource type="AudioStream" uid="uid://dluhp23fpkxov" path="res://sounds/demonDeath.wav" id="6_0lk8n"]
 [ext_resource type="ArrayMesh" uid="uid://dqlrhcmr7sp0q" path="res://assets/enemy/bossMagicArm.obj" id="6_oqarq"]
+[ext_resource type="AudioStream" uid="uid://dtphoysy3l7my" path="res://sounds/swing2.wav" id="7_s2ujm"]
 [ext_resource type="AudioStream" uid="uid://c2614eik5s4cj" path="res://sounds/retro/attacked.wav" id="9_jxdio"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
@@ -704,6 +705,12 @@ draw_pass_1 = SubResource("BoxMesh_55paq")
 wait_time = 0.04
 one_shot = true
 
+[node name="slashSound" type="AudioStreamPlayer3D" parent="Head/WeaponPivot/WeaponMesh"]
+stream = ExtResource("7_s2ujm")
+volume_db = -7.0
+unit_size = 5.0
+max_db = -7.0
+
 [node name="ArmMesh" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.13, 0, 0, 0, 0.0512736, 0.119462, 0, -0.119462, 0.0512736, -0.672143, -1.11753, -0.286347)
 mesh = ExtResource("6_oqarq")
@@ -716,8 +723,9 @@ target_position = Vector3(0, 0, -1)
 [node name="castSound" type="AudioStreamPlayer3D" parent="Head/ArmMesh"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.70084, -3.65908)
 stream = ExtResource("9_jxdio")
-volume_db = -5.0
-max_db = -5.0
+volume_db = -7.0
+unit_size = 5.0
+max_db = -7.0
 pitch_scale = 0.9
 
 [node name="meleeDetection" type="Area3D" parent="."]

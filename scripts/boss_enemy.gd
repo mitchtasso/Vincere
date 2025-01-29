@@ -17,6 +17,8 @@ extends CharacterBody3D
 @onready var magic_reset: Timer = $magicReset
 @onready var eyes: Node3D = $eyes
 @onready var cleric: StaticBody3D = $"../BossRoom/cleric"
+@onready var slash_sound: AudioStreamPlayer3D = $Head/WeaponPivot/WeaponMesh/slashSound
+@onready var cast_sound: AudioStreamPlayer3D = $Head/ArmMesh/castSound
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -124,14 +126,18 @@ func _on_demon_death_finished() -> void:
 func _on_melee_detection_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player") and attackAvailable == true and randomAttack == 0 and attackActive == false:
 		boss_animation.play("attack")
+		slash_sound.play()
 	if area.is_in_group("player") and attackAvailable == true and randomAttack == 1 and attackActive == false:
 		boss_animation.play("attack2")
+		slash_sound.play()
 	if area.is_in_group("player") and attackAvailable == true and randomAttack == 2 and attackActive == false:
 		boss_animation.play("attack3")
+		slash_sound.play()
 
 func _on_ranged_detection_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player") and magicAvailable == true and attackActive == false:
 		boss_animation.play("cast")
+		cast_sound.play()
 
 func _on_boss_animation_animation_started(anim_name: StringName) -> void:
 	if anim_name == "attack":
