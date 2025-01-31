@@ -8,7 +8,7 @@
 size = Vector3(5, 2.5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5xujp"]
-size = Vector3(5, 2.5, 5)
+size = Vector3(6, 4, 6)
 
 [node name="shopStall" type="MeshInstance3D"]
 mesh = ExtResource("1_msh4a")

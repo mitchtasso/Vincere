@@ -52,7 +52,7 @@ points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_iuugi"]
 size = Vector3(1, 0.3, 0.3)
 
-[node name="bossMagic" type="Area3D" groups=["enemy3"]]
+[node name="bossMagic" type="Area3D" groups=["enemy3", "enemySet"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_kucty")
