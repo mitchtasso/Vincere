@@ -9,15 +9,26 @@ extends Control
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
 @onready var storyLabel: Label = $Label
 @onready var controlDiagram: TextureRect = $TextureRect
+@onready var warningLabel: Label = $Label2
 
 var turn: int = 0
+
+func _process(_delta: float) -> void:
+	if player.playerData.wave > 1 and turn == 0:
+		storyLabel.hide()
+		warningLabel.show()
 
 func _on_continue_pressed() -> void:
 	if turn == 0:
 		menu_button.play()
+		storyLabel.show()
+		warningLabel.hide()
+		turn = 1
+	elif turn == 1:
+		menu_button.play()
 		storyLabel.hide()
 		controlDiagram.show()
-		turn = 1
+		turn = 2
 	else:
 		story_menu.hide()
 		menu_music.stop()

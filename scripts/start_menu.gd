@@ -8,8 +8,8 @@ extends Control
 @onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
 @onready var OptionMenu: Control = $"../OptionsMenu"
 @onready var player: CharacterBody3D = $"../../player"
-@onready var story_menu: Control = $"../storyMenu"
-@onready var storyMenuSelect: Button = $"../storyMenu/continuebutton/VBoxContainer/Continue"
+@onready var story_menu: Control = $"../StoryMenu"
+@onready var storyMenuSelect: Button = $"../StoryMenu/continuebutton/VBoxContainer/Continue"
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
 

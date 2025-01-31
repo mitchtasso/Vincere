@@ -5675,7 +5675,7 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Nights Survived"
 
-[node name="storyMenu" type="Control" parent="UI"]
+[node name="StoryMenu" type="Control" parent="UI"]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -5689,7 +5689,7 @@ size_flags_vertical = 4
 script = ExtResource("38_dmjex")
 metadata/_edit_use_anchors_ = true
 
-[node name="bg" type="TextureRect" parent="UI/storyMenu"]
+[node name="bg" type="TextureRect" parent="UI/StoryMenu"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -5699,7 +5699,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_s5l6u")
 
-[node name="TextureRect" type="TextureRect" parent="UI/storyMenu"]
+[node name="TextureRect" type="TextureRect" parent="UI/StoryMenu"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -5709,7 +5709,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("24_jdv8w")
 
-[node name="continuebutton" type="MarginContainer" parent="UI/storyMenu"]
+[node name="continuebutton" type="MarginContainer" parent="UI/StoryMenu"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -5724,17 +5724,17 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/storyMenu/continuebutton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StoryMenu/continuebutton"]
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="UI/storyMenu/continuebutton/VBoxContainer"]
+[node name="Continue" type="Button" parent="UI/StoryMenu/continuebutton/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Continue"
 flat = true
 
-[node name="backButton" type="MarginContainer" parent="UI/storyMenu"]
+[node name="backButton" type="MarginContainer" parent="UI/StoryMenu"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -5746,17 +5746,17 @@ grow_vertical = 0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/storyMenu/backButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StoryMenu/backButton"]
 layout_mode = 2
 
-[node name="back" type="Button" parent="UI/storyMenu/backButton/VBoxContainer"]
+[node name="back" type="Button" parent="UI/StoryMenu/backButton/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Back"
 flat = true
 
-[node name="Label" type="Label" parent="UI/storyMenu"]
+[node name="Label" type="Label" parent="UI/StoryMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -5776,6 +5776,27 @@ You find yourself exploring an old graveyard...
 From the dark demons arose...
 Fight them off, survive the night!
 Return to safety come daylight..."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/StoryMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -799.0
+offset_top = -148.5
+offset_right = 799.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Are you sure you would like to start a new game?
+If the game autosaves, it will overwrite your previous progress."
 horizontal_alignment = 1
 
 [node name="VideoMenu" type="Control" parent="UI"]
@@ -6274,8 +6295,8 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Controls" to="UI/PauseMenu" method="_on_controls_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Menu" to="UI/PauseMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/back" to="UI/PauseMenu" method="_on_back_pressed"]
-[connection signal="pressed" from="UI/storyMenu/continuebutton/VBoxContainer/Continue" to="UI/storyMenu" method="_on_continue_pressed"]
-[connection signal="pressed" from="UI/storyMenu/backButton/VBoxContainer/back" to="UI/storyMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="UI/StoryMenu/continuebutton/VBoxContainer/Continue" to="UI/StoryMenu" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/StoryMenu/backButton/VBoxContainer/back" to="UI/StoryMenu" method="_on_back_pressed"]
 [connection signal="item_selected" from="UI/VideoMenu/MarginContainer/VBoxContainer/window" to="UI/VideoMenu" method="_on_window_item_selected"]
 [connection signal="item_selected" from="UI/VideoMenu/MarginContainer/VBoxContainer/resolution" to="UI/VideoMenu" method="_on_resolution_item_selected"]
 [connection signal="item_selected" from="UI/VideoMenu/MarginContainer/VBoxContainer/vsync" to="UI/VideoMenu" method="_on_vsync_item_selected"]
