@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var hitbox: CollisionShape3D = $hitbox/CollisionShape3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var i_frame_timer: Timer = $iFrameTimer
 
 var HEALTH: int = 75
 var maxHealth: int = 75
@@ -22,6 +23,7 @@ var stunVel: float = -1.10
 var death: bool = false
 var next_nav_point
 var souls: int = 100
+var iFrame: bool = false
 
 func _physics_process(delta):
 	
@@ -82,18 +84,22 @@ func _physics_process(delta):
 		HEALTH = 0
 
 func _on_hitbox_area_entered(area):
-	if area.is_in_group("magic"):
+	if area.is_in_group("magic") and iFrame == false:
 		velocity = Vector3.ZERO
 		demon_hit.play()
 		HEALTH -= player.playerMagicAtk
 		stunLock = true
 		stun_timer.start()
-	if area.is_in_group("weapon") and player.attackActive == true:
+		iFrame = true
+		i_frame_timer.start()
+	if area.is_in_group("weapon") and player.attackActive == true and iFrame == false:
 		demon_hit.play()
 		velocity = Vector3.ZERO
 		HEALTH -= player.playerAttack
 		stunLock = true
 		stun_timer.start()
+		iFrame = true
+		i_frame_timer.start()
 
 func _on_stun_timer_timeout():
 	stunLock = false
@@ -102,3 +108,6 @@ func _on_stun_timer_timeout():
 func _on_demon_death_finished() -> void:
 	self.get_parent().remove_child(self)
 	self.queue_free()
+
+func _on_i_frame_timer_timeout() -> void:
+	iFrame = false

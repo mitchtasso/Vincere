@@ -20,6 +20,7 @@ extends Control
 @onready var crosshair: MarginContainer = $"../crosshair"
 @onready var sun: DirectionalLight3D = $"../../sun"
 @onready var menu_area: Node3D = $"../../MenuArea"
+@onready var load_game_button: Button = $"buttons/VBoxContainer/Load Game"
 
 var menuActive: bool = true
 var startMenuActive: bool = true
@@ -30,12 +31,18 @@ func _process(_delta):
 	
 	if startMenuActive == true:
 		sun.light_energy = 0.05
+	
+	if player.playerData.wave > 1:
+		load_game_button.show()
+	else:
+		load_game_button.hide()
 
 func _input(event):
 	if event is InputEventMouseMotion and menuActive == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _ready():
+	
 	startCamera.make_current()
 	stats_ui.hide()
 	player_ui.hide()

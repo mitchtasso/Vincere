@@ -19,6 +19,7 @@ extends CharacterBody3D
 @onready var cleric: StaticBody3D = $"../BossRoom/cleric"
 @onready var slash_sound: AudioStreamPlayer3D = $Head/WeaponPivot/WeaponMesh/slashSound
 @onready var cast_sound: AudioStreamPlayer3D = $Head/ArmMesh/castSound
+@onready var i_frame_timer: Timer = $iFrameTimer
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -40,7 +41,8 @@ var POS: Vector3 = Vector3(-107.785, 0, 21)
 var attackActive: bool = false
 var attackAvailable: bool = true
 var magicAvailable: bool = true
-var randomAttack
+var randomAttack: int
+var iFrame: bool = false
 
 func _physics_process(delta):
 	
@@ -102,16 +104,20 @@ func _physics_process(delta):
 		boss_enemy.position = POS
 
 func _on_hitbox_area_entered(area):
-	if area.is_in_group("magic"):
+	if area.is_in_group("magic") and iFrame == false:
 		demon_hit.play()
 		HEALTH -= player.playerMagicAtk
 		stunLock = true
 		stun_timer.start()
-	if area.is_in_group("weapon") and player.attackActive == true:
+		iFrame = true
+		i_frame_timer.start()
+	if area.is_in_group("weapon") and player.attackActive == true and iFrame == false:
 		demon_hit.play()
 		HEALTH -= player.playerAttack
 		stunLock = true
 		stun_timer.start()
+		iFrame = true
+		i_frame_timer.start()
 
 func _on_stun_timer_timeout():
 	stunLock = false
@@ -194,3 +200,6 @@ func _on_attack_reset_timeout() -> void:
 
 func _on_magic_reset_timeout() -> void:
 	magicAvailable = true
+
+func _on_i_frame_timer_timeout() -> void:
+	iFrame = false

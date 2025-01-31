@@ -762,6 +762,10 @@ light_color = Color(0.898039, 0, 0, 1)
 light_energy = 2.0
 omni_range = 0.25
 
+[node name="iFrameTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
@@ -771,3 +775,4 @@ omni_range = 0.25
 [connection signal="area_entered" from="rangedDetection" to="." method="_on_ranged_detection_area_entered"]
 [connection signal="timeout" from="attackReset" to="." method="_on_attack_reset_timeout"]
 [connection signal="timeout" from="magicReset" to="." method="_on_magic_reset_timeout"]
+[connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]

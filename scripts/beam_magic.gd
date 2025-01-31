@@ -10,7 +10,7 @@ var SPEED: float = 40.0
 @onready var boom: AudioStreamPlayer3D = $boom
 
 var reset: int = 0
-var time: int = 750
+var time: int = 200
 var explosion: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,15 +29,5 @@ func _process(delta: float):
 	
 	time -= reset
 	if time <= 0:
+		self.get_parent().remove_child(self)
 		self.queue_free()
-
-func _on_area_exited(area: Area3D) -> void:
-	if area.is_in_group("enemies") and explosion == 0:
-		sizzle.stop()
-		boom.play()
-		mesh.visible = false
-		SPEED = 0.0001
-		trail.emitting = false
-		particle.emitting = true
-		explosion = 1
-		reset = 1

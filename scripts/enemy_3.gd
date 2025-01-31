@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var death_sound: AudioStreamPlayer3D = $deathSound
 @onready var world: Node3D = $"../.."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var i_frame_timer: Timer = $iFrameTimer
 
 var HEALTH: int = 150
 var maxHealth: int = 150
@@ -22,6 +23,7 @@ var navTime: int = 60
 var stunLock: bool = false
 var death: bool = false
 var souls: int = 300
+var iFrame: bool = false
 
 func _physics_process(delta):
 	
@@ -37,7 +39,7 @@ func _physics_process(delta):
 		navReset = 0
 		player.souls += souls
 		player.add_point()
-		SPEED = 0.1
+		SPEED = -0.0001
 		demon_death.emitting = true
 		animation_player.play("death")
 	if HEALTH >= maxHealth:
@@ -77,16 +79,20 @@ func _physics_process(delta):
 		HEALTH = 0
 
 func _on_hitbox_area_entered(area):
-	if area.is_in_group("magic"):
+	if area.is_in_group("magic") and iFrame == false:
 		demon_hit.play()
 		HEALTH -= player.playerMagicAtk
 		stunLock = true
 		stun_timer.start()
-	if area.is_in_group("weapon") and player.attackActive == true:
+		iFrame = true
+		i_frame_timer.start()
+	if area.is_in_group("weapon") and player.attackActive == true and iFrame == false:
 		demon_hit.play()
 		HEALTH -= player.playerAttack
 		stunLock = true
 		stun_timer.start()
+		iFrame = true
+		i_frame_timer.start()
 
 func _on_stun_timer_timeout():
 	stunLock = false
@@ -96,3 +102,6 @@ func _on_stun_timer_timeout():
 func _on_demon_death_finished() -> void:
 	self.get_parent().remove_child(self)
 	self.queue_free()
+
+func _on_i_frame_timer_timeout() -> void:
+	iFrame = false

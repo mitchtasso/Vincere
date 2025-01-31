@@ -101,5 +101,3 @@ max_db = -5.0
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, 0)
 shape = SubResource("BoxShape3D_i5xm5")
-
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
