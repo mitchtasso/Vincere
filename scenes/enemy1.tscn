@@ -76,7 +76,7 @@ _data = {
 }
 
 [node name="enemy" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.440707, 0)
+transform = Transform3D(0.999963, -0.00604912, -0.00606522, 0.00606076, 0.99998, 0.00190266, 0.00605359, -0.00193936, 0.99998, 0, -0.440707, 0)
 script = ExtResource("1_8rxgg")
 
 [node name="hurtbox" type="Area3D" parent="." groups=["enemies", "enemy1"]]
@@ -126,10 +126,6 @@ volume_db = -5.0
 unit_size = 1.0
 max_db = -5.0
 pitch_scale = 0.7
-
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.272032, 1.36486, 0.270756)
-aabb = AABB(-1, -1, -1, 1.5, 2.5, 1.5)
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
