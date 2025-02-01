@@ -36,8 +36,9 @@ const FOV_CHANGE: float = 1.5
 var graveyardPOS: Vector3 = Vector3(0,-0.5,0)
 var shopPOS: Vector3 = Vector3(99,-0.5,0)
 var bossRoomPOS: Vector3 = Vector3(-99,-0.5,0)
-var controllerSensH: float = 2.5
-var controllerSensV: float = 1.9
+var controllerSensH: float = 3.0
+var controllerSensV: float = 2.5
+var controllerAxis: Vector2
 
 #Player Elements
 @onready var head: Node3D = $Head
@@ -129,6 +130,7 @@ var gameTimeMinDef: int = 1
 var gameTimeChange: int = 1
 var modeType: int = 0
 
+#Mouse Input for moving camera
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
@@ -222,17 +224,15 @@ func _physics_process(_delta):
 	else:
 		low_health_vin.hide()
 	
-		#Controller camera input
-	if Input.is_action_pressed("aim_up"):
-		camera.rotate_x(deg_to_rad(controllerSensV))
+	#Controller camera input
+	controllerAxis = Vector2.ZERO
+	controllerAxis.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	controllerAxis.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
+	
+	if InputEventJoypadMotion:
+		head.rotate_y(deg_to_rad(-controllerAxis.x) * controllerSensH)
+		camera.rotate_x(deg_to_rad(-controllerAxis.y) * controllerSensV)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-	if Input.is_action_pressed("aim_down"):
-		camera.rotate_x(deg_to_rad(-1 * controllerSensV))
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-	if Input.is_action_pressed("aim_left"):
-		head.rotate_y(deg_to_rad(controllerSensH))
-	if Input.is_action_pressed("aim_right"):
-		head.rotate_y(deg_to_rad(-1 * controllerSensH))
 
 func _process(delta):
 	# Add the gravity.
