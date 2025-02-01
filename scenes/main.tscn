@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=104 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -54,6 +54,9 @@
 [ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
 [ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
+[ext_resource type="Texture2D" uid="uid://ben25qctysw5m" path="res://assets/menu/spellScroll.png" id="44_73r6e"]
+[ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
+[ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
@@ -5085,7 +5088,7 @@ theme_override_font_sizes/font_size = 60
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Sharpen Sword:"
+text = "Sword Upgrade:"
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
@@ -5096,7 +5099,7 @@ theme_override_font_sizes/font_size = 70
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Upgrade Weapon:"
+text = "Longsword:"
 horizontal_alignment = 2
 
 [node name="Label3" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
@@ -5254,6 +5257,46 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "-1000s"
 horizontal_alignment = 1
+
+[node name="shield" type="TextureRect" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 286.0
+offset_right = 787.0
+offset_bottom = 414.0
+texture = ExtResource("23_sry2p")
+
+[node name="mana" type="TextureRect" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 669.0
+offset_top = 1071.0
+offset_right = 765.0
+offset_bottom = 1167.0
+texture = ExtResource("28_5fp6e")
+
+[node name="spellScroll" type="TextureRect" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 671.0
+offset_top = 880.0
+offset_right = 767.0
+offset_bottom = 976.0
+texture = ExtResource("44_73r6e")
+
+[node name="upgradeSword" type="TextureRect" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 490.0
+offset_right = 768.0
+offset_bottom = 586.0
+texture = ExtResource("45_3dx3a")
+
+[node name="longsword" type="TextureRect" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 684.0
+offset_right = 769.0
+offset_bottom = 780.0
+texture = ExtResource("46_x5q7x")
 
 [node name="DeathMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -5847,7 +5890,6 @@ text = "Window:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-flat = true
 item_count = 2
 popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
@@ -5863,7 +5905,6 @@ text = "Resolution:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-flat = true
 item_count = 4
 popup/item_0/text = "2560x1440"
 popup/item_1/text = "1920x1080"
@@ -5883,7 +5924,6 @@ text = "V-Sync:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-flat = true
 item_count = 2
 popup/item_0/text = "On"
 popup/item_1/text = "Off"
@@ -5899,7 +5939,6 @@ text = "FPS Counter:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-flat = true
 item_count = 2
 popup/item_0/text = "On"
 popup/item_1/text = "Off"
@@ -5913,17 +5952,15 @@ theme_override_font_sizes/font_size = 60
 [node name="save" type="Button" parent="UI/VideoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 90
 text = "Save
 "
-flat = true
 
 [node name="back" type="Button" parent="UI/VideoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Back"
-flat = true
 
 [node name="savedText" type="MarginContainer" parent="UI/VideoMenu"]
 visible = false
@@ -6014,14 +6051,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Save"
-flat = true
 
 [node name="back" type="Button" parent="UI/AudioMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Back"
-flat = true
 
 [node name="savedText" type="MarginContainer" parent="UI/AudioMenu"]
 visible = false
