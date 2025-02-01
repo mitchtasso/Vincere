@@ -31,17 +31,21 @@ func _physics_process(delta):
 	enemy_health_bar.max_value = maxHealth
 	
 	if HEALTH <= 0:
+		hitbox.disabled = true
 		demon_hit.stop()
 		death_sound.play()
 		death = true
 		HEALTH = 1
-		hitbox.disabled = true
 		navReset = 0
 		player.souls += souls
 		player.add_point()
 		SPEED = -0.0001
 		demon_death.emitting = true
 		animation_player.play("death")
+	
+	if death == true:
+		hitbox.disabled = true
+	
 	if HEALTH >= maxHealth:
 		enemy_health_bar.hide()
 	elif death == true:
