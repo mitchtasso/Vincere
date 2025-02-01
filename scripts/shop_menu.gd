@@ -99,6 +99,6 @@ func _on_upgrade_pressed() -> void:
 
 func _on_spell_upgrade_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75:
+	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75 and player.SPELL == 1:
 		player.souls -= spellUpgradePrice
 		player.playerMagicAtk += 5
