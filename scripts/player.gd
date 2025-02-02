@@ -5,7 +5,6 @@ var walking: bool = false
 const WALK_SPEED: float = 5.75
 const SPRINT_SPEED: float = 8.5
 const JUMP_VELOCITY: float = 5.5
-const SENSITIVITY: float = 0.001
 var points: int = 0
 var souls: int = 0
 var attackActive: bool = false
@@ -36,8 +35,9 @@ const FOV_CHANGE: float = 1.5
 var graveyardPOS: Vector3 = Vector3(0,-0.5,0)
 var shopPOS: Vector3 = Vector3(99,-0.5,0)
 var bossRoomPOS: Vector3 = Vector3(-99,-0.5,0)
-var controllerSensH: float = 3.0
-var controllerSensV: float = 2.5
+var SENSITIVITY: float = 0.001
+var controllerSensH: float = 200.0
+var controllerSensV: float = 200.0
 var controllerAxis: Vector2
 
 #Player Elements
@@ -137,7 +137,7 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	
 	#Pause Game
 	if Input.is_action_just_pressed("quit"):
@@ -224,17 +224,19 @@ func _physics_process(_delta):
 	else:
 		low_health_vin.hide()
 	
+
+func _process(delta):
+	
 	#Controller camera input
 	controllerAxis = Vector2.ZERO
 	controllerAxis.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
 	controllerAxis.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	
 	if InputEventJoypadMotion:
-		head.rotate_y(deg_to_rad(-controllerAxis.x) * controllerSensH)
-		camera.rotate_x(deg_to_rad(-controllerAxis.y) * controllerSensV)
+		head.rotate_y((deg_to_rad(-controllerAxis.x) * controllerSensH) * delta)
+		camera.rotate_x((deg_to_rad(-controllerAxis.y) * controllerSensV) * delta)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-
-func _process(delta):
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
