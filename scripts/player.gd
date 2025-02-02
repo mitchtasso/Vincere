@@ -137,7 +137,7 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	#Pause Game
 	if Input.is_action_just_pressed("quit"):
