@@ -10,7 +10,7 @@ extends Control
 @onready var world: Node3D = $"../.."
 @onready var credit_screen: Control = $"../CreditScreen"
 @onready var credit_focus: Button = $"../CreditScreen/MarginContainer2/VBoxContainer/Button"
-
+@onready var heal_sound: AudioStreamPlayer = $"../../sounds/healSound"
 
 @onready var text_1: Button = $dialogueButtons/VBoxContainer/text1
 @onready var text_2: Button = $dialogueButtons/VBoxContainer/text2
@@ -97,27 +97,32 @@ func _on_text_1_pressed() -> void:
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_2_pressed() -> void:
-	dialogue.play()
 	if activeNPC == NPC[0]:
+		dialogue.play()
 		dialogue_menu.hide()
 		shop_menu.show()
 		shopFocus.grab_focus()
 	if activeNPC == NPC[1]:
 		if player.souls >= 500:
 			if player.HEALTH < 100:
+				heal_sound.play()
 				dialogLabel.text = "You are healed. This has consumed 500 tainted souls."
 				dialogLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 				player.HEALTH += 100
 				player.souls -= 500
 			else:
+				dialogue.play()
 				dialogLabel.text = "You seem to be in perfect health."
 				dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 		else:
+			dialogue.play()
 			dialogLabel.text = "Unfortunately, you do not have enought tainted souls."
 			dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	if activeNPC == NPC[2]:
+		dialogue.play()
 		dialogLabel.text = "You are fated to rid this land of the demonic presence."
 	if activeNPC == NPC[3]:
+		dialogue.play()
 		dialogLabel.text = "I am Cappellanus, a cleric and knight of the Holy See."
 
 func _on_text_3_pressed() -> void:

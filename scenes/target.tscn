@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb4mvd1x7dyro"]
+[gd_scene load_steps=8 format=3 uid="uid://bb4mvd1x7dyro"]
 
 [ext_resource type="ArrayMesh" uid="uid://bksk27m0fp5d0" path="res://assets/world/target.obj" id="1_ml0b4"]
 [ext_resource type="Script" path="res://scripts/target.gd" id="1_mq2jf"]
 [ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="3_ct756"]
+[ext_resource type="AudioStream" uid="uid://cm2en0nsawkm8" path="res://sounds/retro/click.wav" id="4_w4be8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_177r7"]
 size = Vector3(1.5, 1.5, 1)
@@ -58,6 +59,13 @@ texture = SubResource("ViewportTexture_27cjk")
 
 [node name="resetTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="hitSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70695, 0)
+stream = ExtResource("4_w4be8")
+volume_db = -5.0
+unit_size = 5.0
+max_db = -5.0
 
 [connection signal="area_entered" from="bullseye" to="." method="_on_bullseye_area_entered"]
 [connection signal="timeout" from="resetTimer" to="." method="_on_reset_timer_timeout"]

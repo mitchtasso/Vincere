@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=103 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
+[ext_resource type="AudioStream" uid="uid://ycvf3dycd6jl" path="res://sounds/retro/heal.wav" id="31_j8qth"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
 [ext_resource type="PackedScene" uid="uid://cu5fgdljqnseh" path="res://scenes/bonfire.tscn" id="36_2sgga"]
@@ -4056,6 +4057,10 @@ volume_db = -5.0
 [node name="menuButton" type="AudioStreamPlayer" parent="sounds"]
 process_mode = 3
 stream = ExtResource("12_78rj3")
+
+[node name="healSound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("31_j8qth")
+volume_db = -5.0
 
 [node name="dayChangeTimer" type="Timer" parent="."]
 wait_time = 3.0
