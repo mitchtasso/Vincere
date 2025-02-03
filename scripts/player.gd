@@ -39,6 +39,9 @@ var SENSITIVITY: float
 var controllerSensH: float
 var controllerSensV: float
 var controllerAxis: Vector2
+var mouseSensRate: float = 0.00002
+var controllerSensRateH: float = 3.5
+var controllerSensRateV: float = 3.5
 
 #Player Elements
 @onready var head: Node3D = $Head
@@ -228,9 +231,9 @@ func _physics_process(_delta):
 
 func _process(delta):
 	
-	SENSITIVITY = controls_menu.mouseSens * 0.00005
-	controllerSensH = controls_menu.horizSens
-	controllerSensV = controls_menu.verticalSens
+	SENSITIVITY = controls_menu.mouseSens * mouseSensRate
+	controllerSensH = controls_menu.horizSens * controllerSensRateH
+	controllerSensV = controls_menu.verticalSens * controllerSensRateV
 	
 	#Controller camera input
 	controllerAxis = Vector2.ZERO

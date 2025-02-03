@@ -18,6 +18,7 @@ var settingsData = SettingsData.new()
 var save_file_path: String = "user://VincereSaves/Settings/"
 var save_file_name: String = "SettingData.tres"
 var direct_file_path: String = "user://VincereSaves/Settings/"
+var saveNum: int = 0
 
 var horizSens: float = 50.0
 var verticalSens: float = 50.0
@@ -28,6 +29,8 @@ func _ready() -> void:
 	if DirAccess.dir_exists_absolute(direct_file_path):
 		load_data()
 	else:
+		print("hello")
+		saveNum = 1
 		verify_save_directory(save_file_path)
 		save()
 		load_data()
@@ -40,6 +43,7 @@ func _on_back_pressed():
 	OptionsMenuSelect.grab_focus()
 
 func _on_save_button_pressed() -> void:
+	buttonSound.play()
 	save()
 
 func _on_vertical_slider_value_changed(value: float) -> void:
@@ -59,30 +63,40 @@ func verify_save_directory(path: String):
 
 func load_data():
 	settingsData = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
-	
-	verticalSens = settingsData.controllerSensV
-	horizSens = settingsData.controllerSensH
-	mouseSens = settingsData.mouseSens
-	
-	vertical_slider.value = verticalSens
-	horiz_slider.value = horizSens
-	mouse_slider.value = mouseSens
-	
-	v_level.text = str(verticalSens)
-	h_level.text = str(horizSens)
-	m_level.text = str(mouseSens)
+	saveNum = settingsData.saveNum
+	if saveNum == 1:
+		
+		verticalSens = settingsData.controllerSensV
+		horizSens = settingsData.controllerSensH
+		mouseSens = settingsData.mouseSens
+		saveNum = settingsData.saveNum
+		
+		vertical_slider.value = verticalSens
+		horiz_slider.value = horizSens
+		mouse_slider.value = mouseSens
+		
+		v_level.text = str(verticalSens)
+		h_level.text = str(horizSens)
+		m_level.text = str(mouseSens)
+	else:
+		saveNum = 1
+		save()
 
 func save():
 	settingsData.controllerSensH = horizSens
 	settingsData.controllerSensV = verticalSens
 	settingsData.mouseSens = mouseSens
+	settingsData.saveNum = saveNum
 	
 	v_level.text = str(settingsData.controllerSensV)
 	h_level.text = str(settingsData.controllerSensH)
 	m_level.text = str(settingsData.mouseSens)
 	
+	vertical_slider.value = settingsData.controllerSensV
+	horiz_slider.value = settingsData.controllerSensH
+	mouse_slider.value = settingsData.mouseSens
+	
 	ResourceSaver.save(settingsData, save_file_path + save_file_name)
-	buttonSound.play()
 	saved_text.show()
 	timer.start()
 

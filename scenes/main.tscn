@@ -5990,7 +5990,6 @@ wait_time = 2.0
 
 [node name="ControlsMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6050,11 +6049,34 @@ layout_mode = 2
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/ControlsMenu/MarginContainer2"]
 layout_mode = 2
+
+[node name="Label6" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 75
+text = "Mouse Sensitivity"
+
+[node name="mLevel" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+
+[node name="mouseSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+
+[node name="Label8" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 75
 
 [node name="Label" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -6080,8 +6102,10 @@ theme_override_font_sizes/font_size = 30
 text = "0.0"
 
 [node name="verticalSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-value = 50.0
+min_value = 1.0
+value = 1.0
 
 [node name="Label5" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -6101,31 +6125,12 @@ theme_override_font_sizes/font_size = 30
 text = "0.0"
 
 [node name="horizSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-value = 50.0
+min_value = 1.0
+value = 1.0
 
 [node name="Label7" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 75
-
-[node name="Label6" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 75
-text = "Mouse Sensitivity"
-
-[node name="mLevel" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 30
-text = "0.0"
-
-[node name="mouseSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-value = 50.0
-
-[node name="Label8" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 75
@@ -6226,6 +6231,7 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6374,9 +6380,9 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/AudioMenu/MarginContainer/VBoxContainer/back" to="UI/AudioMenu" method="_on_back_pressed"]
 [connection signal="timeout" from="UI/AudioMenu/tempText" to="UI/AudioMenu" method="_on_temp_text_timeout"]
 [connection signal="pressed" from="UI/ControlsMenu/MarginContainer/VBoxContainer/back" to="UI/ControlsMenu" method="_on_back_pressed"]
+[connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/mouseSlider" to="UI/ControlsMenu" method="_on_mouse_slider_value_changed"]
 [connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/verticalSlider" to="UI/ControlsMenu" method="_on_vertical_slider_value_changed"]
 [connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/horizSlider" to="UI/ControlsMenu" method="_on_horiz_slider_value_changed"]
-[connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/mouseSlider" to="UI/ControlsMenu" method="_on_mouse_slider_value_changed"]
 [connection signal="pressed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/saveButton" to="UI/ControlsMenu" method="_on_save_button_pressed"]
 [connection signal="timeout" from="UI/ControlsMenu/Timer" to="UI/ControlsMenu" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/OptionsMenu/buttons/VBoxContainer/controls" to="UI/OptionsMenu" method="_on_controls_pressed"]

@@ -4,6 +4,7 @@ class_name SettingsData
 @export var controllerSensH: float = 0.0
 @export var controllerSensV: float = 0.0
 @export var mouseSens: float = 0.0
+@export var saveNum: int = 0
 
 @export var volumeLevel: int = 0
 
