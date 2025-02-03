@@ -35,9 +35,9 @@ const FOV_CHANGE: float = 1.5
 var graveyardPOS: Vector3 = Vector3(0,-0.5,0)
 var shopPOS: Vector3 = Vector3(99,-0.5,0)
 var bossRoomPOS: Vector3 = Vector3(-99,-0.5,0)
-var SENSITIVITY: float = 0.001
-var controllerSensH: float = 200.0
-var controllerSensV: float = 200.0
+var SENSITIVITY: float
+var controllerSensH: float
+var controllerSensV: float
 var controllerAxis: Vector2
 
 #Player Elements
@@ -97,6 +97,7 @@ var direct_file_path: String = "user://VincereSaves/"
 @onready var startMenu: Control = $"../UI/StartMenu"
 @onready var continueMenu: Control = $"../UI/ContinueMenu"
 @onready var boss_menu: Control = $"../UI/BossMenu"
+@onready var controls_menu: Control = $"../UI/ControlsMenu"
 @onready var autosaveLabel: MarginContainer = $"../UI/autoSaveText"
 @onready var autosaveTextTimer: Timer = $"../UI/autoSaveText/Timer"
 
@@ -226,6 +227,10 @@ func _physics_process(_delta):
 	
 
 func _process(delta):
+	
+	SENSITIVITY = controls_menu.mouseSens * 0.00005
+	controllerSensH = controls_menu.horizSens
+	controllerSensV = controls_menu.verticalSens
 	
 	#Controller camera input
 	controllerAxis = Vector2.ZERO

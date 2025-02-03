@@ -5990,6 +5990,7 @@ wait_time = 2.0
 
 [node name="ControlsMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6072,8 +6073,15 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Vertical"
 
+[node name="vLevel" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+
 [node name="verticalSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+value = 50.0
 
 [node name="Label5" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -6086,8 +6094,15 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Horizontal"
 
+[node name="hLevel" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+
 [node name="horizSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+value = 50.0
 
 [node name="Label7" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -6100,21 +6115,57 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 75
 text = "Mouse Sensitivity"
 
+[node name="mLevel" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+
 [node name="mouseSlider" type="HSlider" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+value = 50.0
 
 [node name="Label8" type="Label" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 75
 
-[node name="Button" type="Button" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
+[node name="saveButton" type="Button" parent="UI/ControlsMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Save"
 flat = true
 alignment = 0
+
+[node name="savedText" type="MarginContainer" parent="UI/ControlsMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.782812
+anchor_right = 1.0
+anchor_bottom = 0.0861111
+offset_left = 516.0
+offset_bottom = -84.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ControlsMenu/savedText"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="UI/ControlsMenu/savedText/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/ControlsMenu/savedText/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Settings Saved "
+
+[node name="Timer" type="Timer" parent="UI/ControlsMenu"]
+wait_time = 2.0
+one_shot = true
 
 [node name="OptionsMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -6175,7 +6226,6 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6324,6 +6374,11 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/AudioMenu/MarginContainer/VBoxContainer/back" to="UI/AudioMenu" method="_on_back_pressed"]
 [connection signal="timeout" from="UI/AudioMenu/tempText" to="UI/AudioMenu" method="_on_temp_text_timeout"]
 [connection signal="pressed" from="UI/ControlsMenu/MarginContainer/VBoxContainer/back" to="UI/ControlsMenu" method="_on_back_pressed"]
+[connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/verticalSlider" to="UI/ControlsMenu" method="_on_vertical_slider_value_changed"]
+[connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/horizSlider" to="UI/ControlsMenu" method="_on_horiz_slider_value_changed"]
+[connection signal="value_changed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/mouseSlider" to="UI/ControlsMenu" method="_on_mouse_slider_value_changed"]
+[connection signal="pressed" from="UI/ControlsMenu/MarginContainer2/VBoxContainer/saveButton" to="UI/ControlsMenu" method="_on_save_button_pressed"]
+[connection signal="timeout" from="UI/ControlsMenu/Timer" to="UI/ControlsMenu" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/OptionsMenu/buttons/VBoxContainer/controls" to="UI/OptionsMenu" method="_on_controls_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/buttons/VBoxContainer/video" to="UI/OptionsMenu" method="_on_video_pressed"]
 [connection signal="pressed" from="UI/OptionsMenu/buttons/VBoxContainer/audio" to="UI/OptionsMenu" method="_on_audio_pressed"]
