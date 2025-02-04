@@ -5990,6 +5990,7 @@ wait_time = 2.0
 
 [node name="ControlsMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6231,7 +6232,6 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
