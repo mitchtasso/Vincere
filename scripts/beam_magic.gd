@@ -10,7 +10,7 @@ var SPEED: float = 40.0
 @onready var boom: AudioStreamPlayer3D = $boom
 
 var reset: int = 0
-var time: int = 200
+var time: int = 100
 var explosion: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
