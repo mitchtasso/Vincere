@@ -5511,6 +5511,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("24_jdv8w")
 
+[node name="templar" type="TextureRect" parent="UI/PauseMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1260.0
+offset_top = -840.0
+offset_right = -267.0
+offset_bottom = -188.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("25_1uakm")
+
 [node name="MarginContainer" type="MarginContainer" parent="UI/PauseMenu"]
 visible = false
 layout_mode = 1
@@ -5539,7 +5555,7 @@ visible = false
 layout_mode = 1
 offset_right = 1.0
 offset_bottom = 23.0
-theme_override_constants/margin_left = 90
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 90
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/statLabels"]
@@ -5567,6 +5583,13 @@ theme_override_font_sizes/font_size = 90
 text = "Melee Attack
 "
 
+[node name="Weapon Type" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Weapon Type"
+
 [node name="Magic Attack" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.633289, 0.000343269, 0.645601, 1)
@@ -5575,14 +5598,9 @@ theme_override_font_sizes/font_size = 90
 text = "Magic Attack
 "
 
-[node name="Weapon Type" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 90
-text = "Weapon Type"
-
 [node name="Magic Type" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.631373, 0, 0.647059, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Magic Type
@@ -5598,7 +5616,7 @@ offset_left = -284.0
 offset_right = 284.0
 offset_bottom = 1096.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 400
+theme_override_constants/margin_left = 600
 theme_override_constants/margin_top = 90
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/statLabels2"]
@@ -5621,6 +5639,54 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Nights Survived"
+
+[node name="icons" type="MarginContainer" parent="UI/PauseMenu"]
+visible = false
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/icons"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("22_qkscv")
+
+[node name="Label5" type="Label" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("23_sry2p")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("45_3dx3a")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("46_x5q7x")
+
+[node name="Label3" type="Label" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+
+[node name="TextureRect5" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("28_5fp6e")
+
+[node name="Label4" type="Label" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+
+[node name="TextureRect6" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("44_73r6e")
 
 [node name="StoryMenu" type="Control" parent="UI"]
 process_mode = 3

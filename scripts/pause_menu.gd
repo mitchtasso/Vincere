@@ -27,6 +27,8 @@ extends Control
 @onready var tainted_souls: Label = $"statLabels2/VBoxContainer/Tainted Souls"
 @onready var demons_slain: Label = $"statLabels2/VBoxContainer/Demons Slain"
 @onready var nights: Label = $statLabels2/VBoxContainer/Nights
+@onready var templar: TextureRect = $templar
+@onready var icons: MarginContainer = $icons
 
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
@@ -81,6 +83,8 @@ func _on_stats_pressed() -> void:
 	demons_slain.text = "Demons Slain: " + str(player.points)
 	nights.text = "Nights Survived: " + str(world.wave - 1)
 	
+	icons.show()
+	templar.show()
 	stat_labels.show()
 	stat_labels_2.show()
 	backButton.show()
@@ -102,4 +106,6 @@ func _on_back_pressed() -> void:
 	stat_labels.hide()
 	stat_labels_2.hide()
 	backButton.hide()
+	templar.hide()
+	icons.hide()
 	pauseFocus.grab_focus()
