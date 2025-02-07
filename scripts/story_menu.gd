@@ -12,14 +12,18 @@ extends Control
 @onready var warningLabel: Label = $Label2
 
 var turn: int = 0
+var final: bool = false
 
 func _process(_delta: float) -> void:
 	if player.playerData.wave > 1 and turn == 0:
 		storyLabel.hide()
 		warningLabel.show()
+	else:
+		if final == false:
+			turn = 1
 
 func _on_continue_pressed() -> void:
-	if turn == 0:
+	if turn == 0 and player.playerData.wave > 1:
 		menu_button.play()
 		storyLabel.show()
 		warningLabel.hide()
@@ -28,6 +32,7 @@ func _on_continue_pressed() -> void:
 		menu_button.play()
 		storyLabel.hide()
 		controlDiagram.show()
+		final = true
 		turn = 2
 	else:
 		story_menu.hide()
