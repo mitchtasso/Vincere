@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=107 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -53,8 +53,12 @@
 [ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
 [ext_resource type="Script" path="res://scripts/credit_screen.gd" id="38_aexhr"]
 [ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
+[ext_resource type="Texture2D" uid="uid://ux1v77ck5di8" path="res://assets/menu/skull.png" id="39_mkttv"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
 [ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
+[ext_resource type="Texture2D" uid="uid://d4h6os81neikv" path="res://assets/menu/soul.png" id="40_k8yj2"]
+[ext_resource type="Texture2D" uid="uid://cqytai5u4jgie" path="res://assets/menu/moon.png" id="41_7i14o"]
+[ext_resource type="Texture2D" uid="uid://bo6wx5e5stnx7" path="res://assets/menu/timer.png" id="42_g4tua"]
 [ext_resource type="Texture2D" uid="uid://ben25qctysw5m" path="res://assets/menu/spellScroll.png" id="44_73r6e"]
 [ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
 [ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
@@ -4346,19 +4350,43 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_font_sizes/font_size = 150
 
+[node name="souls" type="Label" parent="UI/playerUI/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 48
+text = "   : 0"
+
+[node name="TextureRect" type="TextureRect" parent="UI/playerUI/VBoxContainer/souls"]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 64.0
+offset_bottom = 59.0
+texture = ExtResource("40_k8yj2")
+
+[node name="Label3" type="Label" parent="UI/playerUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
 [node name="points" type="Label" parent="UI/playerUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 48
-text = "Demons Slain: 0"
+text = "   : 0"
 
-[node name="souls" type="Label" parent="UI/playerUI/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/playerUI/VBoxContainer/points"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -9.0
+offset_right = 129.0
+offset_bottom = 119.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("39_mkttv")
+
+[node name="Label2" type="Label" parent="UI/playerUI/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 48
-text = "Souls: 0"
+theme_override_font_sizes/font_size = 2
 
 [node name="fps" type="Label" parent="UI/playerUI/VBoxContainer"]
 process_mode = 3
@@ -4384,15 +4412,27 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 48
-text = "Wave: 1"
+text = "Night: 1"
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="UI/waveUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
 
 [node name="time" type="Label" parent="UI/waveUI/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 48
-text = "Time: 0.00"
+text = "   : 0.00"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/waveUI/VBoxContainer/time"]
+layout_mode = 0
+offset_left = 7.5
+offset_top = -6.0
+offset_right = 71.5
+offset_bottom = 58.0
+texture = ExtResource("42_g4tua")
 
 [node name="crosshair" type="MarginContainer" parent="UI"]
 anchors_preset = 8
@@ -4935,8 +4975,16 @@ theme_override_constants/margin_top = 25
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Souls: 0"
+text = "   : 0"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/ShopMenu/souls/soulLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("40_k8yj2")
 
 [node name="buttons" type="MarginContainer" parent="UI/ShopMenu"]
 layout_mode = 1
@@ -5311,24 +5359,41 @@ layout_mode = 2
 [node name="Title" type="Label" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 120
 text = "NIGHT SURVIVED!"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
 
 [node name="points" type="Label" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 60
 text = "Demons Vanquished: 0"
+
+[node name="TextureRect" type="TextureRect" parent="UI/WaveMenu/buttons/VBoxContainer/points"]
+layout_mode = 0
+offset_left = -73.5
+offset_top = -3.5
+offset_right = -9.5
+offset_bottom = 60.5
+texture = ExtResource("39_mkttv")
 
 [node name="souls" type="Label" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 60
 text = "Souls Freed: 0"
+
+[node name="TextureRect" type="TextureRect" parent="UI/WaveMenu/buttons/VBoxContainer/souls"]
+layout_mode = 0
+offset_left = -73.5
+offset_top = -3.5
+offset_right = -9.5
+offset_bottom = 60.5
+texture = ExtResource("40_k8yj2")
 
 [node name="Label2" type="Label" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -5339,14 +5404,14 @@ layout_mode = 2
 [node name="Continue" type="Button" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 90
 text = "Continue"
 flat = true
 
 [node name="Menu" type="Button" parent="UI/WaveMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 90
 text = "Main Menu
 "
 flat = true
@@ -5616,7 +5681,7 @@ offset_left = -284.0
 offset_right = 284.0
 offset_bottom = 1096.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 600
+theme_override_constants/margin_left = 1000
 theme_override_constants/margin_top = 90
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/statLabels2"]
@@ -5628,17 +5693,44 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Tainted Souls"
 
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu/statLabels2/VBoxContainer/Tainted Souls"]
+layout_mode = 0
+offset_left = -136.5
+offset_top = 3.0
+offset_right = -72.5
+offset_bottom = 67.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("40_k8yj2")
+
 [node name="Demons Slain" type="Label" parent="UI/PauseMenu/statLabels2/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Demons Slain"
 
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu/statLabels2/VBoxContainer/Demons Slain"]
+layout_mode = 0
+offset_left = -135.5
+offset_top = -2.0
+offset_right = -71.5
+offset_bottom = 62.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("39_mkttv")
+
 [node name="Nights" type="Label" parent="UI/PauseMenu/statLabels2/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Nights Survived"
+
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu/statLabels2/VBoxContainer/Nights"]
+layout_mode = 0
+offset_left = -128.5
+offset_top = -5.0
+offset_right = -64.5
+offset_bottom = 59.0
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("41_7i14o")
 
 [node name="icons" type="MarginContainer" parent="UI/PauseMenu"]
 visible = false

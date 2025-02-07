@@ -185,9 +185,9 @@ func _physics_process(_delta):
 	
 	var time_string = "%02d:%02d" % [gameTimeMin, gameTimeSec]
 	#UI refresh
-	pointsLabel.text = "Demons Slain: " + str(points)
-	soulsLabel.text = "Souls: " + str(souls)
-	timerLabel.text = "Time: " + time_string
+	pointsLabel.text = "   : " + str(points)
+	soulsLabel.text = "   : " + str(souls)
+	timerLabel.text = "   : " + time_string
 	health_bar.value = HEALTH
 	armor_bar.value = ARMOR
 	mana_bar.value = MANA

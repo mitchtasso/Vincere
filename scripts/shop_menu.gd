@@ -69,7 +69,7 @@ func _process(_delta: float) -> void:
 		spell_upgrade_label.text = "Purchased"
 		spell_upgrade_label.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
-	soul_label.text = "Souls: " + str(player.souls)
+	soul_label.text = "   : " + str(player.souls)
 
 func _on_yes_pressed() -> void:
 	menuButtonSound.play()

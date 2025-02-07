@@ -35,7 +35,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	wave_label.text = "Wave: " + str(wave)
+	wave_label.text = "Night: " + str(wave)
 	demon_spawn_dec()
 	demon2_spawn_dec()
 	demon3_spawn_dec()
