@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=108 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -44,6 +44,7 @@
 [ext_resource type="Script" path="res://scripts/shop_menu.gd" id="24_5m5e5"]
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
+[ext_resource type="AudioStream" uid="uid://bwiuqrnr58hnc" path="res://sounds/coolJam1.wav" id="25_14vnf"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
 [ext_resource type="AudioStream" uid="uid://ycvf3dycd6jl" path="res://sounds/retro/heal.wav" id="31_j8qth"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
@@ -4033,6 +4034,11 @@ stream = ExtResource("6_06xc8")
 volume_db = -25.0
 autoplay = true
 
+[node name="BossMusic" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("25_14vnf")
+volume_db = -25.0
+autoplay = true
+
 [node name="swordSwipe" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("13_a753h")
 volume_db = 2.0
@@ -4578,7 +4584,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/CreditScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 90
-text = "Thank you for playing Vincere!"
+text = "Thank you for playing Vincere!
+
+Please leave a review and join the Discord
+from the Steam store page!"
+horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/CreditScreen"]
 layout_mode = 1

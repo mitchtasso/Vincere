@@ -425,7 +425,7 @@ mesh = ExtResource("3_yd0w5")
 skeleton = NodePath("../../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/ArmMesh"]
-transform = Transform3D(9.99962, -0.00152299, -0.0872521, 0, 9.99848, -0.174524, 0.0872654, 0.174517, 9.9981, 0.169827, 0.862944, -5.41117)
+transform = Transform3D(9.99657, -0.00685233, -0.26168, 0, 9.99658, -0.26177, 0.26177, 0.26168, 9.99315, 0.169827, 0.862944, -5.41117)
 target_position = Vector3(0, 0, -1)
 
 [node name="castSound" type="AudioStreamPlayer3D" parent="Head/Camera3D/ArmMesh"]

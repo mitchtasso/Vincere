@@ -39,7 +39,7 @@ func _physics_process(delta):
 		navReset = 0
 		player.souls += souls
 		player.add_point()
-		SPEED = -0.0001
+		SPEED = -0.1
 		demon_death.emitting = true
 		animation_player.play("death")
 	

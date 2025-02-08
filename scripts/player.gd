@@ -612,7 +612,7 @@ func _ready():
 		load_data()
 	else:
 		verify_save_directory(save_file_path)
-		inital_save()
+		save()
 		load_data()
 
 func verify_save_directory(path: String):
@@ -669,20 +669,6 @@ func load_data():
 		boss_enemy_character.show()
 
 func save():
-	playerData.points = points
-	playerData.souls = souls
-	playerData.wave = world.wave
-	playerData.health = HEALTH
-	playerData.playerAttack = playerAttack
-	playerData.playerMagicAtk = playerMagicAtk
-	playerData.spell = SPELL
-	playerData.armor = ARMOR
-	playerData.upgrade = UPGRADE
-	playerData.modeType = modeType
-	playerData.POS = player.position
-	ResourceSaver.save(playerData, save_file_path + save_file_name)
-
-func inital_save():
 	playerData.points = points
 	playerData.souls = souls
 	playerData.wave = world.wave
