@@ -4037,7 +4037,6 @@ autoplay = true
 [node name="BossMusic" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("25_14vnf")
 volume_db = -25.0
-autoplay = true
 
 [node name="swordSwipe" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("13_a753h")
