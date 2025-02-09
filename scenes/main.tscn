@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=110 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://nvx5fa63nffo" path="res://sounds/menuButton.wav" id="12_78rj3"]
 [ext_resource type="ArrayMesh" uid="uid://cefy22c1ccnqa" path="res://assets/world/church.obj" id="13_33spt"]
 [ext_resource type="AudioStream" uid="uid://dtphoysy3l7my" path="res://sounds/swing2.wav" id="13_a753h"]
+[ext_resource type="Script" path="res://scripts/shop_stall_magic.gd" id="13_yinjh"]
 [ext_resource type="FontFile" uid="uid://cpcu30y2tgewk" path="res://assets/menu/Deutsch.ttf" id="16_j1wiw"]
 [ext_resource type="PackedScene" uid="uid://bb4mvd1x7dyro" path="res://scenes/target.tscn" id="16_vyqhb"]
 [ext_resource type="PackedScene" uid="uid://rnhmi2sdocfw" path="res://scenes/dummy.tscn" id="17_qqejl"]
@@ -63,6 +64,7 @@
 [ext_resource type="Texture2D" uid="uid://ben25qctysw5m" path="res://assets/menu/spellScroll.png" id="44_73r6e"]
 [ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
 [ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
+[ext_resource type="Script" path="res://scripts/magic_shop_menu.gd" id="53_mq7oj"]
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
@@ -370,6 +372,64 @@ texture = ExtResource("23_sry2p")
 [node name="Sprite3D" type="Sprite3D" parent="Shop/stallShop/sign"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79538, 2.44835, -19.4086)
 texture = SubResource("ViewportTexture_s6snh")
+
+[node name="stallShopMagic" type="StaticBody3D" parent="Shop"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 15.7908, 0, -18.0261)
+
+[node name="shopStallMagic" parent="Shop/stallShopMagic" instance=ExtResource("5_svlue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4861, 0.5, -20)
+skeleton = NodePath("../..")
+script = ExtResource("13_yinjh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/stallShopMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6432, 6.31468, -20.1859)
+shape = SubResource("BoxShape3D_o6q80")
+
+[node name="brazier3" type="StaticBody3D" parent="Shop/stallShopMagic"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 15.6257, 0, -12.654)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shop/stallShopMagic/brazier3"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+mesh = ExtResource("3_yfm6t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/stallShopMagic/brazier3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797382, 0)
+shape = SubResource("BoxShape3D_vpsjh")
+
+[node name="flame" type="MeshInstance3D" parent="Shop/stallShopMagic/brazier3"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.30175, 0)
+mesh = SubResource("SphereMesh_g0her")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Shop/stallShopMagic/brazier3/flame"]
+light_color = Color(0.804112, 0.41462, 0.189056, 1)
+light_energy = 8.0
+
+[node name="flameH" parent="Shop/stallShopMagic/brazier3/flame" instance=ExtResource("11_ycxw5")]
+
+[node name="sign" type="StaticBody3D" parent="Shop/stallShopMagic"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -15.3103, 0, 35.4383)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shop/stallShopMagic/sign"]
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 7.29743, 0, -19.4719)
+mesh = ExtResource("10_ymkva")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/stallShopMagic/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77445, 1.70365, -19.5703)
+shape = SubResource("BoxShape3D_jtbxs")
+
+[node name="SubViewport" type="SubViewport" parent="Shop/stallShopMagic/sign"]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="TextureRect" type="TextureRect" parent="Shop/stallShopMagic/sign/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("23_sry2p")
+
+[node name="Sprite3D" type="Sprite3D" parent="Shop/stallShopMagic/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79538, 2.44835, -19.4086)
+texture = ExtResource("28_5fp6e")
 
 [node name="fence" type="StaticBody3D" parent="Shop"]
 
@@ -5259,6 +5319,383 @@ offset_right = 769.0
 offset_bottom = 780.0
 texture = ExtResource("46_x5q7x")
 
+[node name="MagicShopMenu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("53_mq7oj")
+metadata/_edit_use_anchors_ = true
+
+[node name="bg" type="TextureRect" parent="UI/MagicShopMenu"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_sdbt1")
+
+[node name="templar" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1055.0
+offset_top = -498.0
+offset_right = -62.0
+offset_bottom = 154.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("25_1uakm")
+
+[node name="dialog" type="Label" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1054.0
+offset_top = 167.0
+offset_right = -62.0
+offset_bottom = 240.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 50
+text = "Of course, trade your tainted souls for spells... "
+horizontal_alignment = 1
+
+[node name="dialog2" type="Label" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1051.0
+offset_top = 238.0
+offset_right = -62.0
+offset_bottom = 305.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 50
+text = "The Church will always provides..."
+horizontal_alignment = 1
+
+[node name="title" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.5
+offset_right = 114.5
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 25
+
+[node name="Title" type="Label" parent="UI/MagicShopMenu/title"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 120
+text = "The Spell Caster's Shop"
+horizontal_alignment = 1
+
+[node name="souls" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+offset_right = 229.0
+offset_bottom = 155.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+
+[node name="soulLabel" type="Label" parent="UI/MagicShopMenu/souls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/MagicShopMenu/souls/soulLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("40_k8yj2")
+
+[node name="buttons" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -190.0
+offset_right = 179.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/buttons"]
+layout_mode = 2
+
+[node name="Yes" type="Button" parent="UI/MagicShopMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Done"
+
+[node name="itemLabels" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -443.5
+offset_right = 650.0
+offset_bottom = 443.5
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/itemLabels"]
+layout_mode = 2
+
+[node name="fireball" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Fireball Scroll:"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="icycle" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Icycle Scroll:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="lightning" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Lightning Scroll:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spellAttack" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Spell Damage+ :"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="manaUpgrade" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Mana Regen+ :
+"
+horizontal_alignment = 2
+
+[node name="itemButtons" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -487.5
+offset_top = -428.0
+offset_right = -186.5
+offset_bottom = 461.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/itemButtons"]
+layout_mode = 2
+
+[node name="armor" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Repair"
+
+[node name="Label" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="sharpen" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Upgrade"
+
+[node name="Label2" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="upgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Purchase"
+
+[node name="Label3" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spell" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Purchase"
+
+[node name="Label4" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spellUpgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Purchase"
+
+[node name="priceLabels" type="MarginContainer" parent="UI/MagicShopMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -440.0
+offset_right = 325.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/priceLabels"]
+layout_mode = 2
+
+[node name="armor" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="sharp" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="upgrade" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spell" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="spellUpgrade" type="Label" parent="UI/MagicShopMenu/priceLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "-1000s"
+horizontal_alignment = 1
+
+[node name="shield" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 286.0
+offset_right = 787.0
+offset_bottom = 414.0
+texture = ExtResource("23_sry2p")
+
+[node name="mana" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 0
+offset_left = 669.0
+offset_top = 1071.0
+offset_right = 765.0
+offset_bottom = 1167.0
+texture = ExtResource("28_5fp6e")
+
+[node name="spellScroll" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 0
+offset_left = 671.0
+offset_top = 880.0
+offset_right = 767.0
+offset_bottom = 976.0
+texture = ExtResource("44_73r6e")
+
+[node name="upgradeSword" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 490.0
+offset_right = 768.0
+offset_bottom = 586.0
+texture = ExtResource("45_3dx3a")
+
+[node name="longsword" type="TextureRect" parent="UI/MagicShopMenu"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 684.0
+offset_right = 769.0
+offset_bottom = 780.0
+texture = ExtResource("46_x5q7x")
+
 [node name="DeathMenu" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -6523,6 +6960,12 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/upgrade" to="UI/ShopMenu" method="_on_upgrade_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spell" to="UI/ShopMenu" method="_on_spell_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/ShopMenu" method="_on_spell_upgrade_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/buttons/VBoxContainer/Yes" to="UI/MagicShopMenu" method="_on_yes_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/armor" to="UI/MagicShopMenu" method="_on_armor_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/sharpen" to="UI/MagicShopMenu" method="_on_sharpen_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/upgrade" to="UI/MagicShopMenu" method="_on_upgrade_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/spell" to="UI/MagicShopMenu" method="_on_spell_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/MagicShopMenu" method="_on_spell_upgrade_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Replay" to="UI/DeathMenu" method="_on_replay_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Menu" to="UI/DeathMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/WaveMenu/buttons/VBoxContainer/Continue" to="UI/WaveMenu" method="_on_continue_pressed"]

@@ -11,6 +11,8 @@ extends Control
 @onready var credit_screen: Control = $"../CreditScreen"
 @onready var credit_focus: Button = $"../CreditScreen/MarginContainer2/VBoxContainer/Button"
 @onready var heal_sound: AudioStreamPlayer = $"../../sounds/healSound"
+@onready var magic_shop_menu: Control = $"../MagicShopMenu"
+@onready var magic_shop_focus: Button = $"../MagicShopMenu/buttons/VBoxContainer/Yes"
 
 @onready var text_1: Button = $dialogueButtons/VBoxContainer/text1
 @onready var text_2: Button = $dialogueButtons/VBoxContainer/text2
@@ -24,7 +26,7 @@ extends Control
 var templarPic = load("res://assets/menu/templarPic.png")
 var clericPic = load("res://assets/menu/cleric.png")
 
-var NPC: Array = ["Mercator", "Medicus", "Cleric", "Cappellanus"]
+var NPC: Array = ["Mercator", "Medicus", "Cleric", "Cappellanus", "Magus"]
 var activeNPC: String
 
 var dialogueCounter: int  = 0
@@ -44,6 +46,9 @@ func _process(_delta: float) -> void:
 	elif activeNPC == NPC[3]:
 		title.text = "Cappellanus"
 		dialoguePic.texture = clericPic
+	elif activeNPC == NPC[4]:
+		title.text = "Magus, the Spell Caster"
+		dialoguePic.texture = templarPic
 	
 	if activeNPC == NPC[0]:
 		if dialogueCounter == 0:
@@ -81,6 +86,15 @@ func _process(_delta: float) -> void:
 			text_3.text = "Are there any more?"
 			text_4.text = "Let us depart. (GAME END)"
 			dialogueCounter = 1
+	if activeNPC == NPC[4]:
+		if dialogueCounter == 0:
+			dialogue.play()
+			dialogLabel.text = "Greetings Knight, how may I be of service?"
+			text_1.text = "Who are you?"
+			text_2.text = "Can I look at your spells?"
+			text_3.text = "How do I learn magic?"
+			text_4.text = "Farewell."
+			dialogueCounter = 1
 
 func _on_text_1_pressed() -> void:
 	dialogue.play()
@@ -94,6 +108,9 @@ func _on_text_1_pressed() -> void:
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	if activeNPC == NPC[3]:
 		dialogLabel.text = "Your quest has just begun, you must hunt these demonic sites."
+		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+	if activeNPC == NPC[4]:
+		dialogLabel.text = "I am Magus, a spell caster of the CHurch."
 		dialogLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 
 func _on_text_2_pressed() -> void:
@@ -124,6 +141,11 @@ func _on_text_2_pressed() -> void:
 	if activeNPC == NPC[3]:
 		dialogue.play()
 		dialogLabel.text = "I am Cappellanus, a cleric and knight of the Holy See."
+	if activeNPC == NPC[4]:
+		dialogue.play()
+		dialogue_menu.hide()
+		magic_shop_menu.show()
+		magic_shop_focus.grab_focus()
 
 func _on_text_3_pressed() -> void:
 	dialogue.play()
@@ -136,6 +158,8 @@ func _on_text_3_pressed() -> void:
 		dialogLabel.text = "On the 11th night of your struggle, the demon commander will show himself."
 	if activeNPC == NPC[3]:
 		dialogLabel.text = "It appears that the death of the demon commander has halted them, for now."
+	if activeNPC == NPC[4]:
+		dialogLabel.text = "You are attuned to magic, therefore, you can learn spells from my scrolls."
 
 func _on_text_4_pressed() -> void:
 	if world.gameEnd == false:

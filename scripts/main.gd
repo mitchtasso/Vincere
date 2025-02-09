@@ -122,7 +122,6 @@ func _on_spawn_timer_demon_4_timeout() -> void:
 		instance.add_to_group("enemySet")
 		respawnTimerDemon4.start()
 
-
 func demon_spawn_dec():
 	if wave > 6:
 		respawnTimerDemon.wait_time = demon1SpawnTime * dec600
