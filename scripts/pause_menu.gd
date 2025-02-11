@@ -29,6 +29,7 @@ extends Control
 @onready var nights: Label = $statLabels2/VBoxContainer/Nights
 @onready var templar: TextureRect = $templar
 @onready var icons: MarginContainer = $icons
+@onready var mana_regen: Label = $"statLabels/VBoxContainer/Mana Regen"
 
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
@@ -82,6 +83,7 @@ func _on_stats_pressed() -> void:
 	tainted_souls.text = "Tainted Souls: " + str(player.souls)
 	demons_slain.text = "Demons Slain: " + str(player.points)
 	nights.text = "Nights Survived: " + str(world.wave - 1)
+	mana_regen.text = "Mana Regen: " + str(player.playerMagicRegen * 100)
 	
 	icons.show()
 	templar.show()

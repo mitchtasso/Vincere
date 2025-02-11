@@ -6125,6 +6125,14 @@ theme_override_font_sizes/font_size = 90
 text = "Magic Attack
 "
 
+[node name="Mana Regen" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.633289, 0.000343269, 0.645601, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Mana Regen
+"
+
 [node name="Magic Type" type="Label" parent="UI/PauseMenu/statLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.631373, 0, 0.647059, 1)
@@ -6231,6 +6239,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 1
 
 [node name="TextureRect5" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("28_5fp6e")
+
+[node name="Label6" type="Label" parent="UI/PauseMenu/icons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+
+[node name="TextureRect7" type="TextureRect" parent="UI/PauseMenu/icons/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("28_5fp6e")
 

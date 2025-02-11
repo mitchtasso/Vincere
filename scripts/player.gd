@@ -257,14 +257,6 @@ func _physics_process(_delta):
 	else:
 		mana_bar.show()
 	
-	match playerMagicAtk:
-		50: playerMagicRegen = 0.2
-		55: playerMagicRegen = 0.25
-		60: playerMagicRegen = 0.3
-		65: playerMagicRegen = 0.35
-		70: playerMagicRegen = 0.4
-		75: playerMagicRegen = 0.45
-	
 	if SPELL == 1:
 		MANA += playerMagicRegen
 	
@@ -683,6 +675,7 @@ func load_data():
 	iceSpell = playerData.iceSpell
 	lightningSpell = playerData.lightningSpell
 	player.position = playerData.POS
+	playerMagicRegen = playerData.playerMagicRegen
 	
 	if modeType == 0:
 		player.position = graveyardPOS
@@ -731,6 +724,7 @@ func save():
 	playerData.fireSpell = fireSpell
 	playerData.lightningSpell = lightningSpell
 	playerData.iceSpell = iceSpell
+	playerData.playerMagicRegen = playerMagicRegen
 	ResourceSaver.save(playerData, save_file_path + save_file_name)
 
 func stat_reset():
@@ -747,6 +741,7 @@ func stat_reset():
 	ARMOR = 0
 	UPGRADE = 0
 	modeType = 0
+	playerMagicRegen = 0.2
 	player.position = graveyardPOS
 	camera.global_rotation = Vector3.ZERO
 	
