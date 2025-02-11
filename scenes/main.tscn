@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=114 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -50,6 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://ycvf3dycd6jl" path="res://sounds/retro/heal.wav" id="31_j8qth"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
+[ext_resource type="AudioStream" uid="uid://cm2en0nsawkm8" path="res://sounds/retro/click.wav" id="35_ushas"]
 [ext_resource type="PackedScene" uid="uid://cu5fgdljqnseh" path="res://scenes/bonfire.tscn" id="36_2sgga"]
 [ext_resource type="ArrayMesh" uid="uid://4o2pqqbvc6f4" path="res://assets/menu/models/templarefire1.obj" id="36_26ncv"]
 [ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
@@ -65,7 +66,10 @@
 [ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
 [ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
 [ext_resource type="Script" path="res://scripts/magic_shop_menu.gd" id="53_mq7oj"]
+[ext_resource type="Texture2D" uid="uid://bfhgn06bfuq0g" path="res://assets/menu/fireball.png" id="54_u0dsl"]
+[ext_resource type="Texture2D" uid="uid://cg6d3ehc1m3pw" path="res://assets/menu/icycle.png" id="55_y3gjk"]
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
+[ext_resource type="Texture2D" uid="uid://drqp55fcu6v4l" path="res://assets/menu/lightning.png" id="56_pghvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -4131,6 +4135,10 @@ stream = ExtResource("12_78rj3")
 stream = ExtResource("31_j8qth")
 volume_db = -5.0
 
+[node name="magicChange" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("35_ushas")
+volume_db = -15.0
+
 [node name="dayChangeTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -4400,6 +4408,13 @@ offset_top = 148.0
 offset_right = 85.0
 offset_bottom = 204.0
 texture = ExtResource("28_5fp6e")
+
+[node name="spell" type="TextureRect" parent="UI/statsUI"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 146.0
+offset_right = 425.0
+offset_bottom = 210.0
 
 [node name="playerUI" type="MarginContainer" parent="UI"]
 offset_right = 473.0
@@ -5540,27 +5555,27 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/itemButtons"]
 layout_mode = 2
 
-[node name="armor" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+[node name="fireball" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Repair"
+text = "Purchase"
 
 [node name="Label" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="sharpen" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+[node name="icycle" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Upgrade"
+text = "Purchase"
 
 [node name="Label2" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="upgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+[node name="lightning" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5570,21 +5585,21 @@ text = "Purchase"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spell" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+[node name="spellUpgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Purchase"
+text = "Upgrade"
 
 [node name="Label4" type="Label" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spellUpgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
+[node name="manaUpgrade" type="Button" parent="UI/MagicShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Purchase"
+text = "Upgrade"
 
 [node name="priceLabels" type="MarginContainer" parent="UI/MagicShopMenu"]
 layout_mode = 1
@@ -5658,11 +5673,11 @@ horizontal_alignment = 1
 
 [node name="shield" type="TextureRect" parent="UI/MagicShopMenu"]
 layout_mode = 0
-offset_left = 659.0
-offset_top = 286.0
-offset_right = 787.0
-offset_bottom = 414.0
-texture = ExtResource("23_sry2p")
+offset_left = 680.0
+offset_top = 293.0
+offset_right = 776.0
+offset_bottom = 389.0
+texture = ExtResource("54_u0dsl")
 
 [node name="mana" type="TextureRect" parent="UI/MagicShopMenu"]
 layout_mode = 0
@@ -5686,7 +5701,7 @@ offset_left = 672.0
 offset_top = 490.0
 offset_right = 768.0
 offset_bottom = 586.0
-texture = ExtResource("45_3dx3a")
+texture = ExtResource("55_y3gjk")
 
 [node name="longsword" type="TextureRect" parent="UI/MagicShopMenu"]
 layout_mode = 0
@@ -5694,7 +5709,7 @@ offset_left = 673.0
 offset_top = 684.0
 offset_right = 769.0
 offset_bottom = 780.0
-texture = ExtResource("46_x5q7x")
+texture = ExtResource("56_pghvj")
 
 [node name="DeathMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -6961,11 +6976,11 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spell" to="UI/ShopMenu" method="_on_spell_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/ShopMenu" method="_on_spell_upgrade_pressed"]
 [connection signal="pressed" from="UI/MagicShopMenu/buttons/VBoxContainer/Yes" to="UI/MagicShopMenu" method="_on_yes_pressed"]
-[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/armor" to="UI/MagicShopMenu" method="_on_armor_pressed"]
-[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/sharpen" to="UI/MagicShopMenu" method="_on_sharpen_pressed"]
-[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/upgrade" to="UI/MagicShopMenu" method="_on_upgrade_pressed"]
-[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/spell" to="UI/MagicShopMenu" method="_on_spell_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/fireball" to="UI/MagicShopMenu" method="_on_fireball_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/icycle" to="UI/MagicShopMenu" method="_on_icycle_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/lightning" to="UI/MagicShopMenu" method="_on_lightning_pressed"]
 [connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/MagicShopMenu" method="_on_spell_upgrade_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/manaUpgrade" to="UI/MagicShopMenu" method="_on_mana_upgrade_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Replay" to="UI/DeathMenu" method="_on_replay_pressed"]
 [connection signal="pressed" from="UI/DeathMenu/buttons/VBoxContainer/Menu" to="UI/DeathMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/WaveMenu/buttons/VBoxContainer/Continue" to="UI/WaveMenu" method="_on_continue_pressed"]

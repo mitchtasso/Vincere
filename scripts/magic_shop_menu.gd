@@ -7,13 +7,6 @@ extends Control
 @onready var dialogue_menu: Control = $"../DialogueMenu"
 @onready var dialogueFocus: Button = $"../DialogueMenu/dialogueButtons/VBoxContainer/text1"
 
-#Item buttons
-@onready var armorButton: Button = $itemButtons/VBoxContainer/armor
-@onready var spellButton: Button = $itemButtons/VBoxContainer/spell
-@onready var sharpenButton: Button = $itemButtons/VBoxContainer/sharpen
-@onready var upgradeButton: Button = $itemButtons/VBoxContainer/upgrade
-
-
 #Item price labels
 @onready var armorLabel: Label = $priceLabels/VBoxContainer/armor
 @onready var spellLabel: Label = $priceLabels/VBoxContainer/spell
@@ -22,52 +15,52 @@ extends Control
 @onready var soul_label: Label = $souls/soulLabel
 @onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
-var armorPrice: int = 1000
-var spellPrice: int = 5000
-var sharpenPrice: int = 4000
-var upgradePrice: int = 10000
-var spellUpgradePrice: int = 4000
+var fireballPrice: int = 1000
+var icyclePrice: int = 1000
+var lightningPrice: int = 1000
+var spellUpgradePrice: int = 1000
+var manaUpgradePrice: int = 1000
 
 func _process(_delta: float) -> void:
 	
-	if player.ARMOR < 50:
-		armorLabel.text = "-" + str(armorPrice)
+	if player.fireSpell < 1:
+		armorLabel.text = "-" + str(fireballPrice)
 		armorLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	else:
-		armorLabel.text = "Full"
+		armorLabel.text = "Purchased"
 		armorLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
-	if player.playerAttack < 75:
-		sharpLabel.text = "-" + str(sharpenPrice)
+	if player.iceSpell < 1:
+		sharpLabel.text = "-" + str(icyclePrice)
 		sharpLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	else:
 		sharpLabel.text = "Purchased"
 		sharpLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
-	if player.SPELL == 0:
-		spellLabel.text = "-" + str(spellPrice)
-		spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-	elif player.SPELL == 1:
-		spellLabel.text = "Purchased"
-		spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
-	
-	if player.UPGRADE == 0:
-		upgradeLabel.text = "-" + str(upgradePrice)
+	if player.lightningSpell < 1:
+		upgradeLabel.text = "-" + str(lightningPrice)
 		upgradeLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-	elif player.UPGRADE == 1:
+	else:
 		upgradeLabel.text = "Purchased"
 		upgradeLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	if player.playerMagicAtk < 75:
 		if player.SPELL == 1:
-			spell_upgrade_label.text = "-" + str(spellUpgradePrice)
-			spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
+			spellLabel.text = "-" + str(spellUpgradePrice)
+			spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 		else:
-			spell_upgrade_label.text = "N/A"
-			spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 0, 0))
+			spellLabel.text = "N/A"
+			spellLabel.set("theme_override_colors/font_color", Color(255, 0, 0))
 	else:
-		spell_upgrade_label.text = "Purchased"
-		spell_upgrade_label.set("theme_override_colors/font_color", Color(0, 255, 0))
+		spellLabel.text = "Purchased"
+		spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
+	
+	if player.SPELL == 1:
+		spell_upgrade_label.text = "-" + str(manaUpgradePrice)
+		spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
+	else:
+		spell_upgrade_label.text = "N/A"
+		spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 0, 0))
 	
 	soul_label.text = "   : " + str(player.souls)
 
@@ -77,31 +70,34 @@ func _on_yes_pressed() -> void:
 	dialogue_menu.show()
 	dialogueFocus.grab_focus()	
 
-func _on_armor_pressed() -> void:
+func _on_fireball_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= armorPrice and player.ARMOR < 50:
-		player.souls -= armorPrice
-		player.ARMOR += 50
-
-func _on_spell_pressed() -> void:
-	menuButtonSound.play()
-	if player.souls >= spellPrice and player.SPELL == 0:
-		player.souls -= spellPrice
+	if player.souls >= fireballPrice and player.fireSpell < 1:
+		player.souls -= fireballPrice
+		player.fireSpell = 1
 		player.SPELL = 1
 
-func _on_sharpen_pressed() -> void:
+func _on_icycle_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= sharpenPrice and player.playerAttack < 75:
-		player.souls -= sharpenPrice
-		player.playerAttack += 5
+	if player.souls >= icyclePrice and player.iceSpell < 1:
+		player.souls -= icyclePrice
+		player.iceSpell = 1
+		player.SPELL = 1
 
-func _on_upgrade_pressed() -> void:
+func _on_lightning_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= upgradePrice and player.UPGRADE == 0:
-		player.souls -= upgradePrice
-		player.UPGRADE = 1
+	if player.souls >= lightningPrice and player.lightningSpell < 1:
+		player.souls -= lightningPrice
+		player.lightningSpell = 1
+		player.SPELL = 1
 
 func _on_spell_upgrade_pressed() -> void:
+	menuButtonSound.play()
+	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75 and player.SPELL == 1:
+		player.souls -= spellUpgradePrice
+		player.playerMagicAtk += 5
+
+func _on_mana_upgrade_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75 and player.SPELL == 1:
 		player.souls -= spellUpgradePrice

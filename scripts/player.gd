@@ -12,7 +12,15 @@ var playerDeath: bool = false
 var HEALTH: int = 100
 var ARMOR: int = 0
 var MANA: float = 0
-var SPELL: int = 0
+
+var SPELL: int = 0 
+var spellScrolls: Array = [0,0,0]
+var fireSpell: int = 0
+var lightningSpell: int = 0
+var iceSpell: int = 0
+var changeSpell: int = 0
+var activeSpell: int = 0
+
 var UPGRADE: int = 0
 var playerAttack: int = 25
 var playerMagicAtk: int = 50
@@ -70,7 +78,10 @@ var longsword = preload("res://assets/player/templarArmWlongsword.obj")
 var playerData = PlayerData.new()
 
 # Magic 
-var magic = load("res://scenes/beam_magic.tscn")
+var magic
+var fireMagic = load("res://scenes/beam_magic.tscn")
+var iceMagic = load("res://scenes/ice_magic.tscn")
+var lightningMagic = load("res://scenes/lightning_magic.tscn")
 var instance
 @onready var arm_cast: RayCast3D = $Head/Camera3D/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/Camera3D/ArmMesh
@@ -92,6 +103,7 @@ var direct_file_path: String = "user://VincereSaves/"
 @onready var mana_bar: ProgressBar = $"../UI/statsUI/manaBar"
 @onready var healthVin: TextureRect = $"../UI/healthVin"
 @onready var low_health_vin: TextureRect = $"../UI/lowHealthVin"
+@onready var spell_UI_pic: TextureRect = $"../UI/statsUI/spell"
 
 #Menu UI Elements
 @onready var pauseMenu: Control = $"../UI/PauseMenu"
@@ -103,6 +115,7 @@ var direct_file_path: String = "user://VincereSaves/"
 @onready var controls_menu: Control = $"../UI/ControlsMenu"
 @onready var autosaveLabel: MarginContainer = $"../UI/autoSaveText"
 @onready var autosaveTextTimer: Timer = $"../UI/autoSaveText/Timer"
+@onready var magic_change_sound: AudioStreamPlayer = $"../sounds/magicChange"
 
 #Wave Menu
 @onready var pointsWave: Label = $"../UI/WaveMenu/buttons/VBoxContainer/points"
@@ -183,8 +196,39 @@ func _physics_process(_delta):
 	else:
 		arm_mesh.show()
 	
-	var time_string = "%02d:%02d" % [gameTimeMin, gameTimeSec]
+	#Change spell system
+	if Input.is_action_just_pressed("change_spell"):
+		changeSpell += 1
+		if SPELL == 1:
+			magic_change_sound.play()
+	
+	if changeSpell >= 3:
+		changeSpell = 0
+	
+	if changeSpell == 0:
+		if fireSpell == 1:
+			magic = load("res://scenes/beam_magic.tscn")
+			spell_UI_pic.texture = load("res://assets/menu/fireball.png")
+			activeSpell = 1
+		else:
+			changeSpell = 1
+	elif changeSpell == 1:
+		if iceSpell == 1:
+			magic = load("res://scenes/ice_magic.tscn")
+			spell_UI_pic.texture = load("res://assets/menu/icycle.png")
+			activeSpell = 2
+		else:
+			changeSpell = 2
+	elif changeSpell == 2:
+		if lightningSpell == 1:
+			magic = load("res://scenes/lightning_magic.tscn")
+			spell_UI_pic.texture = load("res://assets/menu/lightning.png")
+			activeSpell = 3
+		else:
+			changeSpell = 0
+	
 	#UI refresh
+	var time_string = "%02d:%02d" % [gameTimeMin, gameTimeSec]
 	pointsLabel.text = "   : " + str(points)
 	soulsLabel.text = "   : " + str(souls)
 	timerLabel.text = "   : " + time_string
@@ -192,6 +236,7 @@ func _physics_process(_delta):
 	armor_bar.value = ARMOR
 	mana_bar.value = MANA
 	
+	#Stat refresh
 	if ARMOR <= 0:
 		ARMOR = 0
 	elif ARMOR >= 50:
@@ -634,6 +679,9 @@ func load_data():
 	ARMOR = playerData.armor
 	UPGRADE = playerData.upgrade
 	modeType = playerData.modeType
+	fireSpell = playerData.fireSpell
+	iceSpell = playerData.iceSpell
+	lightningSpell = playerData.lightningSpell
 	player.position = playerData.POS
 	
 	if modeType == 0:
@@ -680,6 +728,9 @@ func save():
 	playerData.upgrade = UPGRADE
 	playerData.modeType = modeType
 	playerData.POS = player.position
+	playerData.fireSpell = fireSpell
+	playerData.lightningSpell = lightningSpell
+	playerData.iceSpell = iceSpell
 	ResourceSaver.save(playerData, save_file_path + save_file_name)
 
 func stat_reset():
@@ -690,6 +741,9 @@ func stat_reset():
 	playerAttack = 25
 	playerMagicAtk = 50
 	SPELL = 0
+	fireSpell = 0
+	lightningSpell = 0
+	iceSpell = 0
 	ARMOR = 0
 	UPGRADE = 0
 	modeType = 0
