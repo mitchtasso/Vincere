@@ -11,6 +11,8 @@ extends CharacterBody3D
 @onready var demon_death: GPUParticles3D = $demonDeath
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var i_frame_timer: Timer = $iFrameTimer
+@onready var frozen_timer: Timer = $frozenTimer
+@onready var ice_block: MeshInstance3D = $MeshInstance3D/iceBlock
 
 var HEALTH: int = 75
 var maxHealth: int = 75
@@ -24,6 +26,7 @@ var death: bool = false
 var next_nav_point
 var souls: int = 100
 var iFrame: bool = false
+var frozen: bool = false
 
 func _physics_process(delta):
 	
@@ -32,6 +35,7 @@ func _physics_process(delta):
 	
 	if HEALTH <= 0:
 		hitbox.disabled = true
+		hurtbox.disabled = true
 		demon_hit.stop()
 		deathSound.play()
 		death = true
@@ -45,6 +49,10 @@ func _physics_process(delta):
 	
 	if death == true:
 		hitbox.disabled = true
+		hurtbox.disabled = true
+	
+	if frozen == true:
+		hurtbox.disabled = true
 	
 	if HEALTH >= maxHealth:
 		enemy_health_bar.hide()
@@ -54,17 +62,18 @@ func _physics_process(delta):
 		enemy_health_bar.show()
 	
 	navReset += 1
-	if stunLock == false:
-		if navReset >= navTime:
-			velocity = Vector3.ZERO
-			nav_agent.set_target_position(player.global_transform.origin)
-			next_nav_point = nav_agent.get_next_path_position()
-			velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
-		
-			navReset = 0
-		if death == false:
-			rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
-	move_and_slide()
+	if frozen == false:
+		if stunLock == false:
+			if navReset >= navTime:
+				velocity = Vector3.ZERO
+				nav_agent.set_target_position(player.global_transform.origin)
+				next_nav_point = nav_agent.get_next_path_position()
+				velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
+			
+				navReset = 0
+			if death == false:
+				rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
+		move_and_slide()
 	
 	if stunLock == true:
 		hurtbox.disabled = true
@@ -95,6 +104,23 @@ func _on_hitbox_area_entered(area):
 		stun_timer.start()
 		iFrame = true
 		i_frame_timer.start()
+	if area.is_in_group("lightningMagic") and iFrame == false:
+		velocity = Vector3.ZERO
+		demon_hit.play()
+		HEALTH -= player.playerMagicAtk * 0.5
+		stunLock = true
+		stun_timer.start()
+		iFrame = true
+		i_frame_timer.start()
+	if area.is_in_group("iceMagic") and iFrame == false:
+		velocity = Vector3.ZERO
+		demon_hit.play()
+		HEALTH -= player.playerMagicAtk * 0.75
+		frozen = true
+		frozen_timer.start()
+		ice_block.show()
+		iFrame = true
+		i_frame_timer.start()
 	if area.is_in_group("weapon") and player.attackActive == true and iFrame == false:
 		demon_hit.play()
 		velocity = Vector3.ZERO
@@ -114,3 +140,8 @@ func _on_demon_death_finished() -> void:
 
 func _on_i_frame_timer_timeout() -> void:
 	iFrame = false
+
+func _on_frozen_timer_timeout() -> void:
+	hurtbox.disabled = false
+	frozen = false
+	ice_block.hide()

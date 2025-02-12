@@ -4,13 +4,15 @@
 [ext_resource type="AudioStream" uid="uid://be1ricrtfx8tc" path="res://sounds/retro/sizzle.wav" id="2_11yir"]
 [ext_resource type="AudioStream" uid="uid://dd305xr0fxcdt" path="res://sounds/retro/boom.wav" id="3_ji21q"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_70uqi"]
-size = Vector3(0.35, 0.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i5ci"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tl8f"]
+albedo_color = Color(0.444314, 0.621122, 1, 1)
 emission_enabled = true
 emission = Color(0, 0, 1, 1)
 emission_energy_multiplier = 5.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_jj3mv"]
+material = SubResource("StandardMaterial3D_7tl8f")
+size = Vector3(0.35, 0.35, 0.35)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hbh3j"]
 points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
@@ -25,7 +27,7 @@ initial_velocity_max = 15.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gxr3"]
 albedo_color = Color(0, 0.25098, 1, 1)
 emission_enabled = true
-emission = Color(0, 0.0705882, 1, 1)
+emission = Color(0.929133, 0.953034, 1, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_r6xt0"]
@@ -39,9 +41,9 @@ initial_velocity_min = 8.0
 initial_velocity_max = 8.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4oaw"]
-albedo_color = Color(0.588235, 0.25098, 0, 1)
+albedo_color = Color(0, 0, 1, 1)
 emission_enabled = true
-emission = Color(0.639216, 0.0705882, 0, 1)
+emission = Color(0.501961, 0.901961, 0.901961, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ltqnt"]
@@ -51,15 +53,19 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5xm5"]
 size = Vector3(0.35, 0.35, 1)
 
-[node name="iceMagic" type="Area3D" groups=["iceMagic", "magic"]]
+[node name="iceMagic" type="Area3D" groups=["iceMagic"]]
 collision_layer = 15
 collision_mask = 15
 script = ExtResource("1_yqvhv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
-mesh = SubResource("BoxMesh_70uqi")
-surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, -0.327281)
+mesh = SubResource("PrismMesh_jj3mv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, -8.74228e-08, -1, 8.74228e-08, 3.82137e-15, 8.74228e-08, 1, 3.0415e-08, -0.347907, 1.52075e-08)
+mesh = SubResource("PrismMesh_jj3mv")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
@@ -96,6 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593811)
 stream = ExtResource("3_ji21q")
 volume_db = -5.0
 max_db = -5.0
+pitch_scale = 1.5
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, 0)
