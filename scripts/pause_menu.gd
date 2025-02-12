@@ -35,6 +35,10 @@ extends Control
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
 @onready var replayTimer: Timer = $"../../replayTimer"
 
+var fireSpell: String
+var lightningSpell: String
+var iceSpell: String
+
 func _on_resume_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	menuButtonSound.play()
@@ -66,7 +70,7 @@ func _on_stats_pressed() -> void:
 	controlsBG.show()
 	
 	health.text = "Health: " + str(player.HEALTH) + "/" + "100"
-	armor.text = "Armor: " + str(player.ARMOR) + "/" + "50"
+	armor.text = "Armor: " + str(player.ARMOR) + "/" + str(player.maxArmor)
 	melee_attack.text = "Melee Attack: " + str(player.playerAttack)
 	magic_attack.text = "Magic Attack: " + str(player.playerMagicAtk)
 	
@@ -75,10 +79,20 @@ func _on_stats_pressed() -> void:
 	else:
 		weapon_type.text = "Weapon: LONGSWORD"
 	
-	if player.SPELL == 0:
-		magic_type.text = "Magic: None"
+	if player.fireSpell == 1:
+		fireSpell = "\n| Fireball"
 	else:
-		magic_type.text = "Magic: Fireball"
+		fireSpell = ""
+	if player.lightningSpell == 1:
+		lightningSpell = "\n| Lightning"
+	else:
+		fireSpell = ""
+	if player.iceSpell == 1:
+		iceSpell = "\n| Icycle"
+	else:
+		iceSpell = ""
+	
+	magic_type.text = "Spells: " + fireSpell + iceSpell + lightningSpell 
 	
 	tainted_souls.text = "Tainted Souls: " + str(player.souls)
 	demons_slain.text = "Demons Slain: " + str(player.points)

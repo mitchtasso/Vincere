@@ -26,7 +26,7 @@ var armorPrice: int = 1000
 var spellPrice: int = 5000
 var sharpenPrice: int = 4000
 var upgradePrice: int = 10000
-var spellUpgradePrice: int = 4000
+var armorUpgradePrice: int = 4000
 
 func _process(_delta: float) -> void:
 	
@@ -44,10 +44,17 @@ func _process(_delta: float) -> void:
 		sharpLabel.text = "Purchased"
 		sharpLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
-	if player.SPELL == 0:
-		spellLabel.text = "-" + str(spellPrice)
+	#if player.SPELL == 0:
+		#spellLabel.text = "-" + str(spellPrice)
+		#spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+	#elif player.SPELL == 1:
+		#spellLabel.text = "Purchased"
+		#spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
+	
+	if player.maxArmor < 100:
+		spellLabel.text = "-" + str(armorUpgradePrice)
 		spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-	elif player.SPELL == 1:
+	else:
 		spellLabel.text = "Purchased"
 		spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
@@ -57,17 +64,6 @@ func _process(_delta: float) -> void:
 	elif player.UPGRADE == 1:
 		upgradeLabel.text = "Purchased"
 		upgradeLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
-	
-	if player.playerMagicAtk < 75:
-		if player.SPELL == 1:
-			spell_upgrade_label.text = "-" + str(spellUpgradePrice)
-			spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
-		else:
-			spell_upgrade_label.text = "N/A"
-			spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 0, 0))
-	else:
-		spell_upgrade_label.text = "Purchased"
-		spell_upgrade_label.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	soul_label.text = "   : " + str(player.souls)
 
@@ -85,9 +81,9 @@ func _on_armor_pressed() -> void:
 
 func _on_spell_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= spellPrice and player.SPELL == 0:
-		player.souls -= spellPrice
-		player.SPELL = 1
+	if player.souls >= armorUpgradePrice and player.maxArmor < 100:
+		player.souls -= armorUpgradePrice
+		player.maxArmor += 10
 
 func _on_sharpen_pressed() -> void:
 	menuButtonSound.play()
@@ -103,6 +99,6 @@ func _on_upgrade_pressed() -> void:
 
 func _on_spell_upgrade_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75 and player.SPELL == 1:
-		player.souls -= spellUpgradePrice
-		player.playerMagicAtk += 5
+	if player.souls >= armorUpgradePrice and player.maxArmor < 100:
+		player.souls -= armorUpgradePrice
+		player.maxArmor += 10

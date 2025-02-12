@@ -11,6 +11,7 @@ var attackActive: bool = false
 var playerDeath: bool = false
 var HEALTH: int = 100
 var ARMOR: int = 0
+var maxArmor: int = 50
 var MANA: float = 0
 
 var SPELL: int = 0 
@@ -239,9 +240,9 @@ func _physics_process(_delta):
 	#Stat refresh
 	if ARMOR <= 0:
 		ARMOR = 0
-	elif ARMOR >= 50:
-		ARMOR = 50
-	armor_bar.max_value = 50
+	elif ARMOR >= maxArmor:
+		ARMOR = maxArmor
+	armor_bar.max_value = maxArmor
 	if armor_bar.value <= 0:
 		armor_bar.hide()
 	else:
@@ -669,6 +670,7 @@ func load_data():
 	playerMagicAtk = playerData.playerMagicAtk
 	SPELL = playerData.spell
 	ARMOR = playerData.armor
+	maxArmor = playerData.maxArmor
 	UPGRADE = playerData.upgrade
 	modeType = playerData.modeType
 	fireSpell = playerData.fireSpell
@@ -725,6 +727,7 @@ func save():
 	playerData.lightningSpell = lightningSpell
 	playerData.iceSpell = iceSpell
 	playerData.playerMagicRegen = playerMagicRegen
+	playerData.maxArmor = maxArmor
 	ResourceSaver.save(playerData, save_file_path + save_file_name)
 
 func stat_reset():
@@ -739,6 +742,7 @@ func stat_reset():
 	lightningSpell = 0
 	iceSpell = 0
 	ARMOR = 0
+	maxArmor = 50
 	UPGRADE = 0
 	modeType = 0
 	playerMagicRegen = 0.2
