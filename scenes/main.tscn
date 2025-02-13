@@ -4067,6 +4067,10 @@ autostart = true
 wait_time = 8.0
 autostart = true
 
+[node name="spawnTimerDemon5" type="Timer" parent="allEnemies"]
+wait_time = 10.0
+autostart = true
+
 [node name="spawns" type="Node3D" parent="."]
 
 [node name="spawn" type="Node3D" parent="spawns"]
@@ -6983,6 +6987,7 @@ text = "Version: 1.0"
 [connection signal="timeout" from="allEnemies/spawnTimerDemon2" to="." method="_on_spawn_timer_demon_2_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon3" to="." method="_on_spawn_timer_demon_3_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon4" to="." method="_on_spawn_timer_demon_4_timeout"]
+[connection signal="timeout" from="allEnemies/spawnTimerDemon5" to="." method="_on_spawn_timer_demon_5_timeout"]
 [connection signal="timeout" from="dayChangeTimer" to="WorldEnvironment" method="_on_day_change_timer_timeout"]
 [connection signal="timeout" from="replayTimer" to="player" method="_on_replay_timer_timeout"]
 [connection signal="timeout" from="gameTime" to="player" method="_on_game_time_timeout"]

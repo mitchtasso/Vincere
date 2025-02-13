@@ -417,7 +417,7 @@ func _on_player_hitbox_area_entered(area):
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
-			ARMOR -= 10
+			ARMOR -= 15
 		else:
 			HEALTH -= 15
 	if area.is_in_group("enemy2") and iFrame == false:
@@ -435,9 +435,9 @@ func _on_player_hitbox_area_entered(area):
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
-			ARMOR -= 15
+			ARMOR -= 20
 		else:
-			HEALTH -= 15
+			HEALTH -= 20
 	if area.is_in_group("enemy4") and iFrame == false:
 		iFrame = true
 		i_frame_timer.start()
@@ -447,6 +447,15 @@ func _on_player_hitbox_area_entered(area):
 			ARMOR -= 10
 		else:
 			HEALTH -= 10
+	if area.is_in_group("enemy5") and iFrame == false:
+		iFrame = true
+		i_frame_timer.start()
+		healthVin.show()
+		vin_timer.start()
+		if ARMOR > 0:
+			ARMOR -= 20
+		else:
+			HEALTH -= 20
 	if area.is_in_group("boss") and iFrame == false and boss_enemy_character.attackActive == true:
 		iFrame = true
 		i_frame_timer.start()

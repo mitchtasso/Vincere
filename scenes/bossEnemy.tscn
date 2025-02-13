@@ -62,14 +62,14 @@ initial_velocity_min = 8.0
 initial_velocity_max = 8.0
 gravity = Vector3(0, 9.8, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8mam"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxt2f"]
 albedo_color = Color(1, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4pcb0"]
-material = SubResource("StandardMaterial3D_q8mam")
+material = SubResource("StandardMaterial3D_jxt2f")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="Animation" id="Animation_smwo2"]

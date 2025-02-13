@@ -7,6 +7,7 @@ extends Node3D
 @onready var respawnTimerDemon2: Timer = $allEnemies/spawnTimerDemon2
 @onready var respawnTimerDemon3: Timer = $allEnemies/spawnTimerDemon3
 @onready var respawnTimerDemon4: Timer = $allEnemies/spawnTimerDemon4
+@onready var respawnTimerDemon5: Timer = $allEnemies/spawnTimerDemon5
 @onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
@@ -14,6 +15,7 @@ var demon = load("res://scenes/enemy1.tscn")
 var demon2 = load("res://scenes/enemy2.tscn")
 var demon3 = load("res://scenes/enemy3.tscn")
 var demon4 = load("res://scenes/enemy4.tscn")
+var demon5 = load("res://scenes/enemy5.tscn")
 var instance
 var wave: int = 1
 var spawnDecrease: float = 0.1
@@ -21,6 +23,7 @@ var demon1SpawnTime: float = 3.0
 var demon2SpawnTime: float = 5.0
 var demon3SpawnTime: float = 10.0
 var demon4SpawnTime: float = 8.0
+var demon5SpawnTime: float = 10.0
 var dec200: float = 0.95
 var dec400: float = 0.90
 var dec600: float = 0.85
@@ -121,6 +124,15 @@ func _on_spawn_timer_demon_4_timeout() -> void:
 		navigation_region.add_child(instance)
 		instance.add_to_group("enemySet")
 		respawnTimerDemon4.start()
+
+func _on_spawn_timer_demon_5_timeout() -> void:
+	if wave > 8 and spawnValid == true and player.modeType == 0:
+		var spawn_point = _get_random_child(spawns).global_position
+		instance = demon5.instantiate()
+		instance.position = spawn_point
+		navigation_region.add_child(instance)
+		instance.add_to_group("enemySet")
+		respawnTimerDemon5.start()
 
 func demon_spawn_dec():
 	if wave > 6:

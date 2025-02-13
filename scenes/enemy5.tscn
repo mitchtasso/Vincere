@@ -1,0 +1,227 @@
+[gd_scene load_steps=20 format=3 uid="uid://b2xd0al68l5e2"]
+
+[ext_resource type="Script" path="res://scripts/enemy_5.gd" id="1_eghht"]
+[ext_resource type="ArrayMesh" uid="uid://cvs4uauddvo7i" path="res://assets/enemy/enemy5.obj" id="2_5o7ns"]
+[ext_resource type="AudioStream" uid="uid://c6vvbh86868nw" path="res://sounds/demonSounds.wav" id="3_hrqae"]
+[ext_resource type="PackedScene" uid="uid://cv5yh37vpvyt4" path="res://scenes/enemy_health_bar.tscn" id="4_62y4l"]
+[ext_resource type="PackedScene" uid="uid://c8y1u7h25cpww" path="res://scenes/demonDeath.tscn" id="5_nknfl"]
+[ext_resource type="AudioStream" uid="uid://dluhp23fpkxov" path="res://sounds/demonDeath.wav" id="6_0mtri"]
+[ext_resource type="AudioStream" uid="uid://dd305xr0fxcdt" path="res://sounds/retro/boom.wav" id="7_n6xoa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr05l"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhy7k"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u711v"]
+material = SubResource("StandardMaterial3D_jhy7k")
+size = Vector3(1, 2.25, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0vukn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_xlrd5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_27v46"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38kad"]
+_data = {
+"RESET": SubResource("Animation_xlrd5"),
+"death": SubResource("Animation_27v46")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxvkl"]
+direction = Vector3(0, 0, 1)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eljr1"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_elat1"]
+material = SubResource("StandardMaterial3D_eljr1")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="enemy5" type="CharacterBody3D"]
+script = ExtResource("1_eghht")
+
+[node name="hurtbox" type="Area3D" parent="." groups=["enemies", "enemy5"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("BoxShape3D_lr05l")
+disabled = true
+
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_ulfji")
+
+[node name="playerDetect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerDetect"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("BoxShape3D_lr05l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.17199e-06, 0, 0.9, 0, 0.72, 0, -0.6, 0, -3.25799e-06, 0, 0.75, 0)
+mesh = ExtResource("2_5o7ns")
+
+[node name="iceBlock" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_u711v")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_qg1h1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536871, 1.65249, -0.00183249)
+stream = ExtResource("3_hrqae")
+volume_db = -2.0
+unit_size = 1.0
+pitch_scale = 1.3
+autoplay = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="enemyHealthBar" parent="SubViewport" instance=ExtResource("4_62y4l")]
+max_value = 100.0
+value = 100.0
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.77699, 0)
+texture = SubResource("ViewportTexture_0vukn")
+
+[node name="stunTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="demonDeath" parent="." instance=ExtResource("5_nknfl")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+amount = 32
+lifetime = 0.4
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("6_0mtri")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("6_0mtri")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38kad")
+}
+
+[node name="iFrameTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="explosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92178, -0.048346)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bxvkl")
+draw_pass_1 = SubResource("BoxMesh_elat1")
+
+[node name="boom" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62541, 0.00121564)
+stream = ExtResource("7_n6xoa")
+volume_db = -10.0
+max_db = -10.0
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
+[connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="frozenTimer" to="." method="_on_frozen_timer_timeout"]
+[connection signal="finished" from="explosion" to="." method="_on_explosion_finished"]
