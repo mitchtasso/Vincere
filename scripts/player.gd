@@ -6,10 +6,12 @@ const WALK_SPEED: float = 5.75
 const SPRINT_SPEED: float = 8.5
 const JUMP_VELOCITY: float = 5.5
 var points: int = 0
+var bossKills: int = 0
 var souls: int = 0
 var attackActive: bool = false
 var playerDeath: bool = false
 var HEALTH: int = 100
+var maxHealth: int = 100
 var ARMOR: int = 0
 var maxArmor: int = 50
 var MANA: float = 0
@@ -149,7 +151,7 @@ var gameTimeChange: int = 1
 var modeType: int = 0
 
 #Mouse Input for moving camera
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -260,6 +262,9 @@ func _physics_process(_delta):
 	
 	if SPELL == 1:
 		MANA += playerMagicRegen
+	
+	if HEALTH >= maxHealth:
+		HEALTH = maxHealth
 	
 	if HEALTH < 30:
 		low_health_vin.show()
@@ -663,6 +668,7 @@ func load_data():
 	
 	playerData = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
 	points = playerData.points
+	bossKills = playerData.bossKills
 	souls = playerData.souls
 	world.wave = playerData.wave
 	HEALTH = playerData.health
@@ -728,6 +734,11 @@ func save():
 	playerData.iceSpell = iceSpell
 	playerData.playerMagicRegen = playerMagicRegen
 	playerData.maxArmor = maxArmor
+	playerData.bossKills = bossKills
+	ResourceSaver.save(playerData, save_file_path + save_file_name)
+
+func save_boss_kills():
+	playerData.bossKills = bossKills
 	ResourceSaver.save(playerData, save_file_path + save_file_name)
 
 func stat_reset():

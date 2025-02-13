@@ -2,6 +2,7 @@ extends Resource
 class_name PlayerData
 
 @export var points: int = 0
+@export var bossKills: int = 0
 @export var souls: int = 0
 @export var wave: int = 1
 @export var health: int = 0

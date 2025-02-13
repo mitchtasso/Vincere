@@ -22,6 +22,8 @@ extends CharacterBody3D
 @onready var i_frame_timer: Timer = $iFrameTimer
 @onready var frozen_timer: Timer = $frozenTimer
 @onready var ice_block: MeshInstance3D = $MeshInstance3D/iceBlock
+@onready var explosion: GPUParticles3D = $explosion
+@onready var boom: AudioStreamPlayer3D = $boom
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -29,8 +31,8 @@ var instance
 @onready var arm_cast: RayCast3D = $Head/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/ArmMesh
 
-var HEALTH: float = 2000
-var maxHealth: float = 2000
+var HEALTH: float = 100
+var maxHealth: float = 100
 var SPEED: float = 10.0
 var maxSpeed: float = 10.0
 var stunSpeed: float = 0.9
@@ -73,7 +75,9 @@ func _physics_process(delta):
 		hitbox.disabled = true
 		navReset = 0
 		player.souls += 50000
+		player.bossKills += 1
 		player.add_point()
+		player.save_boss_kills()
 		velocity = Vector3.ZERO
 	
 	if HEALTH <= maxHealth/2:
@@ -148,6 +152,10 @@ func _on_stun_timer_timeout():
 	hurtbox.disabled = false
 
 func _on_demon_death_finished() -> void:
+	explosion.emitting = true
+	boom.play()
+
+func _on_explosion_finished() -> void:
 	cleric.position = Vector3(0,0.068,0)
 	world.gameEnd = true
 	self.queue_free()

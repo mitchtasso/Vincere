@@ -14,6 +14,7 @@ extends Control
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
 
 @onready var startCamera: Camera3D = $"../../MenuArea/StartCamera"
+@onready var cleric: MeshInstance3D = $"../../MenuArea/cleric"
 @onready var stats_ui: Control = $"../statsUI"
 @onready var player_ui: MarginContainer = $"../playerUI"
 @onready var wave_ui: MarginContainer = $"../waveUI"
@@ -26,6 +27,11 @@ var menuActive: bool = true
 var startMenuActive: bool = true
 
 func _process(_delta):
+	
+	if player.bossKills > 0:
+		cleric.show()
+		startCamera.position = Vector3(0.1, 1.8, 2.423)
+	
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

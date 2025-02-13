@@ -121,7 +121,7 @@ func _on_text_2_pressed() -> void:
 		shopFocus.grab_focus()
 	if activeNPC == NPC[1]:
 		if player.souls >= 500:
-			if player.HEALTH < 100:
+			if player.HEALTH < player.maxHealth:
 				heal_sound.play()
 				dialogLabel.text = "You are healed. This has consumed 500 tainted souls."
 				dialogLabel.set("theme_override_colors/font_color", Color(0, 255, 0))

@@ -30,6 +30,7 @@ extends Control
 @onready var templar: TextureRect = $templar
 @onready var icons: MarginContainer = $icons
 @onready var mana_regen: Label = $"statLabels/VBoxContainer/Mana Regen"
+@onready var load_last_save: Button = $"buttons/VBoxContainer/Load Last Save"
 
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
@@ -38,6 +39,12 @@ extends Control
 var fireSpell: String
 var lightningSpell: String
 var iceSpell: String
+
+func _process(delta: float) -> void:
+	if player.modeType == 2:
+		load_last_save.hide()
+	else:
+		load_last_save.show()
 
 func _on_resume_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -69,7 +76,7 @@ func _on_stats_pressed() -> void:
 	pauseButtons.hide()
 	controlsBG.show()
 	
-	health.text = "Health: " + str(player.HEALTH) + "/" + "100"
+	health.text = "Health: " + str(player.HEALTH) + "/" + str(player.maxHealth)
 	armor.text = "Armor: " + str(player.ARMOR) + "/" + str(player.maxArmor)
 	melee_attack.text = "Melee Attack: " + str(player.playerAttack)
 	magic_attack.text = "Magic Attack: " + str(player.playerMagicAtk)

@@ -29,7 +29,7 @@ var armorUpgradePrice: int = 3000
 
 func _process(_delta: float) -> void:
 	
-	if player.ARMOR < 50:
+	if player.ARMOR < player.maxArmor:
 		armorLabel.text = "-" + str(armorPrice)
 		armorLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	else:
@@ -74,9 +74,9 @@ func _on_yes_pressed() -> void:
 
 func _on_armor_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= armorPrice and player.ARMOR < 50:
+	if player.souls >= armorPrice and player.ARMOR < player.maxArmor:
 		player.souls -= armorPrice
-		player.ARMOR += 50
+		player.ARMOR += player.maxArmor
 
 func _on_spell_pressed() -> void:
 	menuButtonSound.play()
