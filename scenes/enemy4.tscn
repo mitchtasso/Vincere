@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://q7na58p4oo3r"]
+[gd_scene load_steps=15 format=3 uid="uid://q7na58p4oo3r"]
 
 [ext_resource type="Script" path="res://scripts/enemy_4.gd" id="1_w2r3t"]
 [ext_resource type="ArrayMesh" uid="uid://ca42vc4ftrjg7" path="res://assets/enemy/rangedDemon.obj" id="2_dm87a"]
@@ -8,6 +8,16 @@
 [ext_resource type="AudioStream" uid="uid://dluhp23fpkxov" path="res://sounds/demonDeath.wav" id="6_0mtri"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kurm5"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hxu6k"]
+material = SubResource("StandardMaterial3D_kurm5")
+size = Vector3(1, 2.25, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
 
@@ -99,6 +109,12 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 1.06581e-14, 0, 1, 1.11306,
 target_position = Vector3(40, 0, 0)
 collision_mask = 4
 
+[node name="iceBlock" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_hxu6k")
+skeleton = NodePath("../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
 shape = SubResource("CapsuleShape3D_qg1h1")
@@ -159,7 +175,12 @@ libraries = {
 wait_time = 0.3
 one_shot = true
 
+[node name="frozenTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
 [connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="frozenTimer" to="." method="_on_frozen_timer_timeout"]

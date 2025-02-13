@@ -5528,7 +5528,7 @@ theme_override_font_sizes/font_size = 60
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Spell Damage+ :"
+text = "Spell Damage:"
 horizontal_alignment = 2
 
 [node name="Label4" type="Label" parent="UI/MagicShopMenu/itemLabels/VBoxContainer"]
@@ -5539,7 +5539,7 @@ theme_override_font_sizes/font_size = 60
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Mana Regen+ :
+text = "Mana Regen:
 "
 horizontal_alignment = 2
 

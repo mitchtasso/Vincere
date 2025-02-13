@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=33 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -11,6 +11,16 @@
 [ext_resource type="AudioStream" uid="uid://c2614eik5s4cj" path="res://sounds/retro/attacked.wav" id="9_jxdio"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukcbr"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bwc82"]
+material = SubResource("StandardMaterial3D_ukcbr")
+size = Vector3(1.5, 2, 0.75)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
 
@@ -624,6 +634,12 @@ shape = SubResource("CapsuleShape3D_ulfji")
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.000258446, 0)
 mesh = ExtResource("2_vgi8h")
 
+[node name="iceBlock" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 3.63118, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_bwc82")
+skeleton = NodePath("../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1.37522, 0)
 shape = SubResource("CapsuleShape3D_qg1h1")
@@ -766,6 +782,10 @@ omni_range = 0.25
 wait_time = 0.3
 one_shot = true
 
+[node name="frozenTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
@@ -776,3 +796,4 @@ one_shot = true
 [connection signal="timeout" from="attackReset" to="." method="_on_attack_reset_timeout"]
 [connection signal="timeout" from="magicReset" to="." method="_on_magic_reset_timeout"]
 [connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="frozenTimer" to="." method="_on_frozen_timer_timeout"]

@@ -15,11 +15,11 @@ extends Control
 @onready var soul_label: Label = $souls/soulLabel
 @onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
-var fireballPrice: int = 1000
-var icyclePrice: int = 1000
-var lightningPrice: int = 1000
-var spellUpgradePrice: int = 1000
-var manaUpgradePrice: int = 1000
+var fireballPrice: int = 5000
+var icyclePrice: int = 4000
+var lightningPrice: int = 6000
+var spellUpgradePrice: int = 2000
+var manaUpgradePrice: int = 2000
 
 func _process(_delta: float) -> void:
 	

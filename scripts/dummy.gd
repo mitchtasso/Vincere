@@ -37,6 +37,16 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		health -= player.playerMagicAtk
 		iFrame = true
 		i_frame_timer.start()
+	if area.is_in_group("lightningMagic") and iFrame == false and death == false:
+		hit_sound.play()
+		health -= player.playerMagicAtk * 0.5
+		iFrame = true
+		i_frame_timer.start()
+	if area.is_in_group("iceMagic") and iFrame == false and death == false:
+		hit_sound.play()
+		health -= player.playerMagicAtk * 0.75
+		iFrame = true
+		i_frame_timer.start()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":

@@ -23,10 +23,9 @@ extends Control
 @onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
 var armorPrice: int = 1000
-var spellPrice: int = 5000
-var sharpenPrice: int = 4000
+var sharpenPrice: int = 3000
 var upgradePrice: int = 10000
-var armorUpgradePrice: int = 4000
+var armorUpgradePrice: int = 3000
 
 func _process(_delta: float) -> void:
 	
