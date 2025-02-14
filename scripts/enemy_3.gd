@@ -24,7 +24,7 @@ var navReset: int = 0
 var navTime: int = 60
 var stunLock: bool = false
 var death: bool = false
-var souls: int = 300
+var souls: int = 350
 var iFrame: bool = false
 var frozen: bool = false
 
@@ -42,7 +42,7 @@ func _physics_process(delta):
 		navReset = 0
 		player.souls += souls
 		player.add_point()
-		SPEED = -0.1
+		SPEED = -1
 		demon_death.emitting = true
 		animation_player.play("death")
 	
@@ -74,7 +74,7 @@ func _physics_process(delta):
 		move_and_slide()
 	
 	if stunLock == true:
-		SPEED = 2.5
+		SPEED *= 0.5
 		hurtbox.disabled = true
 	
 	if self.position.y >= 4:

@@ -30,7 +30,7 @@ var stunVel: float = -1.10
 var death: bool = false
 var next_nav_point
 var lockedOn: bool = false
-var souls: int = 200
+var souls: int = 250
 var iFrame: bool = false
 var frozen: bool = false
 
