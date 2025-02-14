@@ -496,6 +496,8 @@ func death():
 		#Reset player animation
 		animationPlayer.play("idle")
 		#Set player death
+		world_environment.day_change_timer.stop()
+		world_environment.night_time()
 		playerDeath = true
 		playerDeathSound.play()
 		#Reset player position

@@ -20,14 +20,13 @@ var instance
 var wave: int = 1
 var spawnDecrease: float = 0.1
 var demon1SpawnTime: float = 3.0
-var demon2SpawnTime: float = 5.0
+var demon2SpawnTime: float = 6.0
 var demon3SpawnTime: float = 10.0
 var demon4SpawnTime: float = 8.0
-var demon5SpawnTime: float = 10.0
+var demon5SpawnTime: float = 12.0
 var dec200: float = 0.95
 var dec400: float = 0.90
 var dec600: float = 0.85
-var inc777: float = 1.5
 var maxSpawn: int = 6
 var spawnValid: bool = true
 var gameEnd = false
