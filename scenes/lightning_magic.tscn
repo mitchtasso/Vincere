@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dd305xr0fxcdt" path="res://sounds/retro/boom.wav" id="3_ji21q"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_70uqi"]
-size = Vector3(0.3, 10, 0.3)
+size = Vector3(0.3, 2.5, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i5ci"]
 albedo_color = Color(0.537255, 0.505882, 0, 1)
@@ -43,8 +43,26 @@ collision_mask = 15
 script = ExtResource("1_qmtb4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.92087, -0.32608)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06714, -0.32608)
 mesh = SubResource("BoxMesh_70uqi")
+surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128585, 2.47078, 5.62062e-09)
+mesh = SubResource("BoxMesh_70uqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0302622, 4.72559, -1.3228e-09)
+mesh = SubResource("BoxMesh_70uqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1044, 6.948, 4.56345e-09)
+mesh = SubResource("BoxMesh_70uqi")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -52,7 +70,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5
 shape = SubResource("BoxShape3D_654im")
 
 [node name="explosion" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.327746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32302, -0.327746)
 emitting = false
 amount = 64
 lifetime = 0.5

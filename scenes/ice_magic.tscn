@@ -79,7 +79,7 @@ process_material = SubResource("ParticleProcessMaterial_he3a5")
 draw_pass_1 = SubResource("BoxMesh_r6xt0")
 
 [node name="explosion" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.671647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.343856)
 emitting = false
 amount = 16
 lifetime = 0.5

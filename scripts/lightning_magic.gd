@@ -14,7 +14,7 @@ var explosion: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	position += transform.basis * Vector3(0,-SPEED, 0) * delta
+	position += transform.basis * Vector3(0,-SPEED, -SPEED * 0.15) * delta
 	
 	if ray.is_colliding() and explosion == 0:
 		sizzle.stop()
