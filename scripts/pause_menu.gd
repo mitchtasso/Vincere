@@ -40,7 +40,7 @@ var fireSpell: String
 var lightningSpell: String
 var iceSpell: String
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.modeType == 2:
 		load_last_save.hide()
 	else:

@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://eyxjv8jlhq61" path="res://scenes/apothecary_stall.tscn" id="5_4cy14"]
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="5_h53e0"]
 [ext_resource type="PackedScene" uid="uid://ddjeiwcjgkud6" path="res://scenes/shop_stall.tscn" id="5_svlue"]
-[ext_resource type="AudioStream" uid="uid://cfbvxhtud5a6k" path="res://sounds/eerieGameMusic.wav" id="6_06xc8"]
 [ext_resource type="ArrayMesh" uid="uid://bih85ea5m8bo8" path="res://assets/world/grave.obj" id="6_23st1"]
 [ext_resource type="ArrayMesh" uid="uid://ntreeufyav0x" path="res://assets/world/paths.obj" id="6_t72xk"]
 [ext_resource type="ArrayMesh" uid="uid://d10022eu5oh84" path="res://assets/world/shopFence.obj" id="7_hwtjq"]
@@ -46,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
 [ext_resource type="AudioStream" uid="uid://bwiuqrnr58hnc" path="res://sounds/coolJam1.wav" id="25_14vnf"]
+[ext_resource type="Script" path="res://scripts/music_manager.gd" id="26_l8dat"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
 [ext_resource type="AudioStream" uid="uid://ycvf3dycd6jl" path="res://sounds/retro/heal.wav" id="31_j8qth"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
@@ -4099,8 +4099,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -15)
 
 [node name="sounds" type="Node3D" parent="."]
 
+[node name="musicManager" type="Node" parent="sounds"]
+script = ExtResource("26_l8dat")
+
 [node name="GameMusic" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("6_06xc8")
 volume_db = -25.0
 autoplay = true
 
