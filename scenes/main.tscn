@@ -254,7 +254,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6n6pl")
 shape = SubResource("ConvexPolygonShape3D_c1tvs")
 
 [node name="cleric" parent="Shop" instance=ExtResource("4_o2v7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4787, 0.084102, -3.14966)
+transform = Transform3D(-0.779021, 0, 0.626998, 0, 1, 0, -0.626998, 0, -0.779021, -9.10667, 0.084102, 2.00656)
 
 [node name="gateShop" type="StaticBody3D" parent="Shop"]
 
@@ -1359,26 +1359,6 @@ mesh = ExtResource("8_alnbp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14049, 0)
 shape = SubResource("BoxShape3D_q5g68")
 
-[node name="tree2" type="StaticBody3D" parent="Shop/miscTrees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03533, 0, -2.96571)
-
-[node name="tree" type="MeshInstance3D" parent="Shop/miscTrees/tree2"]
-mesh = ExtResource("8_alnbp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/miscTrees/tree2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14049, 0)
-shape = SubResource("BoxShape3D_q5g68")
-
-[node name="tree3" type="StaticBody3D" parent="Shop/miscTrees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03533, 0, 3.87925)
-
-[node name="tree" type="MeshInstance3D" parent="Shop/miscTrees/tree3"]
-mesh = ExtResource("8_alnbp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/miscTrees/tree3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14049, 0)
-shape = SubResource("BoxShape3D_q5g68")
-
 [node name="tree4" type="StaticBody3D" parent="Shop/miscTrees"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03533, 0, 9.70458)
 
@@ -1621,6 +1601,14 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.51
 
 [node name="dummy6" parent="Shop/dummies" instance=ExtResource("17_qqejl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -20.8272, 0, 24.866)
+
+[node name="wood" type="MeshInstance3D" parent="Shop"]
+transform = Transform3D(0.353553, 0, 0.353553, 0, 0.5, 0, -0.353553, 0, 0.353553, -8.61196, 0.146298, 0)
+mesh = ExtResource("39_wr4ne")
+skeleton = NodePath("../bonfire")
+
+[node name="bonfire" parent="Shop" instance=ExtResource("36_2sgga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60988, 0.218327, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_okat3")
