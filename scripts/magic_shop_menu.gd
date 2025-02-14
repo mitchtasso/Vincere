@@ -56,8 +56,12 @@ func _process(_delta: float) -> void:
 		spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	if player.SPELL == 1:
-		spell_upgrade_label.text = "-" + str(manaUpgradePrice)
-		spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
+		if player.playerMagicRegen < 0.45:
+			spell_upgrade_label.text = "-" + str(manaUpgradePrice)
+			spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 255, 255))
+		else:
+			spell_upgrade_label.text = "Purchased"
+			spell_upgrade_label.set("theme_override_colors/font_color", Color(0, 255, 0))
 	else:
 		spell_upgrade_label.text = "N/A"
 		spell_upgrade_label.set("theme_override_colors/font_color", Color(255, 0, 0))
