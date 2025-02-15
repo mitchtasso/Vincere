@@ -4064,26 +4064,50 @@ autostart = true
 [node name="spawn" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 33)
 
+[node name="spawn16" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8193, 0, 33)
+
 [node name="spawn2" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 33)
+
+[node name="spawn15" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7822, 0, 33)
 
 [node name="spawn3" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -33)
 
+[node name="spawn14" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0722, 0, -33)
+
 [node name="spawn4" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -33)
+
+[node name="spawn13" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0887, 0, -33)
 
 [node name="spawn5" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 15)
 
+[node name="spawn12" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 23.154)
+
 [node name="spawn6" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -15)
+
+[node name="spawn11" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -20.4693)
 
 [node name="spawn7" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 15)
 
+[node name="spawn10" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 19.2447)
+
 [node name="spawn8" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -15)
+
+[node name="spawn9" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -18.7171)
 
 [node name="sounds" type="Node3D" parent="."]
 
@@ -5968,7 +5992,7 @@ script = ExtResource("4_3hirp")
 metadata/_edit_use_anchors_ = true
 
 [node name="bg" type="TextureRect" parent="UI/PauseMenu"]
-modulate = Color(0, 0, 0, 0.337255)
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -5990,17 +6014,19 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/buttons"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="UI/PauseMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "PAUSED
+ "
+horizontal_alignment = 1
+
 [node name="Resume" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Resume"
-
-[node name="Load Last Save" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 90
-text = "Load Last Save"
 
 [node name="Stats" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -6014,6 +6040,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Controls"
+
+[node name="Load Last Save" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = " Load Last Save "
 
 [node name="Menu" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -7008,9 +7040,9 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/WaveMenu/buttons/VBoxContainer/Menu" to="UI/WaveMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/BossMenu/buttons/VBoxContainer/Continue" to="UI/BossMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Resume" to="UI/PauseMenu" method="_on_resume_pressed"]
-[connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Load Last Save" to="UI/PauseMenu" method="_on_load_last_save_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Stats" to="UI/PauseMenu" method="_on_stats_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Controls" to="UI/PauseMenu" method="_on_controls_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Load Last Save" to="UI/PauseMenu" method="_on_load_last_save_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/buttons/VBoxContainer/Menu" to="UI/PauseMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/back" to="UI/PauseMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="UI/StoryMenu/continuebutton/VBoxContainer/Continue" to="UI/StoryMenu" method="_on_continue_pressed"]
