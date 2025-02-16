@@ -6057,7 +6057,6 @@ text = "Continue"
 
 [node name="PauseMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6144,7 +6143,6 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_vy30d")
 
 [node name="diagram" type="TextureRect" parent="UI/PauseMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6155,14 +6153,17 @@ texture = ExtResource("24_jdv8w")
 
 [node name="Label" type="Label" parent="UI/PauseMenu/diagram"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1089.0
 offset_top = -93.0
-offset_right = 1072.0
+grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "  (NOTE: Sensitivity settings can only be changed from the main menu.)
+text = "(NOTE: Sensitivity settings can only be changed from the main menu.)
  "
 
 [node name="templar" type="TextureRect" parent="UI/PauseMenu"]
