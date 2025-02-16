@@ -1,9 +1,6 @@
 extends MeshInstance3D
 
 @onready var player_detect: ShapeCast3D = $playerDetect
-@onready var shop_menu: Control = $"../../../UI/ShopMenu"
-@onready var yesButton: Button = $"../../../UI/ShopMenu/buttons/VBoxContainer/Yes"
-@onready var player: CharacterBody3D = $"../../../player"
 @onready var start_menu: Control = $"../../../UI/StartMenu"
 @onready var dialogue_menu: Control = $"../../../UI/DialogueMenu"
 @onready var dialogueFocus: Button = $"../../../UI/DialogueMenu/dialogueButtons/VBoxContainer/text1"

@@ -3,7 +3,6 @@ extends MeshInstance3D
 @onready var player_detect: ShapeCast3D = $playerDetect
 @onready var continue_menu: Control = $"../../../UI/ContinueMenu"
 @onready var uiOptionsContinue: Button = $"../../../UI/ContinueMenu/buttons/VBoxContainer/Yes"
-@onready var player: CharacterBody3D = $"../../../player"
 @onready var start_menu: Control = $"../../../UI/StartMenu"
 @onready var detect_text: Label = $"../../../UI/crosshairText/VBoxContainer/Label"
 

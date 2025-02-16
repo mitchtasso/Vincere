@@ -2,11 +2,9 @@ extends StaticBody3D
 
 @onready var player_detect: ShapeCast3D = $playerDetect
 @onready var uiOptions: Button = $"../../UI/DialogueMenu/dialogueButtons/VBoxContainer/text1"
-@onready var player: CharacterBody3D = $"../../player"
 @onready var start_menu: Control = $"../../UI/StartMenu"
 @onready var dialogue_menu: Control = $"../../UI/DialogueMenu"
 @onready var detect_text: Label = $"../../UI/crosshairText/VBoxContainer/Label"
-@onready var boss_enemy: CharacterBody3D = $"../../bossEnemy"
 @onready var world: Node3D = $"../.."
 @onready var exclaim: Sprite3D = $Sprite3D
 

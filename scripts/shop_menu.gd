@@ -1,6 +1,5 @@
 extends Control
 
-@onready var startMenu: Control = $"../StartMenu"
 @onready var shopMenu: Control = $"."
 @onready var player: CharacterBody3D = $"../../player"
 @onready var menuButtonSound: AudioStreamPlayer = $"../../sounds/menuButton"
@@ -12,7 +11,6 @@ extends Control
 @onready var spellButton: Button = $itemButtons/VBoxContainer/spell
 @onready var sharpenButton: Button = $itemButtons/VBoxContainer/sharpen
 @onready var upgradeButton: Button = $itemButtons/VBoxContainer/upgrade
-
 
 #Item price labels
 @onready var armorLabel: Label = $priceLabels/VBoxContainer/armor
@@ -42,13 +40,6 @@ func _process(_delta: float) -> void:
 	else:
 		sharpLabel.text = "Purchased"
 		sharpLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
-	
-	#if player.SPELL == 0:
-		#spellLabel.text = "-" + str(spellPrice)
-		#spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
-	#elif player.SPELL == 1:
-		#spellLabel.text = "Purchased"
-		#spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	if player.maxArmor < 100:
 		spellLabel.text = "-" + str(armorUpgradePrice)

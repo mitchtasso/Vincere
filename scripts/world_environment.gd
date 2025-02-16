@@ -19,7 +19,6 @@ func _process(_delta: float) -> void:
 			day_time()
 		elif player.modeType == 2:
 			night_time()
-	
 
 func sun_rise():
 	dayChange = true

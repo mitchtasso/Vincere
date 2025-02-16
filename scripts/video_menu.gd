@@ -4,7 +4,6 @@ var resolution: int = 3
 var window: int = 0
 var vsync: int = 1
 var fpsCount: int = 1
-var fpsValue
 var FPS
 
 @onready var VideoMenu: Control = $"."

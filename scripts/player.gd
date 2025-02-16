@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 var speed
 var walking: bool = false
-const WALK_SPEED: float = 5.75
 const SPRINT_SPEED: float = 8.5
 const JUMP_VELOCITY: float = 5.5
 var points: int = 0
@@ -17,7 +16,6 @@ var maxArmor: int = 50
 var MANA: float = 0
 
 var SPELL: int = 0 
-var spellScrolls: Array = [0,0,0]
 var fireSpell: int = 0
 var lightningSpell: int = 0
 var iceSpell: int = 0

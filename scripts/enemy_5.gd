@@ -86,6 +86,7 @@ func _physics_process(delta):
 		velocity.y = 0.01
 	
 	if playerDetect == true:
+		animation_player.play("death")
 		hurtbox.disabled = false
 		explosion.emitting = true
 		boom.play()

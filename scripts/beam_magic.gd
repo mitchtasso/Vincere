@@ -13,7 +13,6 @@ var reset: int = 0
 var time: int = 30
 var explosion: int = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	position += transform.basis * Vector3(0,0,-SPEED) * delta
 	
