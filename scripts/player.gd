@@ -82,9 +82,6 @@ var playerData = PlayerData.new()
 
 # Magic 
 var magic
-var fireMagic = load("res://scenes/beam_magic.tscn")
-var iceMagic = load("res://scenes/ice_magic.tscn")
-var lightningMagic = load("res://scenes/lightning_magic.tscn")
 var instance
 @onready var arm_cast: RayCast3D = $Head/Camera3D/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/Camera3D/ArmMesh
@@ -155,7 +152,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(_delta):
 	
@@ -286,7 +283,7 @@ func _process(delta):
 	if InputEventJoypadMotion:
 		head.rotate_y((deg_to_rad(-controllerAxis.x) * controllerSensH) * delta)
 		camera.rotate_x((deg_to_rad(-controllerAxis.y) * controllerSensV) * delta)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 	
 	# Add the gravity.
 	if not is_on_floor():
