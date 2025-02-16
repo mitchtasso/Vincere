@@ -6057,6 +6057,7 @@ text = "Continue"
 
 [node name="PauseMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -6143,6 +6144,7 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_vy30d")
 
 [node name="diagram" type="TextureRect" parent="UI/PauseMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
