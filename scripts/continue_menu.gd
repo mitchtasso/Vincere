@@ -18,8 +18,11 @@ extends Control
 
 @onready var loading_screen: Control = $"../LoadingScreen"
 @onready var load_time: Timer = $"../LoadingScreen/loadTime"
+@onready var detect_text: Label = $"../crosshairText/VBoxContainer/Label"
 
 func _on_yes_pressed() -> void:
+	detect_text.hide()
+	detect_text.text = ""
 	if world.wave <= 10:
 		continueMenu.hide()
 		menuButtonSound.play()

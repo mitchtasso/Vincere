@@ -8,6 +8,8 @@ extends Control
 @onready var dialogueFocus: Button = $"../DialogueMenu/dialogueButtons/VBoxContainer/text1"
 
 #Item price labels
+@onready var price_labels: MarginContainer = $priceLabels
+
 @onready var armorLabel: Label = $priceLabels/VBoxContainer/armor
 @onready var spellLabel: Label = $priceLabels/VBoxContainer/spell
 @onready var sharpLabel: Label = $priceLabels/VBoxContainer/sharp
@@ -15,13 +17,48 @@ extends Control
 @onready var soul_label: Label = $souls/soulLabel
 @onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
 
+@onready var info_labels: MarginContainer = $infoLabels
+
+#Buttons
+@onready var item_buttons: MarginContainer = $itemButtons
+
+#icons
+@onready var shield: TextureRect = $shield
+@onready var mana: TextureRect = $mana
+@onready var spell_scroll: TextureRect = $spellScroll
+@onready var upgrade_sword: TextureRect = $upgradeSword
+@onready var longsword: TextureRect = $longsword
+
+
 var fireballPrice: int = 5000
 var icyclePrice: int = 4000
 var lightningPrice: int = 6000
 var spellUpgradePrice: int = 2000
 var manaUpgradePrice: int = 2000
+var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if infoSwap == 0:
+		price_labels.show()
+		item_buttons.show()
+		shield.show()
+		mana.show()
+		spell_scroll.show()
+		upgrade_sword.show()
+		longsword.show()
+		
+		info_labels.hide()
+	elif infoSwap == 1:
+		price_labels.hide()
+		item_buttons.hide()
+		shield.hide()
+		mana.hide()
+		spell_scroll.hide()
+		upgrade_sword.hide()
+		longsword.hide()
+		
+		info_labels.show()
 	
 	if player.fireSpell < 1:
 		armorLabel.text = "-" + str(fireballPrice)
@@ -69,6 +106,7 @@ func _process(_delta: float) -> void:
 	soul_label.text = "   : " + str(player.souls)
 
 func _on_yes_pressed() -> void:
+	infoSwap = 0
 	menuButtonSound.play()
 	shopMenu.hide()
 	dialogue_menu.show()
@@ -106,3 +144,11 @@ func _on_mana_upgrade_pressed() -> void:
 	if player.souls >= manaUpgradePrice and player.playerMagicRegen < 0.45 and player.SPELL == 1:
 		player.souls -= manaUpgradePrice
 		player.playerMagicRegen += 0.05
+
+func _on_info_button_pressed() -> void:
+	menuButtonSound.play()
+	if infoSwap == 0:
+		infoSwap += 1
+	elif infoSwap == 1:
+		infoSwap -= 1
+		

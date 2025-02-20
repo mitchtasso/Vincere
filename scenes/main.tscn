@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=118 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -67,6 +67,7 @@
 [ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
 [ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
 [ext_resource type="Texture2D" uid="uid://cfkr3aj4t5d1f" path="res://assets/menu/shieldIconPlus.png" id="52_7xhdr"]
+[ext_resource type="Texture2D" uid="uid://csvtyqc2jt2n5" path="res://assets/menu/infoIcon.png" id="52_uj7ww"]
 [ext_resource type="Script" path="res://scripts/magic_shop_menu.gd" id="53_mq7oj"]
 [ext_resource type="Texture2D" uid="uid://bfhgn06bfuq0g" path="res://assets/menu/fireball.png" id="54_u0dsl"]
 [ext_resource type="Texture2D" uid="uid://cg6d3ehc1m3pw" path="res://assets/menu/icycle.png" id="55_y3gjk"]
@@ -4644,6 +4645,7 @@ text = "+
 horizontal_alignment = 1
 
 [node name="crosshairText" type="MarginContainer" parent="UI"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -5134,6 +5136,18 @@ theme_override_font_sizes/font_size = 50
 text = "The Church will always provides..."
 horizontal_alignment = 1
 
+[node name="infoButton" type="Button" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 169.0
+offset_right = 192.0
+offset_bottom = 274.0
+tooltip_text = "Shop menu info."
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+icon = ExtResource("52_uj7ww")
+icon_alignment = 1
+
 [node name="title" type="MarginContainer" parent="UI/ShopMenu"]
 layout_mode = 1
 anchors_preset = 5
@@ -5224,7 +5238,7 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spell" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
+[node name="armorStrength" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5251,19 +5265,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Longsword:"
-horizontal_alignment = 2
-
-[node name="Label4" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-
-[node name="spellUpgrade" type="Label" parent="UI/ShopMenu/itemLabels/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 90
-text = "Spell Upgrade:
-"
 horizontal_alignment = 2
 
 [node name="itemButtons" type="MarginContainer" parent="UI/ShopMenu"]
@@ -5293,7 +5294,7 @@ text = "Repair"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spell" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
+[node name="armorStrength" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5314,17 +5315,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
 [node name="upgrade" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 90
-text = "Purchase"
-
-[node name="Label4" type="Label" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-
-[node name="spellUpgrade" type="Button" parent="UI/ShopMenu/itemButtons/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5360,7 +5350,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spell" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+[node name="armorStrength" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -5389,17 +5379,65 @@ theme_override_font_sizes/font_size = 90
 text = "-1000s"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
+[node name="infoLabels" type="MarginContainer" parent="UI/ShopMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -443.5
+offset_right = 70.0
+offset_bottom = 443.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ShopMenu/infoLabels"]
+layout_mode = 2
+
+[node name="armor" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Refills armor fully"
+
+[node name="Label3" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="spellUpgrade" type="Label" parent="UI/ShopMenu/priceLabels/VBoxContainer"]
-visible = false
+[node name="armorStrength" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "-1000s"
-horizontal_alignment = 1
+text = "Max armor +10"
+
+[node name="Label" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="sharp" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Sword attack +5"
+
+[node name="Label2" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="upgrade" type="Label" parent="UI/ShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "+Sword reach"
 
 [node name="shield" type="TextureRect" parent="UI/ShopMenu"]
 layout_mode = 0
@@ -5409,16 +5447,7 @@ offset_right = 780.0
 offset_bottom = 415.0
 texture = ExtResource("23_sry2p")
 
-[node name="mana" type="TextureRect" parent="UI/ShopMenu"]
-visible = false
-layout_mode = 0
-offset_left = 669.0
-offset_top = 1071.0
-offset_right = 765.0
-offset_bottom = 1167.0
-texture = ExtResource("28_5fp6e")
-
-[node name="spellScroll" type="TextureRect" parent="UI/ShopMenu"]
+[node name="longsword" type="TextureRect" parent="UI/ShopMenu"]
 layout_mode = 0
 offset_left = 671.0
 offset_top = 880.0
@@ -5426,7 +5455,7 @@ offset_right = 767.0
 offset_bottom = 976.0
 texture = ExtResource("46_x5q7x")
 
-[node name="upgradeSword" type="TextureRect" parent="UI/ShopMenu"]
+[node name="upgradeShield" type="TextureRect" parent="UI/ShopMenu"]
 layout_mode = 0
 offset_left = 654.0
 offset_top = 479.0
@@ -5434,7 +5463,7 @@ offset_right = 782.0
 offset_bottom = 607.0
 texture = ExtResource("52_7xhdr")
 
-[node name="longsword" type="TextureRect" parent="UI/ShopMenu"]
+[node name="attack" type="TextureRect" parent="UI/ShopMenu"]
 layout_mode = 0
 offset_left = 673.0
 offset_top = 684.0
@@ -5444,7 +5473,6 @@ texture = ExtResource("45_3dx3a")
 
 [node name="MagicShopMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5514,6 +5542,17 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 50
 text = "The Church will always provides..."
 horizontal_alignment = 1
+
+[node name="infoButton" type="Button" parent="UI/MagicShopMenu"]
+offset_left = 70.0
+offset_top = 169.0
+offset_right = 192.0
+offset_bottom = 274.0
+tooltip_text = "Shop menu info."
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+icon = ExtResource("52_uj7ww")
+icon_alignment = 1
 
 [node name="title" type="MarginContainer" parent="UI/MagicShopMenu"]
 layout_mode = 1
@@ -5778,6 +5817,77 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "-1000s"
 horizontal_alignment = 1
+
+[node name="infoLabels" type="MarginContainer" parent="UI/MagicShopMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -443.5
+offset_right = 70.0
+offset_bottom = 443.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MagicShopMenu/infoLabels"]
+layout_mode = 2
+
+[node name="armor" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Unlocks spell type"
+
+[node name="Label3" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="armorStrength" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Unlocks spell type"
+
+[node name="Label" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="sharp" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Unlocks spell type"
+
+[node name="Label2" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="upgrade" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Spell damage +5"
+
+[node name="Label4" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="upgrade2" type="Label" parent="UI/MagicShopMenu/infoLabels/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Regen rate +5"
 
 [node name="shield" type="TextureRect" parent="UI/MagicShopMenu"]
 layout_mode = 0
@@ -6997,6 +7107,7 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -7115,12 +7226,13 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/DialogueMenu/dialogueButtons/VBoxContainer/text2" to="UI/DialogueMenu" method="_on_text_2_pressed"]
 [connection signal="pressed" from="UI/DialogueMenu/dialogueButtons/VBoxContainer/text3" to="UI/DialogueMenu" method="_on_text_3_pressed"]
 [connection signal="pressed" from="UI/DialogueMenu/dialogueButtons/VBoxContainer/text4" to="UI/DialogueMenu" method="_on_text_4_pressed"]
+[connection signal="pressed" from="UI/ShopMenu/infoButton" to="UI/ShopMenu" method="_on_info_button_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/buttons/VBoxContainer/Yes" to="UI/ShopMenu" method="_on_yes_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/armor" to="UI/ShopMenu" method="_on_armor_pressed"]
-[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spell" to="UI/ShopMenu" method="_on_spell_pressed"]
+[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/armorStrength" to="UI/ShopMenu" method="_on_armor_strength_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/sharpen" to="UI/ShopMenu" method="_on_sharpen_pressed"]
 [connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/upgrade" to="UI/ShopMenu" method="_on_upgrade_pressed"]
-[connection signal="pressed" from="UI/ShopMenu/itemButtons/VBoxContainer/spellUpgrade" to="UI/ShopMenu" method="_on_spell_upgrade_pressed"]
+[connection signal="pressed" from="UI/MagicShopMenu/infoButton" to="UI/MagicShopMenu" method="_on_info_button_pressed"]
 [connection signal="pressed" from="UI/MagicShopMenu/buttons/VBoxContainer/Yes" to="UI/MagicShopMenu" method="_on_yes_pressed"]
 [connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/fireball" to="UI/MagicShopMenu" method="_on_fireball_pressed"]
 [connection signal="pressed" from="UI/MagicShopMenu/itemButtons/VBoxContainer/icycle" to="UI/MagicShopMenu" method="_on_icycle_pressed"]

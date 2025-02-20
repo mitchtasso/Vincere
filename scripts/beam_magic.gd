@@ -10,7 +10,7 @@ var SPEED: float = 40.0
 @onready var boom: AudioStreamPlayer3D = $boom
 
 var reset: int = 0
-var time: int = 30
+var time: int = 25
 var explosion: int = 0
 
 func _physics_process(delta: float):

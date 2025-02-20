@@ -8,24 +8,67 @@ extends Control
 
 #Item buttons
 @onready var armorButton: Button = $itemButtons/VBoxContainer/armor
-@onready var spellButton: Button = $itemButtons/VBoxContainer/spell
+@onready var armorStrengthButton: Button = $itemButtons/VBoxContainer/armorStrength
 @onready var sharpenButton: Button = $itemButtons/VBoxContainer/sharpen
 @onready var upgradeButton: Button = $itemButtons/VBoxContainer/upgrade
 
 #Item price labels
 @onready var armorLabel: Label = $priceLabels/VBoxContainer/armor
-@onready var spellLabel: Label = $priceLabels/VBoxContainer/spell
+@onready var armorStrengthLabel: Label = $priceLabels/VBoxContainer/armorStrength
 @onready var sharpLabel: Label = $priceLabels/VBoxContainer/sharp
 @onready var upgradeLabel: Label = $priceLabels/VBoxContainer/upgrade
 @onready var soul_label: Label = $souls/soulLabel
-@onready var spell_upgrade_label: Label = $priceLabels/VBoxContainer/spellUpgrade
+@onready var info_labels: MarginContainer = $infoLabels
+
+#icons
+@onready var shield: TextureRect = $shield
+@onready var longsword: TextureRect = $longsword
+@onready var upgrade_shield: TextureRect = $upgradeShield
+@onready var attack: TextureRect = $attack
 
 var armorPrice: int = 1000
 var sharpenPrice: int = 3000
 var upgradePrice: int = 10000
 var armorUpgradePrice: int = 3000
+var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if infoSwap == 0:
+		armorLabel.show()
+		armorStrengthLabel.show()
+		sharpLabel.show()
+		upgradeLabel.show()
+		
+		armorButton.show()
+		armorStrengthButton.show()
+		sharpenButton.show()
+		upgradeButton.show()
+		
+		shield.show()
+		longsword.show()
+		upgrade_shield.show()
+		attack.show()
+		
+		info_labels.hide()
+		
+	elif infoSwap == 1:
+		armorLabel.hide()
+		armorStrengthLabel.hide()
+		sharpLabel.hide()
+		upgradeLabel.hide()
+		
+		armorButton.hide()
+		armorStrengthButton.hide()
+		sharpenButton.hide()
+		upgradeButton.hide()
+		
+		shield.hide()
+		longsword.hide()
+		upgrade_shield.hide()
+		attack.hide()
+		
+		info_labels.show()
 	
 	if player.ARMOR < player.maxArmor:
 		armorLabel.text = "-" + str(armorPrice)
@@ -42,11 +85,11 @@ func _process(_delta: float) -> void:
 		sharpLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	if player.maxArmor < 100:
-		spellLabel.text = "-" + str(armorUpgradePrice)
-		spellLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
+		armorStrengthLabel.text = "-" + str(armorUpgradePrice)
+		armorStrengthLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	else:
-		spellLabel.text = "Purchased"
-		spellLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
+		armorStrengthLabel.text = "Purchased"
+		armorStrengthLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
 	if player.UPGRADE == 0:
 		upgradeLabel.text = "-" + str(upgradePrice)
@@ -58,6 +101,7 @@ func _process(_delta: float) -> void:
 	soul_label.text = "   : " + str(player.souls)
 
 func _on_yes_pressed() -> void:
+	infoSwap = 0
 	menuButtonSound.play()
 	shopMenu.hide()
 	dialogue_menu.show()
@@ -69,7 +113,7 @@ func _on_armor_pressed() -> void:
 		player.souls -= armorPrice
 		player.ARMOR += player.maxArmor
 
-func _on_spell_pressed() -> void:
+func _on_armor_strength_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= armorUpgradePrice and player.maxArmor < 100:
 		player.souls -= armorUpgradePrice
@@ -87,8 +131,10 @@ func _on_upgrade_pressed() -> void:
 		player.souls -= upgradePrice
 		player.UPGRADE = 1
 
-func _on_spell_upgrade_pressed() -> void:
+func _on_info_button_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= armorUpgradePrice and player.maxArmor < 100:
-		player.souls -= armorUpgradePrice
-		player.maxArmor += 10
+	if infoSwap == 0:
+		infoSwap += 1
+	elif infoSwap == 1:
+		infoSwap -= 1
+		

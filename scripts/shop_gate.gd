@@ -5,10 +5,11 @@ extends MeshInstance3D
 @onready var uiOptionsContinue: Button = $"../../../UI/ContinueMenu/buttons/VBoxContainer/Yes"
 @onready var start_menu: Control = $"../../../UI/StartMenu"
 @onready var detect_text: Label = $"../../../UI/crosshairText/VBoxContainer/Label"
+@onready var player: CharacterBody3D = $"../../../player"
 
 func _process(_delta: float) -> void:
 	
-	if player_detect.is_colliding():
+	if player_detect.is_colliding() and get_tree().paused == false and player.modeType == 1:
 		detect_text.text = "(E) Return to Graveyard"
 		detect_text.show()
 		

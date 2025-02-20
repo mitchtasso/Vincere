@@ -17,9 +17,7 @@ extends CharacterBody3D
 
 var HEALTH: int = 150
 var maxHealth: int = 150
-var SPEED: float = 5.5
-var stunSpeed: float = 0.9
-var deathSpeed: float = 0.01
+var SPEED: float = 5.75
 var navReset: int = 0
 var navTime: int = 60
 var stunLock: bool = false
@@ -42,7 +40,7 @@ func _physics_process(delta):
 		navReset = 0
 		player.souls += souls
 		player.add_point()
-		SPEED = -1
+		SPEED = -1.0
 		demon_death.emitting = true
 		animation_player.play("death")
 	
@@ -74,7 +72,7 @@ func _physics_process(delta):
 		move_and_slide()
 	
 	if stunLock == true:
-		SPEED *= 0.5
+		SPEED *= 0.75
 		hurtbox.disabled = true
 	
 	if self.position.y >= 4:
@@ -125,7 +123,7 @@ func _on_hitbox_area_entered(area):
 
 func _on_stun_timer_timeout():
 	stunLock = false
-	SPEED = 5.0
+	SPEED = 5.75
 	hurtbox.disabled = false
 
 func _on_demon_death_finished() -> void:
