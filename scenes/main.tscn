@@ -5473,6 +5473,7 @@ texture = ExtResource("45_3dx3a")
 
 [node name="MagicShopMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -7107,7 +7108,6 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
