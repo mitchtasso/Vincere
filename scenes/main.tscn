@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=224 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
@@ -56,18 +56,32 @@
 [ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
 [ext_resource type="Script" path="res://scripts/credit_screen.gd" id="38_aexhr"]
 [ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
+[ext_resource type="ArrayMesh" uid="uid://c846vps6rkcio" path="res://assets/enemy/demon.obj" id="39_245wt"]
 [ext_resource type="Texture2D" uid="uid://ux1v77ck5di8" path="res://assets/menu/skull.png" id="39_mkttv"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
 [ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
 [ext_resource type="Texture2D" uid="uid://d4h6os81neikv" path="res://assets/menu/soul.png" id="40_k8yj2"]
+[ext_resource type="AudioStream" uid="uid://c6vvbh86868nw" path="res://sounds/demonSounds.wav" id="40_r3i6j"]
 [ext_resource type="Texture2D" uid="uid://cqytai5u4jgie" path="res://assets/menu/moon.png" id="41_7i14o"]
 [ext_resource type="ArrayMesh" uid="uid://cqlyh2x053no8" path="res://assets/world/cleric.obj" id="41_n3l2c"]
+[ext_resource type="PackedScene" uid="uid://c8y1u7h25cpww" path="res://scenes/demonDeath.tscn" id="42_57vix"]
 [ext_resource type="Texture2D" uid="uid://bo6wx5e5stnx7" path="res://assets/menu/timer.png" id="42_g4tua"]
+[ext_resource type="ArrayMesh" uid="uid://dmfcpfoxdeowo" path="res://assets/enemy/fireDemon.obj" id="43_7f56v"]
 [ext_resource type="Texture2D" uid="uid://ben25qctysw5m" path="res://assets/menu/spellScroll.png" id="44_73r6e"]
+[ext_resource type="ArrayMesh" uid="uid://cxoo1u0uatgnh" path="res://assets/enemy/heavyDemon.obj" id="44_qes5k"]
 [ext_resource type="Texture2D" uid="uid://dlnqlxgvypr0g" path="res://assets/menu/upgradeSword.png" id="45_3dx3a"]
+[ext_resource type="Texture2D" uid="uid://b8oxua4rnl1xb" path="res://assets/world/white.png" id="45_xxhjk"]
+[ext_resource type="ArrayMesh" uid="uid://ca42vc4ftrjg7" path="res://assets/enemy/rangedDemon.obj" id="46_vkx5v"]
 [ext_resource type="Texture2D" uid="uid://bpfag27wcqst" path="res://assets/menu/longsword.png" id="46_x5q7x"]
+[ext_resource type="ArrayMesh" uid="uid://cvs4uauddvo7i" path="res://assets/enemy/enemy5.obj" id="47_stjkj"]
+[ext_resource type="AudioStream" uid="uid://dd305xr0fxcdt" path="res://sounds/retro/boom.wav" id="48_c6drp"]
+[ext_resource type="Script" path="res://scripts/beam_magic.gd" id="49_5r5pb"]
+[ext_resource type="AudioStream" uid="uid://be1ricrtfx8tc" path="res://sounds/retro/sizzle.wav" id="50_418os"]
+[ext_resource type="Script" path="res://scripts/lightning_magic.gd" id="51_ank26"]
+[ext_resource type="Script" path="res://scripts/demon_magic.gd" id="52_6vqml"]
 [ext_resource type="Texture2D" uid="uid://cfkr3aj4t5d1f" path="res://assets/menu/shieldIconPlus.png" id="52_7xhdr"]
 [ext_resource type="Texture2D" uid="uid://csvtyqc2jt2n5" path="res://assets/menu/infoIcon.png" id="52_uj7ww"]
+[ext_resource type="Script" path="res://scripts/boss_magic.gd" id="53_af46d"]
 [ext_resource type="Script" path="res://scripts/magic_shop_menu.gd" id="53_mq7oj"]
 [ext_resource type="Texture2D" uid="uid://bfhgn06bfuq0g" path="res://assets/menu/fireball.png" id="54_u0dsl"]
 [ext_resource type="Texture2D" uid="uid://cg6d3ehc1m3pw" path="res://assets/menu/icycle.png" id="55_y3gjk"]
@@ -202,6 +216,659 @@ size = Vector3(1, 9, 5)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_77lch"]
 data = PackedVector3Array(-0.5, 5, 2.5, 0.5, 5, 2.5, -0.5, -5, 2.5, 0.5, 5, 2.5, 0.5, -5, 2.5, -0.5, -5, 2.5, 0.5, 5, -2.5, -0.5, 5, -2.5, 0.5, -5, -2.5, -0.5, 5, -2.5, -0.5, -5, -2.5, 0.5, -5, -2.5, 0.5, 5, 2.5, 0.5, 5, -2.5, 0.5, -5, 2.5, 0.5, 5, -2.5, 0.5, -5, -2.5, 0.5, -5, 2.5, -0.5, 5, -2.5, -0.5, 5, 2.5, -0.5, -5, -2.5, -0.5, 5, 2.5, -0.5, -5, 2.5, -0.5, -5, -2.5, 0.5, 5, 2.5, -0.5, 5, 2.5, 0.5, 5, -2.5, -0.5, 5, 2.5, -0.5, 5, -2.5, 0.5, 5, -2.5, -0.5, -5, 2.5, 0.5, -5, 2.5, -0.5, -5, -2.5, 0.5, -5, 2.5, 0.5, -5, -2.5, -0.5, -5, -2.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymsyw"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4li2c"]
+material = SubResource("StandardMaterial3D_ymsyw")
+size = Vector3(1, 2.25, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
+
+[sub_resource type="Animation" id="Animation_unpkp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lmwmi"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dq0s7"]
+_data = {
+"RESET": SubResource("Animation_unpkp"),
+"death": SubResource("Animation_lmwmi")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_co1ww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhy7k"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u711v"]
+material = SubResource("StandardMaterial3D_jhy7k")
+size = Vector3(1, 2.25, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6s5b7"]
+
+[sub_resource type="Animation" id="Animation_xlrd5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_27v46"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38kad"]
+_data = {
+"RESET": SubResource("Animation_xlrd5"),
+"death": SubResource("Animation_27v46")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5gvhw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl7jo"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xpco"]
+material = SubResource("StandardMaterial3D_kl7jo")
+size = Vector3(1.5, 2.75, 1.25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yo6pw"]
+
+[sub_resource type="Curve" id="Curve_8037b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.684932, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7g5rc"]
+curve = SubResource("Curve_8037b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qmymk"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_7g5rc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1ccr"]
+transparency = 1
+albedo_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+albedo_texture = ExtResource("45_xxhjk")
+emission_enabled = true
+emission = Color(0.533324, 1.09497e-06, 2.88785e-07, 1)
+emission_energy_multiplier = 5.0
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0bjcj"]
+material = SubResource("StandardMaterial3D_i1ccr")
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="Animation" id="Animation_v10kd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wa8hu"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mucg"]
+_data = {
+"RESET": SubResource("Animation_v10kd"),
+"death": SubResource("Animation_wa8hu")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3kn5f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kurm5"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hxu6k"]
+material = SubResource("StandardMaterial3D_kurm5")
+size = Vector3(1, 2.25, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktxet"]
+
+[sub_resource type="Animation" id="Animation_ve6dw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3ltjj"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ep245"]
+_data = {
+"RESET": SubResource("Animation_ve6dw"),
+"death": SubResource("Animation_3ltjj")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr05l"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3gcq8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mveh5"]
+transparency = 1
+albedo_color = Color(0.625829, 0.749311, 1, 0.372549)
+emission_enabled = true
+emission = Color(0, 0.794772, 0.794772, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h12v6"]
+material = SubResource("StandardMaterial3D_mveh5")
+size = Vector3(1, 2.25, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yq7xq"]
+
+[sub_resource type="Animation" id="Animation_mrh7u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_41fvr"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.261799), Vector3(0, 1.5708, 0.523599), Vector3(0, 1.5708, 0.785398), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsb8s"]
+_data = {
+"RESET": SubResource("Animation_mrh7u"),
+"death": SubResource("Animation_41fvr")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxvkl"]
+direction = Vector3(0, 0, 1)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eljr1"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_elat1"]
+material = SubResource("StandardMaterial3D_eljr1")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_danha"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_70uqi"]
+size = Vector3(0.35, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i5ci"]
+albedo_color = Color(1, 0.447059, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.447059, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hbh3j"]
+points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_he3a5"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, 1)
+spread = 15.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gxr3"]
+albedo_color = Color(0.589985, 0.251939, 3.85046e-07, 1)
+emission_enabled = true
+emission = Color(0.639458, 0.0701404, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_r6xt0"]
+material = SubResource("StandardMaterial3D_0gxr3")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdddq"]
+direction = Vector3(0, 0, 1)
+spread = 60.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4oaw"]
+albedo_color = Color(0.588235, 0.25098, 0, 1)
+emission_enabled = true
+emission = Color(0.639216, 0.0705882, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ltqnt"]
+material = SubResource("StandardMaterial3D_e4oaw")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5xm5"]
+size = Vector3(0.35, 0.35, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i8sqs"]
+size = Vector3(0.3, 2.5, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knggw"]
+albedo_color = Color(0.537255, 0.505882, 0, 1)
+emission_enabled = true
+emission = Color(0.537255, 0.505882, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_654im"]
+size = Vector3(6, 1, 6)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_50j58"]
+direction = Vector3(0, 0, 1)
+spread = 180.0
+flatness = 0.9
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x3n1"]
+albedo_color = Color(0.537255, 0.505882, 0, 1)
+emission_enabled = true
+emission = Color(0.537255, 0.505882, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ps0i"]
+material = SubResource("StandardMaterial3D_2x3n1")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvjyc"]
+size = Vector3(0.35, 0.35, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tl8f"]
+albedo_color = Color(0.444314, 0.621122, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_jj3mv"]
+material = SubResource("StandardMaterial3D_7tl8f")
+size = Vector3(0.35, 0.35, 0.35)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tbyc8"]
+points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q377j"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, 1)
+spread = 15.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pgab"]
+albedo_color = Color(0, 0.25098, 1, 1)
+emission_enabled = true
+emission = Color(0.929133, 0.953034, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rkeh0"]
+material = SubResource("StandardMaterial3D_0pgab")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rywb5"]
+direction = Vector3(0, 0, 1)
+spread = 60.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q87id"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0.501961, 0.901961, 0.901961, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_jmfe1"]
+material = SubResource("StandardMaterial3D_q87id")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8oa4n"]
+size = Vector3(0.35, 0.35, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_67u4p"]
+size = Vector3(0.35, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlkmd"]
+albedo_color = Color(0.403922, 0, 0.388235, 1)
+emission_enabled = true
+emission = Color(0.403922, 0, 0.388235, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p6pi8"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, 1)
+spread = 15.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wyb8t"]
+albedo_color = Color(0.405747, 7.94398e-05, 0.386744, 1)
+emission_enabled = true
+emission = Color(0.639216, 0.0705882, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ypd2r"]
+material = SubResource("StandardMaterial3D_wyb8t")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tgi2h"]
+direction = Vector3(0, 0, 1)
+spread = 60.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2ukw"]
+albedo_color = Color(0.403922, 0, 0.388235, 1)
+emission_enabled = true
+emission = Color(0.325689, 5.36177e-05, 0.312676, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ytxd6"]
+material = SubResource("StandardMaterial3D_l2ukw")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yjwqw"]
+points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuugi"]
+size = Vector3(1, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6372f"]
+size = Vector3(0.35, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahliv"]
+albedo_color = Color(0.403922, 0, 0.388235, 1)
+emission_enabled = true
+emission = Color(0.403922, 0, 0.388235, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7al3y"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, 1)
+spread = 15.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwqq4"]
+albedo_color = Color(0.405747, 7.94398e-05, 0.386744, 1)
+emission_enabled = true
+emission = Color(0.639216, 0.0705882, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ojk2"]
+material = SubResource("StandardMaterial3D_uwqq4")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wytvl"]
+direction = Vector3(0, 0, 1)
+spread = 60.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u3yd"]
+albedo_color = Color(0.403922, 0, 0.388235, 1)
+emission_enabled = true
+emission = Color(0.325689, 5.36177e-05, 0.312676, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2a017"]
+material = SubResource("StandardMaterial3D_2u3yd")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jivhe"]
+points = PackedVector3Array(-0.177778, -0.152778, -0.152778, 0.174544, 0.15, 0.15, 0.174544, -0.15, 0.15, -0.174545, 0.15, 0.15, 0.174544, 0.15, -0.15, -0.174545, -0.15, 0.15, -0.174545, 0.15, -0.15, 0.174544, -0.15, -0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apqlo"]
+size = Vector3(1, 0.3, 0.3)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mbh5x"]
 size = Vector2(20, 20)
@@ -4259,6 +4926,701 @@ collision_mask = 7
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86.5467)
 
+[node name="shader_cache" type="Node3D" parent="MenuArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2311)
+
+[node name="enemy" type="CharacterBody3D" parent="MenuArea/shader_cache"]
+transform = Transform3D(0.999963, -0.00604912, -0.00606522, 0.00606076, 0.99998, 0.00190266, 0.00605359, -0.00193936, 0.99998, 0, -0.440707, 0)
+
+[node name="hurtbox" type="Area3D" parent="MenuArea/shader_cache/enemy" groups=["enemies", "enemy1"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy/hurtbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_ulfji")
+
+[node name="hitbox" type="Area3D" parent="MenuArea/shader_cache/enemy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy/hitbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_ulfji")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy"]
+transform = Transform3D(-2.17199e-06, 0, 0.9, 0, 0.72, 0, -0.6, 0, -3.25799e-06, 0, 0.75, 0)
+mesh = ExtResource("39_245wt")
+
+[node name="iceBlock" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy/MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_4li2c")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_qg1h1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MenuArea/shader_cache/enemy"]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("40_r3i6j")
+volume_db = -5.0
+unit_size = 1.0
+max_db = 0.0
+pitch_scale = 0.9
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="stunTimer" type="Timer" parent="MenuArea/shader_cache/enemy"]
+wait_time = 0.6
+one_shot = true
+
+[node name="demonDeath" parent="MenuArea/shader_cache/enemy" instance=ExtResource("42_57vix")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+amount = 32
+lifetime = 0.4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_dq0s7")
+}
+
+[node name="iFrameTimer" type="Timer" parent="MenuArea/shader_cache/enemy"]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="MenuArea/shader_cache/enemy"]
+wait_time = 3.0
+one_shot = true
+
+[node name="enemy2" type="CharacterBody3D" parent="MenuArea/shader_cache"]
+
+[node name="hurtbox" type="Area3D" parent="MenuArea/shader_cache/enemy2" groups=["enemies", "enemy2"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy2/hurtbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_co1ww")
+
+[node name="hitbox" type="Area3D" parent="MenuArea/shader_cache/enemy2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy2/hitbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_co1ww")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy2"]
+transform = Transform3D(-2.17199e-06, 0, 0.9, 0, 0.72, 0, -0.6, 0, -3.25799e-06, 0, 0.75, 0)
+mesh = ExtResource("43_7f56v")
+
+[node name="iceBlock" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy2/MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_u711v")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy2"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_6s5b7")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MenuArea/shader_cache/enemy2"]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536871, 1.65249, -0.00183249)
+stream = ExtResource("40_r3i6j")
+volume_db = -2.0
+unit_size = 1.0
+pitch_scale = 1.3
+
+[node name="stunTimer" type="Timer" parent="MenuArea/shader_cache/enemy2"]
+wait_time = 0.6
+
+[node name="demonDeath" parent="MenuArea/shader_cache/enemy2" instance=ExtResource("42_57vix")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+amount = 32
+lifetime = 0.4
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy2"]
+libraries = {
+"": SubResource("AnimationLibrary_38kad")
+}
+
+[node name="iFrameTimer" type="Timer" parent="MenuArea/shader_cache/enemy2"]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="MenuArea/shader_cache/enemy2"]
+wait_time = 3.0
+one_shot = true
+
+[node name="enemy3" type="CharacterBody3D" parent="MenuArea/shader_cache"]
+
+[node name="hurtbox" type="Area3D" parent="MenuArea/shader_cache/enemy3" groups=["enemies", "enemy2"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy3/hurtbox"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.6, 0)
+shape = SubResource("CapsuleShape3D_5gvhw")
+
+[node name="hitbox" type="Area3D" parent="MenuArea/shader_cache/enemy3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy3/hitbox"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.6, 0)
+shape = SubResource("CapsuleShape3D_5gvhw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(-2.17199e-06, 0, 0.9, 0, 0.72, 0, -0.6, 0, -3.25799e-06, 0, 0.75, 0)
+mesh = ExtResource("44_qes5k")
+
+[node name="iceBlock" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy3/MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 1.29852, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_7xpco")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_yo6pw")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MenuArea/shader_cache/enemy3"]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536871, 1.65249, -0.00183249)
+stream = ExtResource("40_r3i6j")
+volume_db = -2.0
+unit_size = 1.0
+pitch_scale = 1.3
+
+[node name="stunTimer" type="Timer" parent="MenuArea/shader_cache/enemy3"]
+wait_time = 0.5
+one_shot = true
+
+[node name="demonDeath" type="GPUParticles3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+speed_scale = 1.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qmymk")
+draw_pass_1 = SubResource("QuadMesh_0bjcj")
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy3"]
+libraries = {
+"": SubResource("AnimationLibrary_6mucg")
+}
+
+[node name="iFrameTimer" type="Timer" parent="MenuArea/shader_cache/enemy3"]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="MenuArea/shader_cache/enemy3"]
+wait_time = 3.0
+one_shot = true
+
+[node name="enemy4" type="CharacterBody3D" parent="MenuArea/shader_cache"]
+
+[node name="hurtbox" type="Area3D" parent="MenuArea/shader_cache/enemy4" groups=["enemies", "enemy2"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy4/hurtbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_3kn5f")
+
+[node name="hitbox" type="Area3D" parent="MenuArea/shader_cache/enemy4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy4/hitbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_3kn5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy4"]
+transform = Transform3D(-2.41453e-06, 0, 1, 0, 0.8, 0, -0.667, 0, -3.61999e-06, 0, 0.75, 0)
+mesh = ExtResource("46_vkx5v")
+
+[node name="RayCast3D" type="RayCast3D" parent="MenuArea/shader_cache/enemy4/MeshInstance3D"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 1.06581e-14, 0, 1, 1.11306, 1.42581, 3.24196e-08)
+target_position = Vector3(40, 0, 0)
+collision_mask = 4
+
+[node name="iceBlock" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy4/MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_hxu6k")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy4"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_ktxet")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MenuArea/shader_cache/enemy4"]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536871, 1.65249, -0.00183249)
+stream = ExtResource("40_r3i6j")
+volume_db = -2.0
+unit_size = 1.0
+pitch_scale = 1.3
+
+[node name="stunTimer" type="Timer" parent="MenuArea/shader_cache/enemy4"]
+wait_time = 0.6
+
+[node name="demonDeath" parent="MenuArea/shader_cache/enemy4" instance=ExtResource("42_57vix")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+amount = 32
+lifetime = 0.4
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy4"]
+libraries = {
+"": SubResource("AnimationLibrary_ep245")
+}
+
+[node name="iFrameTimer" type="Timer" parent="MenuArea/shader_cache/enemy4"]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="MenuArea/shader_cache/enemy4"]
+wait_time = 3.0
+one_shot = true
+
+[node name="enemy5" type="CharacterBody3D" parent="MenuArea/shader_cache"]
+
+[node name="hurtbox" type="Area3D" parent="MenuArea/shader_cache/enemy5" groups=["enemies", "enemy5"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy5/hurtbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("BoxShape3D_lr05l")
+disabled = true
+
+[node name="hitbox" type="Area3D" parent="MenuArea/shader_cache/enemy5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy5/hitbox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("CapsuleShape3D_3gcq8")
+
+[node name="playerDetect" type="Area3D" parent="MenuArea/shader_cache/enemy5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy5/playerDetect"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.36586, 0)
+shape = SubResource("BoxShape3D_lr05l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(-2.17199e-06, 0, 0.9, 0, 0.72, 0, -0.6, 0, -3.25799e-06, 0, 0.75, 0)
+mesh = ExtResource("47_stjkj")
+
+[node name="iceBlock" type="MeshInstance3D" parent="MenuArea/shader_cache/enemy5/MeshInstance3D"]
+transform = Transform3D(-6.02845e-06, -2.32831e-10, -1.66667, 1.45519e-11, 1.38889, 2.32831e-10, 1.11111, -4.28099e-09, -4.01726e-06, 0.109529, 0.995309, 0.00941527)
+visible = false
+mesh = SubResource("BoxMesh_h12v6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.37522, 0)
+shape = SubResource("CapsuleShape3D_yq7xq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="MenuArea/shader_cache/enemy5"]
+path_height_offset = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00536871, 1.65249, -0.00183249)
+stream = ExtResource("40_r3i6j")
+volume_db = -2.0
+unit_size = 1.0
+pitch_scale = 1.3
+
+[node name="stunTimer" type="Timer" parent="MenuArea/shader_cache/enemy5"]
+wait_time = 0.6
+
+[node name="demonDeath" parent="MenuArea/shader_cache/enemy5" instance=ExtResource("42_57vix")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+amount = 32
+lifetime = 0.4
+
+[node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 1.2
+
+[node name="deathSound" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
+stream = ExtResource("8_y6ntg")
+volume_db = -5.0
+unit_size = 1.0
+max_db = -5.0
+pitch_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy5"]
+libraries = {
+"": SubResource("AnimationLibrary_nsb8s")
+}
+
+[node name="iFrameTimer" type="Timer" parent="MenuArea/shader_cache/enemy5"]
+wait_time = 0.3
+one_shot = true
+
+[node name="frozenTimer" type="Timer" parent="MenuArea/shader_cache/enemy5"]
+wait_time = 3.0
+one_shot = true
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92178, -0.048346)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bxvkl")
+draw_pass_1 = SubResource("BoxMesh_elat1")
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62541, 0.00121564)
+stream = ExtResource("48_c6drp")
+volume_db = -10.0
+max_db = -10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MenuArea/shader_cache"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.92701)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.917525, 0)
+shape = SubResource("BoxShape3D_danha")
+
+[node name="beamMagic" type="Area3D" parent="MenuArea/shader_cache" groups=["magic"]]
+transform = Transform3D(1, 0, 0, 0, -0.163395, 0.986561, 0, -0.986561, -0.163395, 0, 0, 0)
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("49_5r5pb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
+mesh = SubResource("BoxMesh_70uqi")
+surface_material_override/0 = SubResource("StandardMaterial3D_0i5ci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
+shape = SubResource("ConvexPolygonShape3D_hbh3j")
+
+[node name="trail" type="GPUParticles3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.150434)
+amount = 12
+speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_he3a5")
+draw_pass_1 = SubResource("BoxMesh_r6xt0")
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.48564)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kdddq")
+draw_pass_1 = SubResource("BoxMesh_ltqnt")
+
+[node name="sizzle" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0394019)
+stream = ExtResource("50_418os")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593811)
+stream = ExtResource("48_c6drp")
+volume_db = -80.0
+max_db = -24.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MenuArea/shader_cache/beamMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, 0)
+shape = SubResource("BoxShape3D_i5xm5")
+
+[node name="lightningMagic" type="Area3D" parent="MenuArea/shader_cache" groups=["lightningMagic"]]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("51_ank26")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06714, -0.32608)
+mesh = SubResource("BoxMesh_i8sqs")
+surface_material_override/0 = SubResource("StandardMaterial3D_knggw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MenuArea/shader_cache/lightningMagic/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128585, 2.47078, 5.62062e-09)
+mesh = SubResource("BoxMesh_i8sqs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_knggw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MenuArea/shader_cache/lightningMagic/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0302622, 4.72559, -1.3228e-09)
+mesh = SubResource("BoxMesh_i8sqs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_knggw")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MenuArea/shader_cache/lightningMagic/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1044, 6.948, 4.56345e-09)
+mesh = SubResource("BoxMesh_i8sqs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_knggw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.511832, -0.327281)
+shape = SubResource("BoxShape3D_654im")
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32302, -0.327746)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_50j58")
+draw_pass_1 = SubResource("BoxMesh_0ps0i")
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593811)
+stream = ExtResource("48_c6drp")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 1.25
+
+[node name="sizzle" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.329127)
+stream = ExtResource("50_418os")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MenuArea/shader_cache/lightningMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, -0.318803)
+shape = SubResource("BoxShape3D_vvjyc")
+
+[node name="iceMagic" type="Area3D" parent="MenuArea/shader_cache" groups=["iceMagic"]]
+transform = Transform3D(1, 0, 0, 0, -0.208475, 0.978028, 0, -0.978028, -0.208475, 0, 0, 0)
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("49_5r5pb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, -0.327281)
+mesh = SubResource("PrismMesh_jj3mv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MenuArea/shader_cache/iceMagic/MeshInstance3D"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, -8.74228e-08, -1, 8.74228e-08, 3.82137e-15, 8.74228e-08, 1, 3.0415e-08, -0.347907, 1.52075e-08)
+mesh = SubResource("PrismMesh_jj3mv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.327281)
+shape = SubResource("ConvexPolygonShape3D_tbyc8")
+
+[node name="trail" type="GPUParticles3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.150434)
+amount = 12
+speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_q377j")
+draw_pass_1 = SubResource("BoxMesh_rkeh0")
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.343856)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rywb5")
+draw_pass_1 = SubResource("BoxMesh_jmfe1")
+
+[node name="sizzle" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0394019)
+stream = ExtResource("50_418os")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593811)
+stream = ExtResource("48_c6drp")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 1.5
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MenuArea/shader_cache/iceMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00536, 0)
+shape = SubResource("BoxShape3D_8oa4n")
+
+[node name="demonMagic" type="Area3D" parent="MenuArea/shader_cache" groups=["enemy4", "enemySet"]]
+transform = Transform3D(-0.0788593, 0.996886, 0, -0.996886, -0.0788593, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("52_6vqml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/demonMagic"]
+mesh = SubResource("BoxMesh_67u4p")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlkmd")
+
+[node name="trail" type="GPUParticles3D" parent="MenuArea/shader_cache/demonMagic/MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.176847, 0, -7.73023e-09)
+amount = 12
+speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_p6pi8")
+draw_pass_1 = SubResource("BoxMesh_ypd2r")
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/demonMagic/MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0582209, 0, 1.50527e-08)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tgi2h")
+draw_pass_1 = SubResource("BoxMesh_ytxd6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/demonMagic"]
+shape = SubResource("ConvexPolygonShape3D_yjwqw")
+
+[node name="sizzle" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/demonMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40565, 0, 0.0394019)
+stream = ExtResource("50_418os")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/demonMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295371, 0, -0.000926316)
+stream = ExtResource("48_c6drp")
+volume_db = -10.0
+max_db = -10.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MenuArea/shader_cache/demonMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238097, 0, 0)
+shape = SubResource("BoxShape3D_iuugi")
+target_position = Vector3(-0.5, 0, 0)
+collision_mask = 12
+
+[node name="bossMagic" type="Area3D" parent="MenuArea/shader_cache" groups=["enemy3", "enemySet"]]
+transform = Transform3D(0.0608047, 0.99815, 0, -0.99815, 0.0608047, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("53_af46d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MenuArea/shader_cache/bossMagic"]
+mesh = SubResource("BoxMesh_6372f")
+surface_material_override/0 = SubResource("StandardMaterial3D_ahliv")
+
+[node name="trail" type="GPUParticles3D" parent="MenuArea/shader_cache/bossMagic/MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.176847, 0, -7.73023e-09)
+amount = 12
+speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_7al3y")
+draw_pass_1 = SubResource("BoxMesh_0ojk2")
+
+[node name="explosion" type="GPUParticles3D" parent="MenuArea/shader_cache/bossMagic/MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.041445, 0, 1.50527e-08)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wytvl")
+draw_pass_1 = SubResource("BoxMesh_2a017")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuArea/shader_cache/bossMagic"]
+shape = SubResource("ConvexPolygonShape3D_jivhe")
+
+[node name="sizzle" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/bossMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40565, 0, 0.0394019)
+stream = ExtResource("50_418os")
+volume_db = -80.0
+max_db = -24.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="boom" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/bossMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295371, 0, -0.000926316)
+stream = ExtResource("48_c6drp")
+volume_db = -80.0
+max_db = -24.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="MenuArea/shader_cache/bossMagic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238097, 0, 0)
+shape = SubResource("BoxShape3D_apqlo")
+target_position = Vector3(-0.5, 0, 0)
+collision_mask = 12
+
 [node name="StartCamera" type="Camera3D" parent="MenuArea"]
 transform = Transform3D(1, 0, 0, 0, 0.957953, 0.286926, 0, -0.286926, 0.957953, 0.4, 1.5, 2.423)
 fov = 50.0
@@ -5545,6 +6907,7 @@ text = "The Church will always provides..."
 horizontal_alignment = 1
 
 [node name="infoButton" type="Button" parent="UI/MagicShopMenu"]
+layout_mode = 0
 offset_left = 70.0
 offset_top = 169.0
 offset_right = 192.0
@@ -7217,6 +8580,33 @@ text = "Version: 1.0"
 [connection signal="timeout" from="dayChangeTimer" to="WorldEnvironment" method="_on_day_change_timer_timeout"]
 [connection signal="timeout" from="replayTimer" to="player" method="_on_replay_timer_timeout"]
 [connection signal="timeout" from="gameTime" to="player" method="_on_game_time_timeout"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy/hitbox" to="MenuArea/shader_cache/enemy" method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy/stunTimer" to="MenuArea/shader_cache/enemy" method="_on_stun_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy/demonDeath" to="MenuArea/shader_cache/enemy" method="_on_demon_death_finished"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy/iFrameTimer" to="MenuArea/shader_cache/enemy" method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy/frozenTimer" to="MenuArea/shader_cache/enemy" method="_on_frozen_timer_timeout"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy2/hitbox" to="MenuArea/shader_cache/enemy2" method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy2/stunTimer" to="MenuArea/shader_cache/enemy2" method="_on_stun_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy2/demonDeath" to="MenuArea/shader_cache/enemy2" method="_on_demon_death_finished"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy2/iFrameTimer" to="MenuArea/shader_cache/enemy2" method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy2/frozenTimer" to="MenuArea/shader_cache/enemy2" method="_on_frozen_timer_timeout"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy3/hitbox" to="MenuArea/shader_cache/enemy3" method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy3/stunTimer" to="MenuArea/shader_cache/enemy3" method="_on_stun_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy3/demonDeath" to="MenuArea/shader_cache/enemy3" method="_on_demon_death_finished"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy3/iFrameTimer" to="MenuArea/shader_cache/enemy3" method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy3/frozenTimer" to="MenuArea/shader_cache/enemy3" method="_on_frozen_timer_timeout"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy4/hitbox" to="MenuArea/shader_cache/enemy4" method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy4/stunTimer" to="MenuArea/shader_cache/enemy4" method="_on_stun_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy4/demonDeath" to="MenuArea/shader_cache/enemy4" method="_on_demon_death_finished"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy4/iFrameTimer" to="MenuArea/shader_cache/enemy4" method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy4/frozenTimer" to="MenuArea/shader_cache/enemy4" method="_on_frozen_timer_timeout"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy5/hitbox" to="MenuArea/shader_cache/enemy5" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="MenuArea/shader_cache/enemy5/playerDetect" to="MenuArea/shader_cache/enemy5" method="_on_player_detect_area_entered"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy5/stunTimer" to="MenuArea/shader_cache/enemy5" method="_on_stun_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy5/demonDeath" to="MenuArea/shader_cache/enemy5" method="_on_demon_death_finished"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy5/iFrameTimer" to="MenuArea/shader_cache/enemy5" method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="MenuArea/shader_cache/enemy5/frozenTimer" to="MenuArea/shader_cache/enemy5" method="_on_frozen_timer_timeout"]
+[connection signal="finished" from="MenuArea/shader_cache/enemy5/explosion" to="MenuArea/shader_cache/enemy5" method="_on_explosion_finished"]
 [connection signal="timeout" from="UI/autoSaveText/Timer" to="player" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="UI/LoadingScreen/loadTime" to="UI/LoadingScreen" method="_on_load_time_timeout"]
