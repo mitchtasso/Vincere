@@ -1,6 +1,7 @@
-[gd_scene load_steps=224 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=225 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
+[ext_resource type="Script" path="res://scripts/steam.gd" id="2_715fs"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
 [ext_resource type="ArrayMesh" uid="uid://bwl67882css75" path="res://assets/world/arenaWalls.obj" id="2_x03lh"]
 [ext_resource type="PackedScene" uid="uid://ba41bgwv53u61" path="res://scenes/player.tscn" id="3_e7w81"]
@@ -894,6 +895,10 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_thyhm")
+
+[node name="Steam" type="Node3D" parent="."]
+process_mode = 3
+script = ExtResource("2_715fs")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.25, 0.220605, 0.117794, 0.968224, -0.448705, 0.893656, -0.00648695, 0, 56.5274, 0)
