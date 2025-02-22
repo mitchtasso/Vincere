@@ -4991,8 +4991,10 @@ one_shot = true
 
 [node name="demonDeath" parent="MenuArea/shader_cache/enemy" instance=ExtResource("42_57vix")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+emitting = true
 amount = 32
 lifetime = 0.4
+one_shot = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuArea/shader_cache/enemy"]
 libraries = {
@@ -5050,8 +5052,10 @@ wait_time = 0.6
 
 [node name="demonDeath" parent="MenuArea/shader_cache/enemy2" instance=ExtResource("42_57vix")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+emitting = true
 amount = 32
 lifetime = 0.4
+one_shot = false
 
 [node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
@@ -5126,10 +5130,8 @@ one_shot = true
 
 [node name="demonDeath" type="GPUParticles3D" parent="MenuArea/shader_cache/enemy3"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
-emitting = false
 amount = 32
 lifetime = 0.4
-one_shot = true
 speed_scale = 1.2
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qmymk")
@@ -5214,6 +5216,7 @@ wait_time = 0.6
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
 amount = 32
 lifetime = 0.4
+one_shot = false
 
 [node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
@@ -5294,8 +5297,10 @@ wait_time = 0.6
 
 [node name="demonDeath" parent="MenuArea/shader_cache/enemy5" instance=ExtResource("42_57vix")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+emitting = true
 amount = 32
 lifetime = 0.4
+one_shot = false
 
 [node name="demonHit" type="AudioStreamPlayer3D" parent="MenuArea/shader_cache/enemy5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7532, 0)
