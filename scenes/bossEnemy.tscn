@@ -643,7 +643,7 @@ mesh = SubResource("BoxMesh_bwc82")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1.37522, 0)
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.84362, 0)
 shape = SubResource("CapsuleShape3D_qg1h1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -798,6 +798,7 @@ one_shot = true
 [connection signal="animation_finished" from="bossAnimation" to="." method="_on_boss_animation_animation_finished"]
 [connection signal="animation_started" from="bossAnimation" to="." method="_on_boss_animation_animation_started"]
 [connection signal="area_entered" from="meleeDetection" to="." method="_on_melee_detection_area_entered"]
+[connection signal="area_exited" from="meleeDetection" to="." method="_on_melee_detection_area_exited"]
 [connection signal="area_entered" from="rangedDetection" to="." method="_on_ranged_detection_area_entered"]
 [connection signal="timeout" from="attackReset" to="." method="_on_attack_reset_timeout"]
 [connection signal="timeout" from="magicReset" to="." method="_on_magic_reset_timeout"]

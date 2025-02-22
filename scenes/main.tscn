@@ -6508,6 +6508,25 @@ theme_override_font_sizes/font_size = 50
 text = "The Church will always provides..."
 horizontal_alignment = 1
 
+[node name="armorLabel" type="Label" parent="UI/ShopMenu"]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 1100.0
+offset_right = 298.0
+offset_bottom = 1197.0
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/ShopMenu/armorLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("23_sry2p")
+
 [node name="infoButton" type="Button" parent="UI/ShopMenu"]
 layout_mode = 0
 offset_left = 70.0
@@ -6842,6 +6861,12 @@ offset_top = 684.0
 offset_right = 769.0
 offset_bottom = 780.0
 texture = ExtResource("45_3dx3a")
+
+[node name="Label" type="Label" parent="UI/ShopMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ARMOR: 100/100"
 
 [node name="MagicShopMenu" type="Control" parent="UI"]
 process_mode = 3

@@ -30,11 +30,11 @@ extends Control
 @onready var longsword: TextureRect = $longsword
 
 
-var fireballPrice: int = 5000
-var icyclePrice: int = 4000
-var lightningPrice: int = 6000
-var spellUpgradePrice: int = 2000
-var manaUpgradePrice: int = 2000
+var fireballPrice: int = 500
+var icyclePrice: int = 400
+var lightningPrice: int = 600
+var spellUpgradePrice: int = 200
+var manaUpgradePrice: int = 200
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:

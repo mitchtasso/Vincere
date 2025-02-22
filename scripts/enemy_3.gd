@@ -22,7 +22,7 @@ var navReset: int = 0
 var navTime: int = 60
 var stunLock: bool = false
 var death: bool = false
-var souls: int = 300
+var souls: int = 30
 var iFrame: bool = false
 var frozen: bool = false
 

@@ -38,7 +38,7 @@ var maxSpeed: float = 10.0
 var stunSpeed: float = 0.9
 var deathSpeed: float = 0.01
 var navReset: int = 0
-var navTime: int = 30
+var navTime: int = 1
 var stunLock: bool = false
 var death: bool = false
 var POS: Vector3 = Vector3(-107.785, 0, 21)
@@ -48,6 +48,7 @@ var magicAvailable: bool = true
 var randomAttack: int
 var iFrame: bool = false
 var frozen: bool = false
+var playerDetect: bool = false
 
 func _physics_process(delta):
 	
@@ -104,10 +105,16 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if stunLock == true:
-		SPEED = maxSpeed/4
+		SPEED = maxSpeed * 0.75
 	
 	if frozen == true:
-		SPEED = maxSpeed/12
+		SPEED = maxSpeed * 0.75
+	
+	if attackActive == true:
+		SPEED = maxSpeed * 0.01
+	
+	if playerDetect == true:
+		SPEED = maxSpeed * 0.4
 	
 	if player.playerDeath == true:
 		HEALTH = maxHealth
@@ -161,6 +168,8 @@ func _on_explosion_finished() -> void:
 	self.queue_free()
 
 func _on_melee_detection_area_entered(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		playerDetect = true
 	if area.is_in_group("player") and attackAvailable == true and randomAttack == 0 and attackActive == false:
 		boss_animation.play("attack")
 		slash_sound.play()
@@ -170,6 +179,10 @@ func _on_melee_detection_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player") and attackAvailable == true and randomAttack == 2 and attackActive == false:
 		boss_animation.play("attack3")
 		slash_sound.play()
+
+func _on_melee_detection_area_exited(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		playerDetect = false
 
 func _on_ranged_detection_area_entered(area: Area3D) -> void:
 	if area.is_in_group("player") and magicAvailable == true and attackActive == false:

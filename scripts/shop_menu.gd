@@ -25,14 +25,17 @@ extends Control
 @onready var longsword: TextureRect = $longsword
 @onready var upgrade_shield: TextureRect = $upgradeShield
 @onready var attack: TextureRect = $attack
+@onready var player_armor_label: Label = $armorLabel
 
-var armorPrice: int = 1000
-var sharpenPrice: int = 3000
-var upgradePrice: int = 10000
-var armorUpgradePrice: int = 3000
+var armorPrice: int = 100
+var sharpenPrice: int = 600
+var upgradePrice: int = 1000
+var armorUpgradePrice: int = 300
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	player_armor_label.text = "   : " + str(player.ARMOR) + "/" + str(player.maxArmor)
 	
 	if infoSwap == 0:
 		armorLabel.show()
@@ -77,7 +80,7 @@ func _process(_delta: float) -> void:
 		armorLabel.text = "Full"
 		armorLabel.set("theme_override_colors/font_color", Color(0, 255, 0))
 	
-	if player.playerAttack < 75:
+	if player.playerAttack < 50:
 		sharpLabel.text = "-" + str(sharpenPrice)
 		sharpLabel.set("theme_override_colors/font_color", Color(255, 255, 255))
 	else:
@@ -121,7 +124,7 @@ func _on_armor_strength_pressed() -> void:
 
 func _on_sharpen_pressed() -> void:
 	menuButtonSound.play()
-	if player.souls >= sharpenPrice and player.playerAttack < 75:
+	if player.souls >= sharpenPrice and player.playerAttack < 50:
 		player.souls -= sharpenPrice
 		player.playerAttack += 5
 
