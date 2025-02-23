@@ -24,6 +24,7 @@ extends CharacterBody3D
 @onready var ice_block: MeshInstance3D = $MeshInstance3D/iceBlock
 @onready var explosion: GPUParticles3D = $explosion
 @onready var boom: AudioStreamPlayer3D = $boom
+@onready var dodge_timer: Timer = $dodgeTimer
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -49,6 +50,9 @@ var randomAttack: int
 var iFrame: bool = false
 var frozen: bool = false
 var playerDetect: bool = false
+var dodge: bool = false
+var dodgeSpeed: float = -10.0
+var next_nav_point
 
 func _physics_process(delta):
 	
@@ -93,28 +97,35 @@ func _physics_process(delta):
 		maxSpeed = 10.0
 	
 	navReset += 1
-	if navReset >= navTime and player.modeType == 2 and death == false:
+	if navReset >= navTime and player.modeType == 2 and death == false and dodge == false:
 		velocity = Vector3.ZERO
 		nav_agent.set_target_position(player.global_transform.origin)
-		var next_nav_point = nav_agent.get_next_path_position()
+		next_nav_point = nav_agent.get_next_path_position()
 		velocity = (next_nav_point - global_transform.origin).normalized() * SPEED
 	
 		navReset = 0
-	if death == false:
+	if death == false :
 		rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
 	move_and_slide()
 	
-	if stunLock == true:
+	if stunLock == true and dodge == false:
 		SPEED = maxSpeed * 0.75
 	
-	if frozen == true:
+	if frozen == true and dodge == false:
 		SPEED = maxSpeed * 0.75
 	
-	if attackActive == true:
+	if attackActive == true and dodge == false:
 		SPEED = maxSpeed * 0.01
 	
-	if playerDetect == true:
+	if playerDetect == true and dodge == false:
 		SPEED = maxSpeed * 0.4
+	
+	if dodge == true:
+		velocity = Vector3.ZERO
+		nav_agent.set_target_position(player.global_transform.origin)
+		next_nav_point = nav_agent.get_next_path_position()
+		velocity = (next_nav_point - global_transform.origin).normalized() * dodgeSpeed
+		velocity.y = 0.01
 	
 	if player.playerDeath == true:
 		HEALTH = maxHealth
@@ -193,18 +204,22 @@ func _on_boss_animation_animation_started(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		magicAvailable = false
 		attackActive = true
-		SPEED *= 0.01
+		if dodge == false:
+			SPEED *= 0.01
 	if anim_name == "attack2":
 		magicAvailable = false
 		attackActive = true
-		SPEED *= 0.01
+		if dodge == false:
+			SPEED *= 0.01
 	if anim_name == "attack3":
 		magicAvailable = false
 		attackActive = true
-		SPEED *= 0.01
+		if dodge == false:
+			SPEED *= 0.01
 	if anim_name == "cast":
 		attackAvailable = false
-		SPEED *= 0.01
+		if dodge == false:
+			SPEED *= 0.01
 
 func _on_boss_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
@@ -251,3 +266,11 @@ func _on_i_frame_timer_timeout() -> void:
 func _on_frozen_timer_timeout() -> void:
 	frozen = false
 	ice_block.hide()
+
+func _on_close_detection_area_entered(area: Area3D) -> void:
+	if area.is_in_group("player"):
+		dodge = true
+		dodge_timer.start()
+
+func _on_dodge_timer_timeout() -> void:
+	dodge = false

@@ -14,7 +14,7 @@ emission = Color(0.537255, 0.505882, 0, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_654im"]
-size = Vector3(6, 1, 6)
+size = Vector3(6, 6, 6)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdddq"]
 direction = Vector3(0, 0, 1)

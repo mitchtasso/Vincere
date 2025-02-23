@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=35 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -24,6 +24,8 @@ material = SubResource("StandardMaterial3D_ukcbr")
 size = Vector3(1.5, 2, 0.75)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="Curve" id="Curve_8037b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.684932, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -619,6 +621,9 @@ points = PackedVector3Array(0.636839, -6.3862, 10.6597, -0.663056, -6.3862, 10.6
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlfgf"]
 size = Vector3(3, 3, 3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4d2mi"]
+size = Vector3(3, 3, 0.75)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vu4id"]
 size = Vector3(3, 3, 20)
 
@@ -643,7 +648,7 @@ mesh = SubResource("BoxMesh_bwc82")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.84362, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84362, 0)
 shape = SubResource("CapsuleShape3D_qg1h1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -755,6 +760,12 @@ pitch_scale = 0.9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75207, -2.31976)
 shape = SubResource("BoxShape3D_tlfgf")
 
+[node name="closeDetection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="closeDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77506, -1.20574)
+shape = SubResource("BoxShape3D_4d2mi")
+
 [node name="rangedDetection" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rangedDetection"]
@@ -791,6 +802,10 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="dodgeTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="stunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="finished" from="demonDeath" to="." method="_on_demon_death_finished"]
@@ -799,8 +814,10 @@ one_shot = true
 [connection signal="animation_started" from="bossAnimation" to="." method="_on_boss_animation_animation_started"]
 [connection signal="area_entered" from="meleeDetection" to="." method="_on_melee_detection_area_entered"]
 [connection signal="area_exited" from="meleeDetection" to="." method="_on_melee_detection_area_exited"]
+[connection signal="area_entered" from="closeDetection" to="." method="_on_close_detection_area_entered"]
 [connection signal="area_entered" from="rangedDetection" to="." method="_on_ranged_detection_area_entered"]
 [connection signal="timeout" from="attackReset" to="." method="_on_attack_reset_timeout"]
 [connection signal="timeout" from="magicReset" to="." method="_on_magic_reset_timeout"]
 [connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="frozenTimer" to="." method="_on_frozen_timer_timeout"]
+[connection signal="timeout" from="dodgeTimer" to="." method="_on_dodge_timer_timeout"]
