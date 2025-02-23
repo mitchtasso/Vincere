@@ -13,6 +13,7 @@ extends Control
 @onready var heal_sound: AudioStreamPlayer = $"../../sounds/healSound"
 @onready var magic_shop_menu: Control = $"../MagicShopMenu"
 @onready var magic_shop_focus: Button = $"../MagicShopMenu/buttons/VBoxContainer/Yes"
+@onready var player_health_label: Label = $healthLabel
 
 @onready var text_1: Button = $dialogueButtons/VBoxContainer/text1
 @onready var text_2: Button = $dialogueButtons/VBoxContainer/text2
@@ -34,21 +35,30 @@ var dialogueCounter: int  = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
+	player_health_label.text = "   : " + str(player.HEALTH) + "/" + str(player.maxHealth)
+	if player.HEALTH >= player.maxHealth:
+		player.HEALTH = player.maxHealth
+	
 	if activeNPC == NPC[0]:
 		title.text = "Mercator, the Merchant"
 		dialoguePic.texture = templarPic
+		player_health_label.hide()
 	elif activeNPC == NPC[1]:
 		title.text = "Medicus, the Healer"
 		dialoguePic.texture = templarPic
+		player_health_label.show()
 	elif activeNPC == NPC[2]:
 		title.text = "Unknown Cleric"
 		dialoguePic.texture = clericPic
+		player_health_label.hide()
 	elif activeNPC == NPC[3]:
 		title.text = "Cappellanus"
 		dialoguePic.texture = clericPic
+		player_health_label.hide()
 	elif activeNPC == NPC[4]:
 		title.text = "Magus, the Spell Caster"
 		dialoguePic.texture = templarPic
+		player_health_label.hide()
 	
 	if activeNPC == NPC[0]:
 		if dialogueCounter == 0:
@@ -64,7 +74,7 @@ func _process(_delta: float) -> void:
 			dialogue.play()
 			dialogLabel.text = "Greetings Knight, how may I be of service?"
 			text_1.text = "Who are you?"
-			text_2.text = "Heal me please, I am injured."
+			text_2.text = "Heal me please, I am injured. (-50)"
 			text_3.text = "Where do you get your power from?"
 			text_4.text = "Farewell."
 			dialogueCounter = 1

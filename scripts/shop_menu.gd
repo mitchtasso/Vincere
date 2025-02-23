@@ -26,6 +26,8 @@ extends Control
 @onready var upgrade_shield: TextureRect = $upgradeShield
 @onready var attack: TextureRect = $attack
 @onready var player_armor_label: Label = $armorLabel
+@onready var player_sword_label: Label = $swordLabel
+
 
 var armorPrice: int = 100
 var sharpenPrice: int = 600
@@ -36,6 +38,7 @@ var infoSwap: int = 0
 func _process(_delta: float) -> void:
 	
 	player_armor_label.text = "   : " + str(player.ARMOR) + "/" + str(player.maxArmor)
+	player_sword_label.text = "   : " + str(player.playerAttack)
 	
 	if infoSwap == 0:
 		armorLabel.show()

@@ -6335,6 +6335,25 @@ theme_override_font_sizes/font_size = 75
 text = "Trade your tainted souls for services... "
 horizontal_alignment = 1
 
+[node name="healthLabel" type="Label" parent="UI/DialogueMenu"]
+offset_left = 1825.0
+offset_top = 1065.0
+offset_right = 2098.0
+offset_bottom = 1162.0
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/DialogueMenu/healthLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = -7.0
+offset_right = 100.0
+offset_bottom = 57.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("22_qkscv")
+
 [node name="title" type="MarginContainer" parent="UI/DialogueMenu"]
 layout_mode = 1
 offset_right = 1041.0
@@ -6510,9 +6529,9 @@ horizontal_alignment = 1
 
 [node name="armorLabel" type="Label" parent="UI/ShopMenu"]
 layout_mode = 2
-offset_left = 25.0
+offset_left = 1825.0
 offset_top = 1100.0
-offset_right = 298.0
+offset_right = 2098.0
 offset_bottom = 1197.0
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -6526,6 +6545,25 @@ offset_right = 100.0
 offset_bottom = 64.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("23_sry2p")
+
+[node name="swordLabel" type="Label" parent="UI/ShopMenu"]
+layout_mode = 2
+offset_left = 1825.0
+offset_top = 1225.0
+offset_right = 2098.0
+offset_bottom = 1322.0
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/ShopMenu/swordLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("45_3dx3a")
 
 [node name="infoButton" type="Button" parent="UI/ShopMenu"]
 layout_mode = 0
@@ -6952,6 +6990,42 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 icon = ExtResource("52_uj7ww")
 icon_alignment = 1
+
+[node name="magicLabel" type="Label" parent="UI/MagicShopMenu"]
+offset_left = 1825.0
+offset_top = 1100.0
+offset_right = 2098.0
+offset_bottom = 1197.0
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/MagicShopMenu/magicLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("44_73r6e")
+
+[node name="manaLabel" type="Label" parent="UI/MagicShopMenu"]
+offset_left = 1825.0
+offset_top = 1225.0
+offset_right = 2098.0
+offset_bottom = 1322.0
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "   : 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/MagicShopMenu/manaLabel"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 100.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("28_5fp6e")
 
 [node name="title" type="MarginContainer" parent="UI/MagicShopMenu"]
 layout_mode = 1

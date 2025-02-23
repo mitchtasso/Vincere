@@ -28,6 +28,8 @@ extends Control
 @onready var spell_scroll: TextureRect = $spellScroll
 @onready var upgrade_sword: TextureRect = $upgradeSword
 @onready var longsword: TextureRect = $longsword
+@onready var player_magic_label: Label = $magicLabel
+@onready var player_mana_label: Label = $manaLabel
 
 
 var fireballPrice: int = 500
@@ -38,6 +40,13 @@ var manaUpgradePrice: int = 200
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if player.SPELL == 0:
+		player_mana_label.text = "   : N/A"
+		player_magic_label.text = "   : N/A"
+	else:
+		player_mana_label.text = "   : " + str(player.playerMagicRegen * 100)
+		player_magic_label.text = "   : " + str(player.playerMagicAtk)
 	
 	if infoSwap == 0:
 		price_labels.show()
