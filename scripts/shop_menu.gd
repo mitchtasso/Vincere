@@ -28,6 +28,9 @@ extends Control
 @onready var player_armor_label: Label = $armorLabel
 @onready var player_sword_label: Label = $swordLabel
 
+#funds
+@onready var insufficient_funds: Label = $"../Insufficient Funds"
+@onready var insufficient_funds_timer: Timer = $"../Insufficient Funds/Timer"
 
 var armorPrice: int = 100
 var sharpenPrice: int = 600
@@ -36,6 +39,13 @@ var armorUpgradePrice: int = 300
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if Input.is_action_just_pressed("quit") and shopMenu.visible == true or Input.is_action_just_pressed("ui_cancel") and shopMenu.visible == true:
+		infoSwap = 0
+		menuButtonSound.play()
+		shopMenu.hide()
+		dialogue_menu.show()
+		dialogueFocus.grab_focus()
 	
 	player_armor_label.text = "   : " + str(player.ARMOR) + "/" + str(player.maxArmor)
 	player_sword_label.text = "   : " + str(player.playerAttack)
@@ -111,31 +121,43 @@ func _on_yes_pressed() -> void:
 	menuButtonSound.play()
 	shopMenu.hide()
 	dialogue_menu.show()
-	dialogueFocus.grab_focus()	
+	dialogueFocus.grab_focus()
 
 func _on_armor_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= armorPrice and player.ARMOR < player.maxArmor:
 		player.souls -= armorPrice
 		player.ARMOR += player.maxArmor
+	elif player.souls < armorPrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_armor_strength_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= armorUpgradePrice and player.maxArmor < 100:
 		player.souls -= armorUpgradePrice
 		player.maxArmor += 10
+	elif player.souls < armorUpgradePrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_sharpen_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= sharpenPrice and player.playerAttack < 50:
 		player.souls -= sharpenPrice
 		player.playerAttack += 5
+	elif player.souls < sharpenPrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_upgrade_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= upgradePrice and player.UPGRADE == 0:
 		player.souls -= upgradePrice
 		player.UPGRADE = 1
+	elif player.souls < upgradePrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_info_button_pressed() -> void:
 	menuButtonSound.play()
@@ -143,4 +165,6 @@ func _on_info_button_pressed() -> void:
 		infoSwap += 1
 	elif infoSwap == 1:
 		infoSwap -= 1
-		
+
+func _on_timer_timeout() -> void:
+	insufficient_funds.hide()

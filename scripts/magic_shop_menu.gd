@@ -31,6 +31,8 @@ extends Control
 @onready var player_magic_label: Label = $magicLabel
 @onready var player_mana_label: Label = $manaLabel
 
+@onready var insufficient_funds: Label = $"../Insufficient Funds"
+@onready var insufficient_funds_timer: Timer = $"../Insufficient Funds/Timer"
 
 var fireballPrice: int = 500
 var icyclePrice: int = 400
@@ -40,6 +42,13 @@ var manaUpgradePrice: int = 200
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if Input.is_action_just_pressed("quit") and shopMenu.visible == true or Input.is_action_just_pressed("ui_cancel") and shopMenu.visible == true:
+		infoSwap = 0
+		menuButtonSound.play()
+		shopMenu.hide()
+		dialogue_menu.show()
+		dialogueFocus.grab_focus()
 	
 	if player.SPELL == 0:
 		player_mana_label.text = "   : N/A"
@@ -127,6 +136,9 @@ func _on_fireball_pressed() -> void:
 		player.souls -= fireballPrice
 		player.fireSpell = 1
 		player.SPELL = 1
+	elif player.souls < fireballPrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_icycle_pressed() -> void:
 	menuButtonSound.play()
@@ -134,6 +146,9 @@ func _on_icycle_pressed() -> void:
 		player.souls -= icyclePrice
 		player.iceSpell = 1
 		player.SPELL = 1
+	elif player.souls < icyclePrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_lightning_pressed() -> void:
 	menuButtonSound.play()
@@ -141,18 +156,27 @@ func _on_lightning_pressed() -> void:
 		player.souls -= lightningPrice
 		player.lightningSpell = 1
 		player.SPELL = 1
+	elif player.souls < lightningPrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_spell_upgrade_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= spellUpgradePrice and player.playerMagicAtk < 75 and player.SPELL == 1:
 		player.souls -= spellUpgradePrice
 		player.playerMagicAtk += 5
+	elif player.souls < spellUpgradePrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_mana_upgrade_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= manaUpgradePrice and player.playerMagicRegen < 0.45 and player.SPELL == 1:
 		player.souls -= manaUpgradePrice
 		player.playerMagicRegen += 0.05
+	elif player.souls < manaUpgradePrice:
+		insufficient_funds.show()
+		insufficient_funds_timer.start()
 
 func _on_info_button_pressed() -> void:
 	menuButtonSound.play()
