@@ -5,6 +5,7 @@ var window: int = 0
 var vsync: int = 1
 var fpsCount: int = 1
 var FPS
+var resolutionScale: float = 100
 
 @onready var VideoMenu: Control = $"."
 @onready var buttonSound: AudioStreamPlayer = $"../../sounds/menuButton"
@@ -15,6 +16,8 @@ var FPS
 @onready var fpsUI: Label = $"../playerUI/VBoxContainer/fps"
 @onready var savedText: MarginContainer = $savedText
 @onready var tempTextTimer: Timer = $tempText
+@onready var resText: Label = $MarginContainer/VBoxContainer/title6
+@onready var res_scale: HSlider = $MarginContainer/VBoxContainer/resScale
 
 @onready var OptionsMenu: Control = $"../OptionsMenu"
 @onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/controls"
@@ -23,6 +26,9 @@ var settingsData = SettingsData.new()
 var save_file_path: String = "user://VincereSaves/Settings/"
 var save_file_name: String = "SettingData.tres"
 var direct_file_path: String = "user://VincereSaves/Settings/"
+
+func _physics_process(_delta: float) -> void:
+	resText.text = "Resolution Scale: " + str(res_scale.value) + "%"
 
 func _on_back_pressed():
 	buttonSound.play()
@@ -87,6 +93,7 @@ func load_data():
 	window = settingsData.window
 	vsync = settingsData.vsync
 	fpsCount = settingsData.fpsCount
+	resolutionScale = settingsData.resolutionScale
 	
 	windowBox.selected = window
 	if windowBox.selected == 0:
@@ -110,6 +117,9 @@ func load_data():
 	elif vsyncBox.selected == 1:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	
+	res_scale.value = resolutionScale
+	get_viewport().set_scaling_3d_scale(resolutionScale/100)
+	
 	fpsBox.selected = fpsCount
 	if fpsBox.selected == 0:
 		FPS = "FPS: " + str(Engine.get_frames_per_second())
@@ -123,6 +133,7 @@ func save():
 	settingsData.resolution = resolution
 	settingsData.window = window
 	settingsData.vsync = vsync
+	settingsData.resolutionScale = resolutionScale
 	ResourceSaver.save(settingsData, save_file_path + save_file_name)
 	
 func _on_save_pressed() -> void:
@@ -138,3 +149,7 @@ func _process(_delta):
 
 func _on_temp_text_timeout() -> void:
 	savedText.hide()
+
+func _on_res_scale_value_changed(value: float) -> void:
+	resolutionScale = res_scale.value
+	get_viewport().set_scaling_3d_scale(resolutionScale/100)

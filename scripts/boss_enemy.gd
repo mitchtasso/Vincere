@@ -32,8 +32,8 @@ var instance
 @onready var arm_cast: RayCast3D = $Head/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/ArmMesh
 
-var HEALTH: float = 2000
-var maxHealth: float = 2000
+var HEALTH: float = 2500
+var maxHealth: float = 2500
 var SPEED: float = 10.0
 var maxSpeed: float = 10.0
 var stunSpeed: float = 0.9

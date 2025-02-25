@@ -120,7 +120,7 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("lightningMagic") and iFrame == false:
 		velocity = Vector3.ZERO
 		demon_hit.play()
-		HEALTH -= player.playerMagicAtk * 0.5
+		HEALTH -= player.playerMagicAtk * 0.75
 		stunLock = true
 		stun_timer.start()
 		iFrame = true
@@ -128,7 +128,7 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("iceMagic") and iFrame == false:
 		velocity = Vector3.ZERO
 		demon_hit.play()
-		HEALTH -= player.playerMagicAtk * 0.75
+		HEALTH -= player.playerMagicAtk
 		frozen = true
 		frozen_timer.start()
 		ice_block.show()
@@ -137,7 +137,7 @@ func _on_hitbox_area_entered(area):
 	if area.is_in_group("magic") and iFrame == false:
 		velocity = Vector3.ZERO
 		demon_hit.play()
-		HEALTH -= player.playerMagicAtk
+		HEALTH -= player.playerMagicAtk * 1.25
 		stunLock = true
 		stun_timer.start()
 		iFrame = true

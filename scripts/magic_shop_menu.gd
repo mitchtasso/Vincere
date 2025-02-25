@@ -34,11 +34,11 @@ extends Control
 @onready var insufficient_funds: Label = $"../Insufficient Funds"
 @onready var insufficient_funds_timer: Timer = $"../Insufficient Funds/Timer"
 
-var fireballPrice: int = 500
-var icyclePrice: int = 400
-var lightningPrice: int = 600
-var spellUpgradePrice: int = 200
-var manaUpgradePrice: int = 200
+var fireballPrice: int = 600
+var icyclePrice: int = 500
+var lightningPrice: int = 700
+var spellUpgradePrice: int = 400
+var manaUpgradePrice: int = 400
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:

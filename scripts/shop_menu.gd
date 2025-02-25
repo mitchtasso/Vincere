@@ -33,9 +33,9 @@ extends Control
 @onready var insufficient_funds_timer: Timer = $"../Insufficient Funds/Timer"
 
 var armorPrice: int = 100
-var sharpenPrice: int = 600
+var sharpenPrice: int = 700
 var upgradePrice: int = 1000
-var armorUpgradePrice: int = 300
+var armorUpgradePrice: int = 450
 var infoSwap: int = 0
 
 func _process(_delta: float) -> void:

@@ -50,15 +50,15 @@ func _process(_delta: float) -> void:
 	demon4_spawn_dec()
 	
 	match wave:
-		10: maxSpawn = 12
+		10: maxSpawn = 13
 		9: maxSpawn = 12
-		8: maxSpawn = 10
+		8: maxSpawn = 11
 		7: maxSpawn = 10
-		6: maxSpawn = 8
+		6: maxSpawn = 9
 		5: maxSpawn = 8
-		4: maxSpawn = 6
+		4: maxSpawn = 7
 		3: maxSpawn = 6
-		2: maxSpawn = 4
+		2: maxSpawn = 5
 		_: maxSpawn = 4
 	
 	var spawnCount = get_tree().get_nodes_in_group("enemySet").size()
@@ -68,26 +68,58 @@ func _process(_delta: float) -> void:
 		spawnValid = true
 	
 	if player.playerDeath == true:
-		if wave > 6:
-			player.gameTimeSec = 0
-			player.gameTimeMin = 3
-			player.gameTimeSecDef = 0
-			player.gameTimeMinDef = 3
-		elif wave > 4:
-			player.gameTimeSec = 30
-			player.gameTimeMin = 2
-			player.gameTimeSecDef = 30
-			player.gameTimeMinDef = 2
-		elif wave > 2:
-			player.gameTimeSec = 0
-			player.gameTimeMin = 2
-			player.gameTimeSecDef = 0
-			player.gameTimeMinDef = 2
-		else:
-			player.gameTimeSec = 30
-			player.gameTimeMin = 1
-			player.gameTimeSecDef = 30
-			player.gameTimeMinDef = 1
+		match wave:
+			10: 
+				player.gameTimeSec = 0
+				player.gameTimeMin = 5
+				player.gameTimeSecDef = 0
+				player.gameTimeMinDef = 5
+			9: 
+				player.gameTimeSec = 0
+				player.gameTimeMin = 4
+				player.gameTimeSecDef = 0
+				player.gameTimeMinDef = 4
+			8: 
+				player.gameTimeSec = 45
+				player.gameTimeMin = 3
+				player.gameTimeSecDef = 45
+				player.gameTimeMinDef = 3
+			7: 
+				player.gameTimeSec = 30
+				player.gameTimeMin = 3
+				player.gameTimeSecDef = 30
+				player.gameTimeMinDef = 3
+			6: 
+				player.gameTimeSec = 15
+				player.gameTimeMin = 3
+				player.gameTimeSecDef = 15
+				player.gameTimeMinDef = 3
+			5: 
+				player.gameTimeSec = 0
+				player.gameTimeMin = 3
+				player.gameTimeSecDef = 0
+				player.gameTimeMinDef = 3
+			4: 
+				player.gameTimeSec = 45
+				player.gameTimeMin = 2
+				player.gameTimeSecDef = 45
+				player.gameTimeMinDef = 2
+			3: 
+				player.gameTimeSec = 30
+				player.gameTimeMin = 2
+				player.gameTimeSecDef = 30
+				player.gameTimeMinDef = 2
+			2: 
+				player.gameTimeSec = 15
+				player.gameTimeMin = 2
+				player.gameTimeSecDef = 15
+				player.gameTimeMinDef = 2
+			_: 
+				player.gameTimeSec = 0
+				player.gameTimeMin = 2
+				player.gameTimeSecDef = 0
+				player.gameTimeMinDef = 2
+
 
 #Enemy 1 Spawning
 func _get_random_child(parent_node):
@@ -158,7 +190,9 @@ func demon2_spawn_dec():
 		respawnTimerDemon2.wait_time = demon2SpawnTime
 
 func demon3_spawn_dec():
-	if wave > 6:
+	if wave > 8:
+		respawnTimerDemon3.wait_time = demon3SpawnTime * dec400
+	elif wave > 6:
 		respawnTimerDemon3.wait_time = demon3SpawnTime * dec200
 	else:
 		respawnTimerDemon3.wait_time = demon3SpawnTime

@@ -12,3 +12,4 @@ class_name SettingsData
 @export var resolution: int = 0
 @export var window: int = 0
 @export var fpsCount: int = 0
+@export var resolutionScale: float = 0
