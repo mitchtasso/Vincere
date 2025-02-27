@@ -1,6 +1,6 @@
-[gd_scene load_steps=226 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=232 format=3 uid="uid://dkwybi6h6tuia"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
+[ext_resource type="Script" path="res://scripts/arcade_main.gd" id="1_womtv"]
 [ext_resource type="Script" path="res://scripts/steam.gd" id="2_715fs"]
 [ext_resource type="Script" path="res://scripts/world_environment.gd" id="2_ijlih"]
 [ext_resource type="ArrayMesh" uid="uid://bwl67882css75" path="res://assets/world/arenaWalls.obj" id="2_x03lh"]
@@ -16,7 +16,6 @@
 [ext_resource type="ArrayMesh" uid="uid://ntreeufyav0x" path="res://assets/world/paths.obj" id="6_t72xk"]
 [ext_resource type="ArrayMesh" uid="uid://d10022eu5oh84" path="res://assets/world/shopFence.obj" id="7_hwtjq"]
 [ext_resource type="ArrayMesh" uid="uid://cvsnx33s3q1eu" path="res://assets/world/crypt.obj" id="7_qr3yu"]
-[ext_resource type="Script" path="res://scripts/death_menu.gd" id="7_uy4yo"]
 [ext_resource type="ArrayMesh" uid="uid://vmtektgl0u3k" path="res://assets/world/gates.obj" id="7_xxkpr"]
 [ext_resource type="ArrayMesh" uid="uid://bj57nvvqqos83" path="res://assets/world/tree.obj" id="8_alnbp"]
 [ext_resource type="AudioStream" uid="uid://dluhp23fpkxov" path="res://sounds/demonDeath.wav" id="8_y6ntg"]
@@ -46,23 +45,25 @@
 [ext_resource type="Texture2D" uid="uid://c50r8k4fji6d1" path="res://assets/menu/controls.jpg" id="24_jdv8w"]
 [ext_resource type="Texture2D" uid="uid://d0p1cbx8va13v" path="res://assets/menu/templarPic.png" id="25_1uakm"]
 [ext_resource type="AudioStream" uid="uid://bwiuqrnr58hnc" path="res://sounds/coolJam1.wav" id="25_14vnf"]
-[ext_resource type="Script" path="res://scripts/music_manager.gd" id="26_l8dat"]
 [ext_resource type="Texture2D" uid="uid://d3e0cg8tkplkv" path="res://assets/menu/manaIcon.png" id="28_5fp6e"]
+[ext_resource type="Script" path="res://scripts/music_managerArcade.gd" id="29_kdeso"]
 [ext_resource type="AudioStream" uid="uid://ycvf3dycd6jl" path="res://sounds/retro/heal.wav" id="31_j8qth"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="31_ln4dp"]
 [ext_resource type="Script" path="res://scripts/dialogue_menu.gd" id="33_dwboo"]
+[ext_resource type="AudioStream" uid="uid://cfbvxhtud5a6k" path="res://sounds/eerieGameMusic.wav" id="35_o4hmk"]
 [ext_resource type="AudioStream" uid="uid://cm2en0nsawkm8" path="res://sounds/retro/click.wav" id="35_ushas"]
 [ext_resource type="PackedScene" uid="uid://cu5fgdljqnseh" path="res://scenes/bonfire.tscn" id="36_2sgga"]
 [ext_resource type="ArrayMesh" uid="uid://4o2pqqbvc6f4" path="res://assets/menu/models/templarefire1.obj" id="36_26ncv"]
 [ext_resource type="ArrayMesh" uid="uid://ccshtji45cys7" path="res://assets/player/holyblade.obj" id="37_7f0h5"]
 [ext_resource type="Script" path="res://scripts/credit_screen.gd" id="38_aexhr"]
-[ext_resource type="Script" path="res://scripts/story_menu.gd" id="38_dmjex"]
+[ext_resource type="AudioStream" uid="uid://dakskm3mrcyrh" path="res://sounds/levelup.wav" id="38_o3nmx"]
 [ext_resource type="ArrayMesh" uid="uid://c846vps6rkcio" path="res://assets/enemy/demon.obj" id="39_245wt"]
 [ext_resource type="Texture2D" uid="uid://ux1v77ck5di8" path="res://assets/menu/skull.png" id="39_mkttv"]
 [ext_resource type="Script" path="res://scripts/boss_menu.gd" id="39_odb2m"]
 [ext_resource type="ArrayMesh" uid="uid://bs42civgr7has" path="res://assets/menu/models/wood.obj" id="39_wr4ne"]
 [ext_resource type="Texture2D" uid="uid://d4h6os81neikv" path="res://assets/menu/soul.png" id="40_k8yj2"]
 [ext_resource type="AudioStream" uid="uid://c6vvbh86868nw" path="res://sounds/demonSounds.wav" id="40_r3i6j"]
+[ext_resource type="Script" path="res://scripts/playerArcade.gd" id="40_vc1jw"]
 [ext_resource type="Texture2D" uid="uid://cqytai5u4jgie" path="res://assets/menu/moon.png" id="41_7i14o"]
 [ext_resource type="ArrayMesh" uid="uid://cqlyh2x053no8" path="res://assets/world/cleric.obj" id="41_n3l2c"]
 [ext_resource type="PackedScene" uid="uid://c8y1u7h25cpww" path="res://scenes/demonDeath.tscn" id="42_57vix"]
@@ -89,6 +90,9 @@
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 [ext_resource type="Texture2D" uid="uid://drqp55fcu6v4l" path="res://assets/menu/lightning.png" id="56_pghvj"]
 [ext_resource type="Texture2D" uid="uid://dp4yg2561vle3" path="res://assets/menu/boss image.png" id="63_1xbmy"]
+[ext_resource type="Script" path="res://scripts/arcade_loading_screen.gd" id="65_nrgpu"]
+[ext_resource type="Script" path="res://scripts/arcade_death_menu.gd" id="77_ub58c"]
+[ext_resource type="Script" path="res://scenes/story_menu_arcade.gd" id="84_7d2ot"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -879,6 +883,8 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cv535"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_r5vnh"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_aovn3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_whbp1"]
@@ -886,6 +892,8 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 [sub_resource type="CanvasTexture" id="CanvasTexture_sdbt1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_i3mdo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ogx8b"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_s5l6u"]
 
@@ -896,7 +904,7 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 [sub_resource type="CanvasTexture" id="CanvasTexture_knwu8"]
 
 [node name="world" type="Node3D"]
-script = ExtResource("1_thyhm")
+script = ExtResource("1_womtv")
 
 [node name="Steam" type="Node3D" parent="."]
 process_mode = 3
@@ -915,6 +923,7 @@ script = ExtResource("2_ijlih")
 
 [node name="Shop" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+visible = false
 
 [node name="path" type="MeshInstance3D" parent="Shop"]
 mesh = ExtResource("9_1f6yu")
@@ -3499,6 +3508,7 @@ shape = SubResource("BoxShape3D_a1556")
 
 [node name="BossRoom" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7853, 0, 0)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_okat3")
 
 [node name="cleric" parent="BossRoom" instance=ExtResource("4_o2v7d")]
@@ -4790,6 +4800,7 @@ shape = SubResource("ConcavePolygonShape3D_isyqj")
 
 [node name="bossEnemy" parent="." instance=ExtResource("23_2isxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.785, 0, 21)
+visible = false
 
 [node name="allEnemies" type="Node3D" parent="."]
 
@@ -4866,7 +4877,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -18.7171)
 [node name="sounds" type="Node3D" parent="."]
 
 [node name="musicManager" type="Node" parent="sounds"]
-script = ExtResource("26_l8dat")
+script = ExtResource("29_kdeso")
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="sounds"]
 volume_db = -25.0
@@ -4893,8 +4904,8 @@ stream = ExtResource("10_746r2")
 
 [node name="menuMusic" type="AudioStreamPlayer" parent="sounds"]
 process_mode = 3
-stream = ExtResource("11_ne62n")
-volume_db = -5.0
+stream = ExtResource("35_o4hmk")
+volume_db = -50.0
 
 [node name="shopMusic" type="AudioStreamPlayer" parent="sounds"]
 process_mode = 3
@@ -4907,6 +4918,10 @@ stream = ExtResource("12_78rj3")
 
 [node name="healSound" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("31_j8qth")
+volume_db = -5.0
+
+[node name="levelSound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("38_o3nmx")
 volume_db = -5.0
 
 [node name="magicChange" type="AudioStreamPlayer" parent="sounds"]
@@ -4928,10 +4943,12 @@ process_callback = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.312306, 0)
 collision_layer = 7
 collision_mask = 7
+script = ExtResource("40_vc1jw")
 
 [node name="MenuArea" type="Node3D" parent="."]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86.5467)
+visible = false
 
 [node name="shader_cache" type="Node3D" parent="MenuArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2311)
@@ -5910,6 +5927,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 150
 
 [node name="souls" type="Label" parent="UI/playerUI/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 48
@@ -5968,6 +5986,7 @@ theme_override_constants/margin_top = 25
 layout_mode = 2
 
 [node name="waveLabel" type="Label" parent="UI/waveUI/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 48
@@ -6096,6 +6115,116 @@ text = "Autosaving..."
 
 [node name="Timer" type="Timer" parent="UI/autoSaveText"]
 wait_time = 3.0
+
+[node name="anounceText" type="MarginContainer" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.5
+offset_right = 219.5
+offset_bottom = 222.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/anounceText"]
+layout_mode = 2
+
+[node name="textLevel" type="Label" parent="UI/anounceText/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Stat Increase!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/anounceText/VBoxContainer/textLevel"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_r5vnh")
+
+[node name="textHeal" type="Label" parent="UI/anounceText/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Recovered!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/anounceText/VBoxContainer/textHeal"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_r5vnh")
+
+[node name="spellUnlock" type="Label" parent="UI/anounceText/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Spell Unlocked!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/anounceText/VBoxContainer/spellUnlock"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_r5vnh")
+
+[node name="swordUnlock" type="Label" parent="UI/anounceText/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Longsword Added!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/anounceText/VBoxContainer/swordUnlock"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_r5vnh")
+
+[node name="levelTimer" type="Timer" parent="UI/anounceText"]
+wait_time = 3.0
+one_shot = true
+
+[node name="healTimer" type="Timer" parent="UI/anounceText"]
+wait_time = 3.0
+one_shot = true
+
+[node name="spellTimer" type="Timer" parent="UI/anounceText"]
+wait_time = 3.0
+one_shot = true
+
+[node name="swordTimer" type="Timer" parent="UI/anounceText"]
+wait_time = 3.0
+one_shot = true
 
 [node name="CreditScreen" type="Control" parent="UI"]
 process_mode = 3
@@ -7450,11 +7579,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_uy4yo")
+script = ExtResource("77_ub58c")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UI/DeathMenu"]
-modulate = Color(0.742706, 0, 0.00871667, 1)
+modulate = Color(0.294564, 0, 0.00120189, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -7462,6 +7591,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_sdbt1")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/DeathMenu"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_top = -410.0
+offset_right = 2720.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_ogx8b")
 
 [node name="buttons" type="MarginContainer" parent="UI/DeathMenu"]
 layout_mode = 1
@@ -7482,13 +7627,54 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 160
 text = "YOU DIED"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
+
+[node name="kills" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+text = "Kills"
+
+[node name="time" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+text = "Time"
+
+[node name="Label3" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="hscore" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+text = "HIGHSCORE"
+horizontal_alignment = 1
+
+[node name="H_kills" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+text = "Kills"
+
+[node name="H_time" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 60
+text = "Time"
 
 [node name="Label" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -7742,6 +7928,7 @@ theme_override_font_sizes/font_size = 90
 text = "Controls"
 
 [node name="Load Last Save" type="Button" parent="UI/PauseMenu/buttons/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
@@ -7906,6 +8093,7 @@ theme_override_constants/margin_left = 1000
 theme_override_constants/margin_top = 90
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/statLabels2"]
+visible = false
 layout_mode = 2
 
 [node name="Tainted Souls" type="Label" parent="UI/PauseMenu/statLabels2/VBoxContainer"]
@@ -8020,7 +8208,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("38_dmjex")
+script = ExtResource("84_7d2ot")
 metadata/_edit_use_anchors_ = true
 
 [node name="bg" type="TextureRect" parent="UI/StoryMenu"]
@@ -8097,23 +8285,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -799.0
-offset_top = -148.5
-offset_right = 799.0
-offset_bottom = 148.5
+offset_left = -849.0
+offset_top = -120.0
+offset_right = 849.0
+offset_bottom = 377.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "On orders by the Church... 
-You find yourself exploring an old graveyard... 
-From the dark demons arose...
-Fight them off, survive the night!
-Return to safety come daylight..."
+text = "There is no end... 
+There is no hope...
+From the dark these demons rise...
+Fight them off, survive as long as possible...
+May strength guide you through this endless hell."
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="UI/StoryMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -8121,17 +8308,64 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -799.0
-offset_top = -148.5
+offset_top = -420.0
 offset_right = 799.0
-offset_bottom = 148.5
+offset_bottom = -123.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 90
-text = "Are you sure you would like to start a new game?
-If the game autosaves, it will overwrite your previous progress."
+theme_override_font_sizes/font_size = 200
+text = "ENDLESS NIGHT
+"
 horizontal_alignment = 1
+
+[node name="LoadingScreen2" type="Control" parent="UI"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("65_nrgpu")
+
+[node name="TextureRect" type="TextureRect" parent="UI/LoadingScreen2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_whbp1")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/LoadingScreen2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LoadingScreen2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/LoadingScreen2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 120
+text = "Loading..."
+
+[node name="loadTime" type="Timer" parent="UI/LoadingScreen2"]
+wait_time = 3.0
+one_shot = true
 
 [node name="VideoMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -8650,6 +8884,7 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8709,6 +8944,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Load Game"
+flat = true
+alignment = 0
+
+[node name="Arcade Mode" type="Button" parent="UI/StartMenu/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Arcade Mode"
 flat = true
 alignment = 0
 
@@ -8787,6 +9030,10 @@ text = "Version: 1.0"
 [connection signal="timeout" from="MenuArea/shader_cache/enemy5/frozenTimer" to="MenuArea/shader_cache/enemy5" method="_on_frozen_timer_timeout"]
 [connection signal="finished" from="MenuArea/shader_cache/enemy5/explosion" to="MenuArea/shader_cache/enemy5" method="_on_explosion_finished"]
 [connection signal="timeout" from="UI/autoSaveText/Timer" to="player" method="_on_timer_timeout"]
+[connection signal="timeout" from="UI/anounceText/levelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="UI/anounceText/healTimer" to="." method="_on_heal_timer_timeout"]
+[connection signal="timeout" from="UI/anounceText/spellTimer" to="." method="_on_spell_timer_timeout"]
+[connection signal="timeout" from="UI/anounceText/swordTimer" to="." method="_on_sword_timer_timeout"]
 [connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="UI/LoadingScreen/loadTime" to="UI/LoadingScreen" method="_on_load_time_timeout"]
 [connection signal="pressed" from="UI/ContinueMenu/buttons/VBoxContainer/Yes" to="UI/ContinueMenu" method="_on_yes_pressed"]
@@ -8822,6 +9069,7 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/back" to="UI/PauseMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="UI/StoryMenu/continuebutton/VBoxContainer/Continue" to="UI/StoryMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/StoryMenu/backButton/VBoxContainer/back" to="UI/StoryMenu" method="_on_back_pressed"]
+[connection signal="timeout" from="UI/LoadingScreen2/loadTime" to="UI/LoadingScreen2" method="_on_load_time_timeout"]
 [connection signal="item_selected" from="UI/VideoMenu/MarginContainer/VBoxContainer/window" to="UI/VideoMenu" method="_on_window_item_selected"]
 [connection signal="item_selected" from="UI/VideoMenu/MarginContainer/VBoxContainer/resolution" to="UI/VideoMenu" method="_on_resolution_item_selected"]
 [connection signal="value_changed" from="UI/VideoMenu/MarginContainer/VBoxContainer/resScale" to="UI/VideoMenu" method="_on_res_scale_value_changed"]

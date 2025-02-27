@@ -22,7 +22,9 @@ extends Control
 @onready var sun: DirectionalLight3D = $"../../sun"
 @onready var menu_area: Node3D = $"../../MenuArea"
 @onready var load_game_button: Button = $"buttons/VBoxContainer/Load Game"
+@onready var arcade_mode_button: Button = $"buttons/VBoxContainer/Arcade Mode"
 
+var arcadeScene = load("res://scenes/arcadeMain.tscn")
 var menuActive: bool = true
 var startMenuActive: bool = true
 
@@ -30,6 +32,7 @@ func _process(_delta):
 	
 	if player.bossKills > 0:
 		cleric.show()
+		arcade_mode_button.show()
 		startCamera.position = Vector3(0.1, 1.8, 2.423)
 	
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
@@ -93,6 +96,9 @@ func _on_load_game_pressed() -> void:
 	loading_screen.show()
 	load_time.start()
 	timer.start()
+
+func _on_arcade_mode_pressed() -> void:
+	get_tree().change_scene_to_packed(arcadeScene)
 
 func _on_options_pressed() -> void:
 	menuButtonSound.play()

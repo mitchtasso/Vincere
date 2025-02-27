@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=228 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/steam.gd" id="2_715fs"]
@@ -89,6 +89,7 @@
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 [ext_resource type="Texture2D" uid="uid://drqp55fcu6v4l" path="res://assets/menu/lightning.png" id="56_pghvj"]
 [ext_resource type="Texture2D" uid="uid://dp4yg2561vle3" path="res://assets/menu/boss image.png" id="63_1xbmy"]
+[ext_resource type="Script" path="res://scripts/start_loading_screen.gd" id="90_ghtis"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fgj40"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -886,6 +887,8 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 [sub_resource type="CanvasTexture" id="CanvasTexture_sdbt1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_i3mdo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ejqsv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_s5l6u"]
 
@@ -4882,6 +4885,7 @@ volume_db = 2.0
 
 [node name="dialogue" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("22_q1d72")
+volume_db = -5.0
 
 [node name="demonDeath" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("8_y6ntg")
@@ -4894,7 +4898,7 @@ stream = ExtResource("10_746r2")
 [node name="menuMusic" type="AudioStreamPlayer" parent="sounds"]
 process_mode = 3
 stream = ExtResource("11_ne62n")
-volume_db = -5.0
+volume_db = -50.0
 
 [node name="shopMusic" type="AudioStreamPlayer" parent="sounds"]
 process_mode = 3
@@ -7454,7 +7458,7 @@ script = ExtResource("7_uy4yo")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UI/DeathMenu"]
-modulate = Color(0.742706, 0, 0.00871667, 1)
+modulate = Color(0.294118, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -7462,6 +7466,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_sdbt1")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/DeathMenu"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_top = 475.0
+offset_right = 4000.0
+offset_bottom = 675.0
+texture = SubResource("CanvasTexture_ejqsv")
 
 [node name="buttons" type="MarginContainer" parent="UI/DeathMenu"]
 layout_mode = 1
@@ -7482,8 +7494,9 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 160
 text = "YOU DIED"
 horizontal_alignment = 1
 
@@ -7496,14 +7509,14 @@ layout_mode = 2
 [node name="Replay" type="Button" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 90
 text = "Replay"
 flat = true
 
 [node name="Menu" type="Button" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 90
 text = "Main Menu
 "
 flat = true
@@ -8650,6 +8663,7 @@ text = "Back
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8712,6 +8726,15 @@ text = "Load Game"
 flat = true
 alignment = 0
 
+[node name="Arcade Mode" type="Button" parent="UI/StartMenu/buttons/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 90
+text = "Arcade Mode"
+flat = true
+alignment = 0
+
 [node name="Options" type="Button" parent="UI/StartMenu/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
@@ -8728,28 +8751,52 @@ text = "Exit"
 flat = true
 alignment = 0
 
-[node name="version" type="MarginContainer" parent="UI/StartMenu"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="startLoadingScreen" type="Control" parent="UI"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_right = 10
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("90_ghtis")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/StartMenu/version"]
+[node name="TextureRect" type="TextureRect" parent="UI/startLoadingScreen"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_whbp1")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/startLoadingScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/startLoadingScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="versionLabel" type="Label" parent="UI/StartMenu/version/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/startLoadingScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.47788, 0.47788, 0.47788, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
-theme_override_font_sizes/font_size = 20
-text = "Version: 1.0"
+theme_override_font_sizes/font_size = 120
+text = "Loading..."
+
+[node name="loadTime" type="Timer" parent="UI/startLoadingScreen"]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="allEnemies/spawnTimerDemon1" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon2" to="." method="_on_spawn_timer_demon_2_timeout"]
@@ -8846,5 +8893,7 @@ text = "Version: 1.0"
 [connection signal="pressed" from="UI/OptionsMenu/buttons/VBoxContainer/back" to="UI/OptionsMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="UI/StartMenu/buttons/VBoxContainer/Start" to="UI/StartMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="UI/StartMenu/buttons/VBoxContainer/Load Game" to="UI/StartMenu" method="_on_load_game_pressed"]
+[connection signal="pressed" from="UI/StartMenu/buttons/VBoxContainer/Arcade Mode" to="UI/StartMenu" method="_on_arcade_mode_pressed"]
 [connection signal="pressed" from="UI/StartMenu/buttons/VBoxContainer/Options" to="UI/StartMenu" method="_on_options_pressed"]
 [connection signal="pressed" from="UI/StartMenu/buttons/VBoxContainer/Exit" to="UI/StartMenu" method="_on_exit_pressed"]
+[connection signal="timeout" from="UI/startLoadingScreen/loadTime" to="UI/startLoadingScreen" method="_on_load_time_timeout"]

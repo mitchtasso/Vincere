@@ -43,8 +43,6 @@ var iceSpell: String
 func _process(_delta: float) -> void:
 	if player.modeType == 2:
 		load_last_save.hide()
-	else:
-		load_last_save.show()
 
 func _on_resume_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

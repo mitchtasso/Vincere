@@ -18,3 +18,7 @@ class_name PlayerData
 @export var fireSpell: int = 0
 @export var iceSpell: int = 0
 @export var lightningSpell: int = 0
+
+@export var gameTimeMin: int = 0
+@export var gameTimeSec: int = 0
+@export var kills: int = 0

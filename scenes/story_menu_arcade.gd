@@ -15,12 +15,18 @@ extends Control
 @onready var player_ui: MarginContainer = $"../playerUI"
 @onready var wave_ui: MarginContainer = $"../waveUI"
 @onready var crosshair: MarginContainer = $"../crosshair"
+@onready var continueButton: Button = $continuebutton/VBoxContainer/Continue
 
 var turn: int = 0
 var final: bool = false
 var mainScene = load("res://scenes/main.tscn")
+var loadIn: int = 0
 
 func _process(_delta: float) -> void:
+	
+	if story_menu.visible == true and loadIn == 0:
+		continueButton.grab_focus()
+		loadIn += 1
 	
 	if player.playerData.wave > 1 and turn == 0:
 		storyLabel.hide()
@@ -41,6 +47,7 @@ func _on_continue_pressed() -> void:
 		warningLabel.hide()
 		turn = 1
 	elif turn == 1:
+		warningLabel.hide()
 		menu_button.play()
 		storyLabel.hide()
 		controlDiagram.show()
@@ -56,6 +63,7 @@ func _on_continue_pressed() -> void:
 		player.stat_reset()
 		loading_screen.show()
 		load_time.start()
+		menu_music.volume_db = -25
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_packed(mainScene)
