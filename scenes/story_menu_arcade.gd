@@ -16,6 +16,7 @@ extends Control
 @onready var wave_ui: MarginContainer = $"../waveUI"
 @onready var crosshair: MarginContainer = $"../crosshair"
 @onready var continueButton: Button = $continuebutton/VBoxContainer/Continue
+@onready var directions: Label = $directions
 
 var turn: int = 0
 var final: bool = false
@@ -50,7 +51,7 @@ func _on_continue_pressed() -> void:
 		warningLabel.hide()
 		menu_button.play()
 		storyLabel.hide()
-		controlDiagram.show()
+		directions.show()
 		final = true
 		turn = 2
 	else:

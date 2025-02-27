@@ -8336,7 +8336,7 @@ text = "There is no end...
 There is no hope...
 From the dark these demons rise...
 Fight them off, survive as long as possible...
-May strength guide you through this endless hell."
+Take as many of them down with you as you can."
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="UI/StoryMenu"]
@@ -8358,6 +8358,37 @@ theme_override_font_sizes/font_size = 200
 text = "ENDLESS NIGHT
 "
 horizontal_alignment = 1
+
+[node name="directions" type="Label" parent="UI/StoryMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -774.5
+offset_top = -544.5
+offset_right = 774.5
+offset_bottom = 544.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 75
+text = "The longer you survive, the higher your stats increase
+and the more upgrades you unlock.
+
+To recover your health and armor... keep slaying
+demons. The higher your kill milestones, the more
+you recover. 
+
+Your highscore is based on kills not time. Cowards
+are not rewarded.
+
+As the night progresses, different demon types will
+come after you and their numbers will only increase.
+
+Prepare yourself knight. You are facing hell."
 
 [node name="LoadingScreen2" type="Control" parent="UI"]
 process_mode = 3
