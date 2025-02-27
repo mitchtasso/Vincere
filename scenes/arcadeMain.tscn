@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=236 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/arcade_main.gd" id="1_womtv"]
 [ext_resource type="Script" path="res://scripts/arcade_steam.gd" id="2_7btko"]
@@ -90,6 +90,7 @@
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 [ext_resource type="Texture2D" uid="uid://drqp55fcu6v4l" path="res://assets/menu/lightning.png" id="56_pghvj"]
 [ext_resource type="Texture2D" uid="uid://dp4yg2561vle3" path="res://assets/menu/boss image.png" id="63_1xbmy"]
+[ext_resource type="Shader" path="res://assets/player/speedLines.gdshader" id="64_x0pv0"]
 [ext_resource type="Script" path="res://scripts/arcade_loading_screen.gd" id="65_nrgpu"]
 [ext_resource type="Script" path="res://scripts/arcade_death_menu.gd" id="77_ub58c"]
 [ext_resource type="Script" path="res://scenes/story_menu_arcade.gd" id="84_7d2ot"]
@@ -884,6 +885,24 @@ albedo_color = Color(0.0627451, 0.352941, 0, 1)
 [sub_resource type="CanvasTexture" id="CanvasTexture_cv535"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_r5vnh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rubbd"]
+noise_type = 5
+frequency = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0lsew"]
+noise = SubResource("FastNoiseLite_rubbd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uecal"]
+shader = ExtResource("64_x0pv0")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_count = 1.0
+shader_parameter/line_density = 1.0
+shader_parameter/line_faloff = 1.0
+shader_parameter/mask_size = 0.25
+shader_parameter/mask_edge = 1.0
+shader_parameter/animation_speed = 12.0
+shader_parameter/noise = SubResource("NoiseTexture2D_0lsew")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_aovn3"]
 
@@ -6226,6 +6245,28 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="speedLines" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/speedLines"]
+material = SubResource("ShaderMaterial_uecal")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="speedTimer" type="Timer" parent="UI/speedLines"]
+wait_time = 0.5
+one_shot = true
+
 [node name="CreditScreen" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -9032,6 +9073,7 @@ text = "Version: 1.0"
 [connection signal="timeout" from="UI/anounceText/healTimer" to="." method="_on_heal_timer_timeout"]
 [connection signal="timeout" from="UI/anounceText/spellTimer" to="." method="_on_spell_timer_timeout"]
 [connection signal="timeout" from="UI/anounceText/swordTimer" to="." method="_on_sword_timer_timeout"]
+[connection signal="timeout" from="UI/speedLines/speedTimer" to="player" method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="UI/LoadingScreen/loadTime" to="UI/LoadingScreen" method="_on_load_time_timeout"]
 [connection signal="pressed" from="UI/ContinueMenu/buttons/VBoxContainer/Yes" to="UI/ContinueMenu" method="_on_yes_pressed"]

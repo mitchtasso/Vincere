@@ -20,7 +20,7 @@ extends CharacterBody3D
 var HEALTH: int = 50
 var maxHealth: int = 50
 var SPEED: float = 8.0
-var knockbackSpeed: float = 5.60
+var knockbackSpeed: float = 6.0
 var navReset: int = 0
 var navTime: int = 60
 var stunLock: bool = false

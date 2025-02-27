@@ -22,7 +22,7 @@ var instance
 var HEALTH: int = 50
 var maxHealth: int = 50
 var SPEED: float = 4.0
-var knockbackSpeed: float = 5.60
+var knockbackSpeed: float = 6.0
 var navReset: int = 0
 var navTime: int = 30
 var stunLock: bool = false

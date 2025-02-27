@@ -1,4 +1,4 @@
-[gd_scene load_steps=228 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=232 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/steam.gd" id="2_715fs"]
@@ -88,6 +88,7 @@
 [ext_resource type="Texture2D" uid="uid://cg6d3ehc1m3pw" path="res://assets/menu/icycle.png" id="55_y3gjk"]
 [ext_resource type="Texture2D" uid="uid://c345br6gv41tn" path="res://assets/menu/logo_processed.png" id="56_aoefj"]
 [ext_resource type="Texture2D" uid="uid://drqp55fcu6v4l" path="res://assets/menu/lightning.png" id="56_pghvj"]
+[ext_resource type="Shader" path="res://assets/player/speedLines.gdshader" id="61_im7v8"]
 [ext_resource type="Texture2D" uid="uid://dp4yg2561vle3" path="res://assets/menu/boss image.png" id="63_1xbmy"]
 [ext_resource type="Script" path="res://scripts/start_loading_screen.gd" id="90_ghtis"]
 
@@ -879,6 +880,24 @@ size = Vector2(20, 20)
 albedo_color = Color(0.0627451, 0.352941, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cv535"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6m5o"]
+noise_type = 5
+frequency = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m1ghs"]
+noise = SubResource("FastNoiseLite_t6m5o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnm4s"]
+shader = ExtResource("61_im7v8")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_count = 1.0
+shader_parameter/line_density = 1.0
+shader_parameter/line_faloff = 1.0
+shader_parameter/mask_size = 0.25
+shader_parameter/mask_edge = 1.0
+shader_parameter/animation_speed = 12.0
+shader_parameter/noise = SubResource("NoiseTexture2D_m1ghs")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_aovn3"]
 
@@ -6101,6 +6120,28 @@ text = "Autosaving..."
 [node name="Timer" type="Timer" parent="UI/autoSaveText"]
 wait_time = 3.0
 
+[node name="speedLines" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/speedLines"]
+material = SubResource("ShaderMaterial_wnm4s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="speedTimer" type="Timer" parent="UI/speedLines"]
+wait_time = 0.5
+one_shot = true
+
 [node name="CreditScreen" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -8836,6 +8877,7 @@ one_shot = true
 [connection signal="timeout" from="MenuArea/shader_cache/enemy5/frozenTimer" to="MenuArea/shader_cache/enemy5" method="_on_frozen_timer_timeout"]
 [connection signal="finished" from="MenuArea/shader_cache/enemy5/explosion" to="MenuArea/shader_cache/enemy5" method="_on_explosion_finished"]
 [connection signal="timeout" from="UI/autoSaveText/Timer" to="player" method="_on_timer_timeout"]
+[connection signal="timeout" from="UI/speedLines/speedTimer" to="player" method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="UI/LoadingScreen/loadTime" to="UI/LoadingScreen" method="_on_load_time_timeout"]
 [connection signal="pressed" from="UI/ContinueMenu/buttons/VBoxContainer/Yes" to="UI/ContinueMenu" method="_on_yes_pressed"]

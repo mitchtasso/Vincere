@@ -102,6 +102,8 @@ var direct_file_path: String = "user://VincereData/"
 @onready var healthVin: TextureRect = $"../UI/healthVin"
 @onready var low_health_vin: TextureRect = $"../UI/lowHealthVin"
 @onready var spell_UI_pic: TextureRect = $"../UI/statsUI/spell"
+@onready var speed_lines: Control = $"../UI/speedLines"
+@onready var speed_timer: Timer = $"../UI/speedLines/speedTimer"
 
 #Menu UI Elements
 @onready var pauseMenu: Control = $"../UI/PauseMenu"
@@ -303,7 +305,9 @@ func _process(delta):
 	if Input.is_action_pressed("dash") and dashCool == true and is_on_floor():
 		dashCool = false
 		dashActive = true
-		velocity *= 2
+		speed_lines.show()
+		speed_timer.start()
+		velocity *= 2.5
 		walkingSound.pitch_scale = 0.01
 		if velocity != Vector3.ZERO:
 			dash_sound.play()
@@ -467,6 +471,9 @@ func _on_i_frame_timer_timeout() -> void:
 #Dash cooldown
 func _on_dash_cooldown_timeout() -> void:
 	dashCool = true
+
+func _on_speed_timer_timeout() -> void:
+	speed_lines.hide()
 
 #Dash inactive
 func _on_dash_active_timer_timeout() -> void:
