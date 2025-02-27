@@ -15,9 +15,9 @@ extends Control
 @onready var timer: Timer = $Timer
 
 var settingsData = SettingsData.new()
-var save_file_path: String = "user://VincereSaves/Settings/"
+var save_file_path: String = "user://VincereData/Settings/"
 var save_file_name: String = "SettingData.tres"
-var direct_file_path: String = "user://VincereSaves/Settings/"
+var direct_file_path: String = "user://VincereData/Settings/"
 var saveNum: int = 0
 
 var horizSens: float = 50.0

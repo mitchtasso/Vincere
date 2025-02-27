@@ -12,9 +12,9 @@ var volume: float = 0
 @onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/back"
 
 var settingsData = SettingsData.new()
-var save_file_path: String = "user://VincereSaves/Settings/"
+var save_file_path: String = "user://VincereData/Settings/"
 var save_file_name: String = "SettingData.tres"
-var direct_file_path: String = "user://VincereSaves/Settings/"
+var direct_file_path: String = "user://VincereData/Settings/"
 
 func _on_back_pressed():
 	buttonSound.play()

@@ -85,9 +85,9 @@ var instance
 @onready var arm_mesh: MeshInstance3D = $Head/Camera3D/ArmMesh
 
 #Player data save path
-var save_file_path: String = "user://VincereSaves/Arcade/"
+var save_file_path: String = "user://VincereData/Arcade/"
 var save_file_name: String = "ArcadePlayerData.tres"
-var direct_file_path: String = "user://VincereSaves/Arcade/"
+var direct_file_path: String = "user://VincereData/Arcade/"
 
 #Player UI Elements
 @onready var gametimer: Timer = $"../gameTime"

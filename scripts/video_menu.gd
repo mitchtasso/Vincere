@@ -23,9 +23,9 @@ var resolutionScale: float = 100
 @onready var OptionsMenuSelect: Button = $"../OptionsMenu/buttons/VBoxContainer/controls"
 
 var settingsData = SettingsData.new()
-var save_file_path: String = "user://VincereSaves/Settings/"
+var save_file_path: String = "user://VincereData/Settings/"
 var save_file_name: String = "SettingData.tres"
-var direct_file_path: String = "user://VincereSaves/Settings/"
+var direct_file_path: String = "user://VincereData/Settings/"
 
 func _physics_process(_delta: float) -> void:
 	resText.text = "Resolution Scale: " + str(res_scale.value) + "%"
