@@ -4885,7 +4885,7 @@ volume_db = 2.0
 
 [node name="dialogue" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("22_q1d72")
-volume_db = -5.0
+volume_db = -10.0
 
 [node name="demonDeath" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("8_y6ntg")
@@ -4911,7 +4911,7 @@ stream = ExtResource("12_78rj3")
 
 [node name="healSound" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("31_j8qth")
-volume_db = -5.0
+volume_db = -10.0
 
 [node name="magicChange" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("35_ushas")
@@ -6143,6 +6143,10 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 90
 text = "Thank you for playing Vincere!
+ 
+For completing the game,
+ you have unlocked the ARCADE MODE, 
+available from the main menu!
 
 Please leave a review and join the Discord
 from the Steam store page!"
