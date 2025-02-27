@@ -457,9 +457,9 @@ func _on_player_hitbox_area_entered(area):
 		healthVin.show()
 		vin_timer.start()
 		if ARMOR > 0:
-			ARMOR -= 20
+			ARMOR -= 25
 		else:
-			HEALTH -= 20
+			HEALTH -= 25
 
 func _on_i_frame_timer_timeout() -> void:
 	iFrame = false
