@@ -7475,7 +7475,7 @@ texture = SubResource("CanvasTexture_sdbt1")
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_top = 475.0
-offset_right = 4000.0
+offset_right = 2560.0
 offset_bottom = 675.0
 texture = SubResource("CanvasTexture_ejqsv")
 
@@ -7515,7 +7515,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Replay"
-flat = true
 
 [node name="Menu" type="Button" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -7523,7 +7522,6 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
 text = "Main Menu
 "
-flat = true
 
 [node name="WaveMenu" type="Control" parent="UI"]
 process_mode = 3

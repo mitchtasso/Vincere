@@ -12,6 +12,6 @@ func _ready() -> void:
 
 func _on_load_time_timeout() -> void:
 	loading_screen.hide()
-	menu_music.volume_db = -5.0
+	menu_music.volume_db = -12.5
 	story_menu.show()
 	menu_music.play()

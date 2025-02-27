@@ -7602,7 +7602,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1280.0
 offset_top = -410.0
-offset_right = 2720.0
+offset_right = 1280.0
 offset_bottom = -210.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -7684,7 +7684,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Replay"
-flat = true
 
 [node name="Menu" type="Button" parent="UI/DeathMenu/buttons/VBoxContainer"]
 layout_mode = 2
@@ -7692,7 +7691,6 @@ theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 60
 text = "Main Menu
 "
-flat = true
 
 [node name="WaveMenu" type="Control" parent="UI"]
 process_mode = 3

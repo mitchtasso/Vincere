@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cyhdk2kylqxos"]
+[gd_scene load_steps=34 format=3 uid="uid://cyhdk2kylqxos"]
 
 [ext_resource type="Script" path="res://scripts/boss_enemy.gd" id="1_dded1"]
 [ext_resource type="ArrayMesh" uid="uid://cl3jhnuv057ga" path="res://assets/enemy/demonBoss.obj" id="2_vgi8h"]
@@ -11,7 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://dtphoysy3l7my" path="res://sounds/swing2.wav" id="7_s2ujm"]
 [ext_resource type="AudioStream" uid="uid://c2614eik5s4cj" path="res://sounds/retro/attacked.wav" id="9_jxdio"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulfji"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukcbr"]
 transparency = 1
@@ -22,10 +24,6 @@ emission = Color(0, 0.794772, 0.794772, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_bwc82"]
 material = SubResource("StandardMaterial3D_ukcbr")
 size = Vector3(1.5, 2, 0.75)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qg1h1"]
-radius = 1.0
-height = 4.0
 
 [sub_resource type="Curve" id="Curve_8037b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.684932, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -634,8 +632,8 @@ script = ExtResource("1_dded1")
 [node name="hitbox" type="Area3D" parent="." groups=["enemies"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.6, 0)
-shape = SubResource("CapsuleShape3D_ulfji")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84362, 0)
+shape = SubResource("CapsuleShape3D_qg1h1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.000258446, 0)
