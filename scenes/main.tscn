@@ -3526,6 +3526,10 @@ navigation_mesh = SubResource("NavigationMesh_okat3")
 [node name="cleric" parent="BossRoom" instance=ExtResource("4_o2v7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 0.0681154, 0)
 
+[node name="clericTimer" type="Timer" parent="BossRoom"]
+wait_time = 2.0
+one_shot = true
+
 [node name="GameEnvironment" type="Node3D" parent="BossRoom"]
 
 [node name="walls" type="StaticBody3D" parent="BossRoom/GameEnvironment"]
@@ -8841,6 +8845,7 @@ text = "Loading..."
 wait_time = 2.0
 one_shot = true
 
+[connection signal="timeout" from="BossRoom/clericTimer" to="BossRoom/cleric" method="_on_cleric_timer_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon1" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon2" to="." method="_on_spawn_timer_demon_2_timeout"]
 [connection signal="timeout" from="allEnemies/spawnTimerDemon3" to="." method="_on_spawn_timer_demon_3_timeout"]

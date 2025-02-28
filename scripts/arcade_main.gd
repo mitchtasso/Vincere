@@ -62,6 +62,8 @@ func _process(_delta: float) -> void:
 	demon4_spawn_dec()
 	
 	match player.gameTimeMin:
+		10: maxSpawn = 15
+		9: maxSpawn = 14
 		8: 
 			if unlock == 3:
 				maxSpawn = 13
@@ -126,6 +128,33 @@ func _process(_delta: float) -> void:
 			wave = 10
 	
 	match player.points:
+		500:
+			if playerHeal == 7:
+				player.HEALTH += 100
+				player.maxArmor = 100
+				player.ARMOR += 100
+				text_healLabel.show()
+				heal_timer.start()
+				heal_sound.play()
+				playerHeal = 8
+		400:
+			if playerHeal == 6:
+				player.HEALTH += 100
+				player.maxArmor = 100
+				player.ARMOR += 100
+				text_healLabel.show()
+				heal_timer.start()
+				heal_sound.play()
+				playerHeal = 7
+		325:
+			if playerHeal == 5:
+				player.HEALTH += 100
+				player.maxArmor = 100
+				player.ARMOR += 100
+				text_healLabel.show()
+				heal_timer.start()
+				heal_sound.play()
+				playerHeal = 6
 		250:
 			if playerHeal == 4:
 				player.HEALTH += 100
@@ -155,13 +184,14 @@ func _process(_delta: float) -> void:
 		100:
 			if playerHeal == 1:
 				player.HEALTH += 100
+				player.ARMOR += 25
 				text_healLabel.show()
 				heal_timer.start()
 				heal_sound.play()
 				playerHeal = 2
 		50:
 			if playerHeal == 0:
-				player.HEALTH += 50
+				player.HEALTH += 75
 				text_healLabel.show()
 				heal_timer.start()
 				heal_sound.play()

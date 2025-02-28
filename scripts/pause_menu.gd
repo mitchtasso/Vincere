@@ -41,7 +41,7 @@ var lightningSpell: String
 var iceSpell: String
 
 func _process(_delta: float) -> void:
-	if player.modeType == 2:
+	if player.modeType == 2 or world.wave == 1:
 		load_last_save.hide()
 
 func _on_resume_pressed() -> void:

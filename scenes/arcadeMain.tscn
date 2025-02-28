@@ -3532,6 +3532,7 @@ navigation_mesh = SubResource("NavigationMesh_okat3")
 
 [node name="cleric" parent="BossRoom" instance=ExtResource("4_o2v7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 0.0681154, 0)
+script = null
 
 [node name="GameEnvironment" type="Node3D" parent="BossRoom"]
 
@@ -4820,6 +4821,7 @@ shape = SubResource("ConcavePolygonShape3D_isyqj")
 [node name="bossEnemy" parent="." instance=ExtResource("23_2isxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.785, 0, 21)
 visible = false
+script = null
 
 [node name="allEnemies" type="Node3D" parent="."]
 

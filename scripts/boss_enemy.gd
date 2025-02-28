@@ -25,6 +25,7 @@ extends CharacterBody3D
 @onready var explosion: GPUParticles3D = $explosion
 @onready var boom: AudioStreamPlayer3D = $boom
 @onready var dodge_timer: Timer = $dodgeTimer
+@onready var cleric_timer: Timer = $"../BossRoom/clericTimer"
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -51,7 +52,8 @@ var iFrame: bool = false
 var frozen: bool = false
 var playerDetect: bool = false
 var dodge: bool = false
-var dodgeSpeed: float = -10.0
+var dodgeReset: bool = false
+var dodgeSpeed: float = -20.0
 var next_nav_point
 
 func _physics_process(delta):
@@ -174,7 +176,7 @@ func _on_demon_death_finished() -> void:
 	boom.play()
 
 func _on_explosion_finished() -> void:
-	cleric.position = Vector3(0,0.068,0)
+	cleric_timer.start()
 	world.gameEnd = true
 	self.queue_free()
 

@@ -307,12 +307,12 @@ func _process(delta):
 	if Input.is_action_pressed("dash") and dashCool == true and is_on_floor():
 		dashCool = false
 		dashActive = true
-		speed_lines.show()
-		speed_timer.start()
 		velocity *= 2
 		walkingSound.pitch_scale = 0.01
 		if velocity != Vector3.ZERO:
 			dash_sound.play()
+			speed_lines.show()
+			speed_timer.start()
 		dash_cooldown.start()
 		dash_active_timer.start()
 	
@@ -521,6 +521,7 @@ func death():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		#Reset player stats
 		magicAttack = false
+		attackActive = false
 		#Pause game
 		get_tree().paused = true
 

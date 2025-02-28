@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://uqwnsr2ul3a3"]
+[gd_scene load_steps=13 format=3 uid="uid://uqwnsr2ul3a3"]
 
 [ext_resource type="Script" path="res://scripts/cleric.gd" id="1_ycp2u"]
 [ext_resource type="ArrayMesh" uid="uid://cqlyh2x053no8" path="res://assets/world/cleric.obj" id="2_onn6j"]
@@ -15,6 +15,27 @@ size = Vector3(4, 2, 4)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_errva"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Curve" id="Curve_n4qn1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.684932, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7g5rc"]
+curve = SubResource("Curve_n4qn1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yt2ak"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_7g5rc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5wlg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_livxb"]
+material = SubResource("StandardMaterial3D_o5wlg")
 
 [node name="cleric" type="StaticBody3D"]
 script = ExtResource("1_ycp2u")
@@ -78,5 +99,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0917001, 0)
 light_color = Color(1, 0, 0, 1)
 light_energy = 2.0
 omni_range = 1.0
+
+[node name="clericAppear" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.558476, 0)
+emitting = false
+amount = 16
+amount_ratio = 0.4
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yt2ak")
+draw_pass_1 = SubResource("SphereMesh_livxb")
 
 [connection signal="area_exited" from="playerField" to="." method="_on_player_field_area_exited"]
