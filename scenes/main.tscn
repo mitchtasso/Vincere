@@ -8776,9 +8776,12 @@ alignment = 0
 [node name="Arcade Mode" type="Button" parent="UI/StartMenu/buttons/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("16_j1wiw")
 theme_override_font_sizes/font_size = 90
-text = "Arcade Mode"
+text = "Endless Night"
 flat = true
 alignment = 0
 

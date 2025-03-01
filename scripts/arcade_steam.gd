@@ -14,7 +14,7 @@ func _init() -> void:
 func _ready() -> void:
 	Steam.steamInit()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	isRunning = Steam.isSteamRunning()
 	if isRunning:
 		
