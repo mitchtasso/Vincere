@@ -26,6 +26,8 @@ extends CharacterBody3D
 @onready var boom: AudioStreamPlayer3D = $boom
 @onready var dodge_timer: Timer = $dodgeTimer
 @onready var cleric_timer: Timer = $"../BossRoom/clericTimer"
+@onready var boss_defeated_label: Label = $"../UI/bossDefeated"
+@onready var boss_defeated_timer: Timer = $"../UI/bossDefeated/Timer"
 
 # Magic 
 var magic = load("res://scenes/boss_magic.tscn")
@@ -33,8 +35,8 @@ var instance
 @onready var arm_cast: RayCast3D = $Head/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/ArmMesh
 
-var HEALTH: float = 2500
-var maxHealth: float = 2500
+var HEALTH: float = 100
+var maxHealth: float = 100
 var SPEED: float = 10.0
 var maxSpeed: float = 10.0
 var stunSpeed: float = 0.9
@@ -177,6 +179,8 @@ func _on_demon_death_finished() -> void:
 
 func _on_explosion_finished() -> void:
 	cleric_timer.start()
+	boss_defeated_label.show()
+	boss_defeated_timer.start()
 	world.gameEnd = true
 	self.queue_free()
 

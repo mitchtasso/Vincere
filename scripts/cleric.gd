@@ -8,6 +8,7 @@ extends StaticBody3D
 @onready var world: Node3D = $"../.."
 @onready var exclaim: Sprite3D = $Sprite3D
 @onready var cleric_appear: GPUParticles3D = $clericAppear
+@onready var boss_defeated_label: Label = $"../../UI/bossDefeated"
 
 func _process(_delta: float) -> void:
 	
@@ -57,3 +58,6 @@ func _on_player_field_area_exited(_area: Area3D) -> void:
 func _on_cleric_timer_timeout() -> void:
 	self.position = Vector3(0,0.068,0)
 	cleric_appear.emitting = true
+
+func _on_timer_timeout() -> void:
+	boss_defeated_label.hide()

@@ -6100,6 +6100,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_cv535")
 
+[node name="bossDefeated" type="Label" parent="UI"]
+process_mode = 3
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 400.0
+offset_bottom = 572.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_j1wiw")
+theme_override_font_sizes/font_size = 160
+text = "GENERAL SLAIN"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/bossDefeated"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.201527, 0.201527, 0.201527, 0.764706)
+
+[node name="Timer" type="Timer" parent="UI/bossDefeated"]
+wait_time = 3.0
+one_shot = true
+
 [node name="autoSaveText" type="MarginContainer" parent="UI"]
 visible = false
 anchors_preset = 1
@@ -8884,6 +8914,7 @@ one_shot = true
 [connection signal="timeout" from="MenuArea/shader_cache/enemy5/iFrameTimer" to="MenuArea/shader_cache/enemy5" method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="MenuArea/shader_cache/enemy5/frozenTimer" to="MenuArea/shader_cache/enemy5" method="_on_frozen_timer_timeout"]
 [connection signal="finished" from="MenuArea/shader_cache/enemy5/explosion" to="MenuArea/shader_cache/enemy5" method="_on_explosion_finished"]
+[connection signal="timeout" from="UI/bossDefeated/Timer" to="BossRoom/cleric" method="_on_timer_timeout"]
 [connection signal="timeout" from="UI/autoSaveText/Timer" to="player" method="_on_timer_timeout"]
 [connection signal="timeout" from="UI/speedLines/speedTimer" to="player" method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="UI/CreditScreen/MarginContainer2/VBoxContainer/Button" to="UI/CreditScreen" method="_on_button_pressed"]
