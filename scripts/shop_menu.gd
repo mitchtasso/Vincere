@@ -127,7 +127,7 @@ func _on_armor_pressed() -> void:
 	menuButtonSound.play()
 	if player.souls >= armorPrice and player.ARMOR < player.maxArmor:
 		player.souls -= armorPrice
-		player.ARMOR += player.maxArmor
+		player.ARMOR = player.maxArmor
 	elif player.souls < armorPrice:
 		insufficient_funds.show()
 		insufficient_funds_timer.start()
