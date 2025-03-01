@@ -13,3 +13,26 @@ func _init() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Steam.steamInit()
+
+func _process(delta: float) -> void:
+	isRunning = Steam.isSteamRunning()
+	if isRunning:
+		
+		if player.points >= 200:
+			setAchievement("ACH_SLAYER")
+		
+		if player.gameTimeMin >= 8:
+			setAchievement("ACH_TIME")
+		
+		if player.playerData.gameTimeMin > 0 or player.playerData.gameTimeSec > 0:
+			setAchievement("ACH_NIGHT")
+		
+	else:
+		pass
+
+func setAchievement(ach):
+	var status = Steam.getAchievement(ach)
+	if status["achieved"]:
+		return
+	Steam.setAchievement(ach)
+	Steam.storeStats()
