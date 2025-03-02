@@ -11,12 +11,6 @@ extends Node3D
 @onready var wave_label: Label = $UI/waveUI/VBoxContainer/waveLabel
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
-var lightningMagic = preload("res://scenes/lightning_magic.tscn")
-var beamMagic = preload("res://scenes/beam_magic.tscn")
-var iceMagic = preload("res://scenes/ice_magic.tscn")
-var demonMagic = preload("res://scenes/demon_magic.tscn")
-var bossMagic = preload("res://scenes/boss_magic.tscn")
-
 var demon = preload("res://scenes/enemy1.tscn")
 var demon2 = preload("res://scenes/enemy2.tscn")
 var demon3 = preload("res://scenes/enemy3.tscn")

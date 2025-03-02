@@ -84,6 +84,10 @@ var instance
 @onready var arm_cast: RayCast3D = $Head/Camera3D/ArmMesh/RayCast3D
 @onready var arm_mesh: MeshInstance3D = $Head/Camera3D/ArmMesh
 
+var fireballMagic = preload("res://scenes/beam_magic.tscn")
+var icycleMagic = preload("res://scenes/ice_magic.tscn")
+var lightningMagic = preload("res://scenes/lightning_magic.tscn")
+
 #Player data save path
 var save_file_path: String = "user://VincereData/"
 var save_file_name: String = "PlayerData.tres"
@@ -198,8 +202,8 @@ func _physics_process(_delta):
 	
 	#Change spell system
 	if Input.is_action_just_pressed("change_spell"):
-		changeSpell += 1
 		if SPELL == 1:
+			changeSpell += 1
 			magic_change_sound.play()
 	
 	if changeSpell >= 3:
@@ -207,25 +211,29 @@ func _physics_process(_delta):
 	
 	if changeSpell == 0:
 		if fireSpell == 1:
-			magic = load("res://scenes/beam_magic.tscn")
+			magic = fireballMagic
+			spell_UI_pic.show()
 			spell_UI_pic.texture = load("res://assets/menu/fireball.png")
 			activeSpell = 1
 		else:
 			changeSpell = 1
 	elif changeSpell == 1:
 		if iceSpell == 1:
-			magic = load("res://scenes/ice_magic.tscn")
+			magic = icycleMagic
+			spell_UI_pic.show()
 			spell_UI_pic.texture = load("res://assets/menu/icycle.png")
 			activeSpell = 2
 		else:
 			changeSpell = 2
 	elif changeSpell == 2:
 		if lightningSpell == 1:
-			magic = load("res://scenes/lightning_magic.tscn")
+			magic = lightningMagic
+			spell_UI_pic.show()
 			spell_UI_pic.texture = load("res://assets/menu/lightning.png")
 			activeSpell = 3
 		else:
 			changeSpell = 0
+			spell_UI_pic.hide()
 	
 	#UI refresh
 	var time_string = "%02d:%02d" % [gameTimeMin, gameTimeSec]
@@ -697,6 +705,9 @@ func load_data():
 	lightningSpell = playerData.lightningSpell
 	player.position = playerData.POS
 	playerMagicRegen = playerData.playerMagicRegen
+	
+	if SPELL == 0:
+		MANA = 0
 	
 	if modeType == 0:
 		player.position = graveyardPOS

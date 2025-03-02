@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://dkwybi6h6tuia"]
+[gd_scene load_steps=233 format=3 uid="uid://dkwybi6h6tuia"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_thyhm"]
 [ext_resource type="Script" path="res://scripts/steam.gd" id="2_715fs"]
@@ -200,6 +200,9 @@ points = PackedVector3Array(18, 0, 36, -18, 0, 36, 18, 0, -36, -18, 0, -36)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nfmci"]
 points = PackedVector3Array(18, 0, 36, -18, 0, 36, 18, 0, -36, -18, 0, -36)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bc22x"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a1556"]
 size = Vector3(0.25, 1.5, 1)
@@ -2475,8 +2478,8 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 mesh = ExtResource("3_yfm6t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797382, 0)
-shape = SubResource("BoxShape3D_vpsjh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01165, 0)
+shape = SubResource("BoxShape3D_bc22x")
 
 [node name="flame" type="MeshInstance3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier5"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.30175, 0)
@@ -2500,8 +2503,8 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 mesh = ExtResource("3_yfm6t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797382, 0)
-shape = SubResource("BoxShape3D_vpsjh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01165, 0)
+shape = SubResource("BoxShape3D_bc22x")
 
 [node name="flame" type="MeshInstance3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier6"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.30175, 0)
@@ -2524,10 +2527,6 @@ collision_mask = 9
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 mesh = ExtResource("3_yfm6t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797382, 0)
-shape = SubResource("BoxShape3D_vpsjh")
-
 [node name="flame" type="MeshInstance3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier7"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.30175, 0)
 mesh = SubResource("SphereMesh_g0her")
@@ -2540,6 +2539,10 @@ omni_shadow_mode = 0
 
 [node name="flameH" parent="NavigationRegion3D/GameEnvironment/braziers/brazier7/flame" instance=ExtResource("11_ycxw5")]
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01165, 0)
+shape = SubResource("BoxShape3D_bc22x")
+
 [node name="brazier8" type="StaticBody3D" parent="NavigationRegion3D/GameEnvironment/braziers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.076, 0, 28.091)
 collision_layer = 9
@@ -2550,8 +2553,8 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 mesh = ExtResource("3_yfm6t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797382, 0)
-shape = SubResource("BoxShape3D_vpsjh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01165, 0)
+shape = SubResource("BoxShape3D_bc22x")
 
 [node name="flame" type="MeshInstance3D" parent="NavigationRegion3D/GameEnvironment/braziers/brazier8"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.30175, 0)
