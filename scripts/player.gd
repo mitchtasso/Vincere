@@ -43,7 +43,7 @@ const BASE_FOV: float = 75.0
 const FOV_CHANGE: float = 1.5
 var graveyardPOS: Vector3 = Vector3(0,-0.5,0)
 var shopPOS: Vector3 = Vector3(99,-0.5,0)
-var bossRoomPOS: Vector3 = Vector3(-99,-0.5,0)
+var bossRoomPOS: Vector3 = Vector3(-93,-0.5,0)
 var SENSITIVITY: float
 var controllerSensH: float
 var controllerSensV: float
@@ -730,6 +730,8 @@ func load_data():
 		boss_enemy_character.hide()
 		shop.show()
 	elif modeType == 2:
+		camera.rotation.x = 0.0
+		head.rotation.y = 135.0
 		player.position = bossRoomPOS
 		graveyard.hide()
 		graveyard_other_textures.hide()
