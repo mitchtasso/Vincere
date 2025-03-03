@@ -155,7 +155,7 @@ var modeType: int = 0
 func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		#camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(_delta):
@@ -730,8 +730,6 @@ func load_data():
 		boss_enemy_character.hide()
 		shop.show()
 	elif modeType == 2:
-		camera.rotation.x = 0.0
-		head.rotation.y = 135.0
 		player.position = bossRoomPOS
 		graveyard.hide()
 		graveyard_other_textures.hide()
