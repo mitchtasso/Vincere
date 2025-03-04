@@ -5882,6 +5882,14 @@ offset_bottom = 75.0
 value = 100.0
 show_percentage = false
 
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/healthBar"]
+modulate = Color(0.612299, 1.46799e-06, 7.70092e-07, 1)
+show_behind_parent = true
+offset_right = 600.0
+offset_bottom = 50.0
+value = 100.0
+show_percentage = false
+
 [node name="armorBar" type="ProgressBar" parent="UI/statsUI"]
 modulate = Color(0.691258, 0.706598, 0.672926, 1)
 layout_mode = 0
@@ -5892,6 +5900,14 @@ offset_bottom = 135.0
 value = 100.0
 show_percentage = false
 
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/armorBar"]
+modulate = Color(0.583861, 0.600763, 0.563538, 1)
+show_behind_parent = true
+offset_right = 448.0
+offset_bottom = 50.0
+value = 100.0
+show_percentage = false
+
 [node name="manaBar" type="ProgressBar" parent="UI/statsUI"]
 modulate = Color(0.247059, 0.282353, 0.8, 1)
 layout_mode = 0
@@ -5899,6 +5915,14 @@ offset_left = 100.0
 offset_top = 148.0
 offset_right = 350.0
 offset_bottom = 198.0
+value = 100.0
+show_percentage = false
+
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/manaBar"]
+modulate = Color(0.294063, 0.345804, 0.871337, 1)
+show_behind_parent = true
+offset_right = 250.0
+offset_bottom = 50.0
 value = 100.0
 show_percentage = false
 

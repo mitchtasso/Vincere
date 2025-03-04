@@ -3524,6 +3524,7 @@ shape = SubResource("BoxShape3D_a1556")
 
 [node name="BossRoom" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.7853, 0, 0)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_okat3")
 
 [node name="cleric" parent="BossRoom" instance=ExtResource("4_o2v7d")]
@@ -5871,6 +5872,15 @@ offset_left = 100.0
 offset_top = 25.0
 offset_right = 700.0
 offset_bottom = 75.0
+value = 50.0
+show_percentage = false
+
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/healthBar"]
+modulate = Color(0.612299, 1.46799e-06, 7.70092e-07, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 50.0
 value = 100.0
 show_percentage = false
 
@@ -5881,6 +5891,15 @@ offset_left = 100.0
 offset_top = 85.0
 offset_right = 548.0
 offset_bottom = 135.0
+value = 50.0
+show_percentage = false
+
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/armorBar"]
+modulate = Color(0.583861, 0.600763, 0.563538, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 50.0
 value = 100.0
 show_percentage = false
 
@@ -5891,6 +5910,15 @@ offset_left = 100.0
 offset_top = 148.0
 offset_right = 350.0
 offset_bottom = 198.0
+value = 50.0
+show_percentage = false
+
+[node name="lessbar" type="ProgressBar" parent="UI/statsUI/manaBar"]
+modulate = Color(0.294063, 0.345804, 0.871337, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
 value = 100.0
 show_percentage = false
 

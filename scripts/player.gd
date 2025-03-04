@@ -792,6 +792,8 @@ func stat_reset():
 		timerLabel.show()
 		playerDeath = false
 		shop.hide()
+		boss_room.hide()
+		boss_enemy_character.hide()
 	elif modeType == 1:
 		graveyard.hide()
 		graveyard_other_textures.hide()
@@ -800,6 +802,8 @@ func stat_reset():
 		timerLabel.hide()
 		playerDeath = true
 		shop.show()
+		boss_room.hide()
+		boss_enemy_character.hide()
 
 func _on_timer_timeout() -> void:
 	autosaveLabel.hide()
