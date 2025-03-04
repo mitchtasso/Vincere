@@ -514,6 +514,8 @@ func death():
 		elif modeType == 2:
 			player.transform.origin = bossRoomPOS
 		save()
+		world.unlock = 0
+		world.playerHeal = 0
 		deathMenu.show()
 		healthVin.hide()
 		uiOptionsDeath.grab_focus()
